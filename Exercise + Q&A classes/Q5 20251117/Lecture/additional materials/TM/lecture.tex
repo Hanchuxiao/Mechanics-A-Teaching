@@ -1,0 +1,807 @@
+\documentclass[12pt]{report}
+\usepackage{ctex} % 中文支持
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm} % 用于向量和张量的粗体数学符号
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+\definecolor{sectioncolor}{rgb}{0.2, 0.4, 0.6}
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{sectioncolor}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{1em}{}
+
+\title{\Huge\bfseries 理论力学A期中复习讲义}
+\author{寒初晓}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\chapter{第一章 经典力学回顾}
+
+\section{引言: 温故而知新}
+在深入探讨拉格朗日力学和哈密顿力学这些更为抽象和强大的理论框架之前, 我们有必要回顾一下它们所根植的土壤——牛顿经典力学. 本章的目的不仅是复习基本定律, 更是要从一个批判性的视角审视经典力学的基本假设、核心概念及其适用范围, 理解其辉煌成就背后的公理化体系, 并为其在后续章节中的推广和重构奠定坚实的基础.
+
+\subsection{力学简史: 思想的阶梯}
+力学的发展史是一部人类理性探索自然规律的壮丽史诗.
+\begin{itemize}
+    \item \textbf{亚里士多德 (Aristotle):} 古希腊时期, 认为力是维持运动的原因. 他的思想统治了西方近两千年.
+    \item \textbf{伽利略 (Galileo Galilei):} 文艺复兴时期, 通过理想实验和真实实验, 颠覆了亚里士多德的观点. 他提出了惯性概念的雏形, 并揭示了力是改变运动状态 (即产生加速度) 的原因.
+    \item \textbf{开普勒 (Johannes Kepler):} 通过对第谷·布拉赫 (Tycho Brahe) 精确天文观测数据的分析, 总结出了行星运动三大定律, 描述了行星运动的现象学规律.
+    \item \textbf{牛顿 (Isaac Newton):} 站在巨人的肩膀上, 牛顿于 1687 年发表《自然哲学的数学原理》, 提出了牛顿三定律和万有引力定律. 他不仅统一了天上的和地上的力学, 建立了一个宏伟、精确、具有强大预测能力的公理化力学体系. 经典力学的大厦由此建成.
+    \item \textbf{分析力学的发展:} 欧拉、拉格朗日、哈密顿、雅可比等人将牛顿力学用更为优雅和普适的数学语言 (变分法) 重新表述, 发展出了分析力学, 使其能够处理更复杂的约束系统, 并深刻地揭示了对称性与守恒律的内在联系.
+\end{itemize}
+
+\subsection{经典力学回顾: 牛顿的公理化体系}
+
+\subsubsection{牛顿的绝对时空观}
+牛顿力学建立在两个基本假设之上, 这构成了其理论的舞台.
+\begin{itemize}
+    \item \textbf{绝对空间:} 牛顿设想存在一个绝对的、均匀的、各向同性的三维欧几里得空间. 它是永恒不变的、与任何物质的存在和运动无关的参照背景.
+    \item \textbf{绝对时间:} 牛顿设想存在一个绝对的、均匀流逝的时间. 它是独立于空间和物质运动的, 全宇宙通行唯一的“时钟”.
+\end{itemize}
+在这种时空观下, 长度和时间的测量与观测者的运动状态无关.
+
+\subsubsection{牛顿三定律}
+\begin{itemize}
+    \item \textbf{第一定律 (惯性定律):} 任何物体都要保持其静止或匀速直线运动的状态, 直到有外力迫使它改变这种状态为止.
+    \begin{itemize}
+        \item \textbf{核心概念:} \textbf{惯性 (Inertia)}.
+        \item \textbf{重要推论:} 定义了\textbf{惯性参考系 (Inertial Frame of Reference)}——即牛顿第一定律成立的参考系.
+    \end{itemize}
+    \item \textbf{第二定律 (动力学主定律):} 物体动量的变化率正比于作用于它的合外力, 并且变化的方向与合外力的方向相同.
+    \begin{equation}
+        \vec{F} = \frac{d\vec{p}}{dt} = \frac{d(m\vec{v})}{dt}
+    \end{equation}
+    对于质量 $m$ 恒定的物体, 它简化为我们最熟悉的形式 $\vec{F} = m\vec{a}$.
+    \begin{itemize}
+        \item \textbf{核心作用:} 提供了从“力”计算“运动”的定量法则.
+    \end{itemize}
+    \item \textbf{第三定律 (作用与反作用定律):} 对于每一个作用力, 总存在一个大小相等、方向相反的反作用力, 它们作用在相互作用的两个不同物体上, 且在同一直线上.
+    \begin{equation}
+        \vec{F}_{12} = -\vec{F}_{21}
+    \end{equation}
+    \begin{itemize}
+        \item \textbf{重要推论:} 保证了孤立系统总动量的守恒.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{力学相对性原理 (伽利略相对性原理)}
+所有惯性参考系对于描述力学现象都是平权的. 换言之, 力学定律的形式在所有惯性参考系中都保持不变.
+数学上, 这是通过\textbf{伽利略变换}来保证的. 设 S' 系相对于 S 系以恒速 $\vec{V}$ 运动:
+\begin{equation}
+    \vec{r}' = \vec{r} - \vec{V}t, \quad t' = t
+\end{equation}
+对时间求两次导数, 得到 $\vec{a}' = \vec{a}$. 如果力 $\vec{F}$ 不依赖于速度 (如引力), 则 $\vec{F}'=\vec{F}$. 因此, $\vec{F}'=m\vec{a}'$ 与 $\vec{F}=m\vec{a}$ 形式完全相同.
+
+\subsubsection{万有引力定律}
+牛顿提出的第四个基本定律, 用于描述物体间的引力相互作用.
+\begin{equation}
+    \vec{F}_{12} = -G \frac{m_1 m_2}{r^2} \hat{r}_{12}
+\end{equation}
+其中 $G$ 是万有引力常数, $\hat{r}_{12}$ 是从 $m_1$ 指向 $m_2$ 的单位矢量. 这个平方反比定律成功地统一了解释行星运动和地面上的重力现象.
+
+\subsubsection{惯性质量与引力质量}
+牛顿第二定律中的质量 $m_i$ 是物体惯性的量度, 称为\textbf{惯性质量}. 它抵抗运动状态的改变.
+万有引力定律中的质量 $m_g$ 是物体产生和感受引力的“引力荷”, 称为\textbf{引力质量}.
+在经典力学中, 这两个质量被认为是严格成正比的, 通过选择合适的单位可以使它们相等. 这是一个深刻的实验事实, 伽利略的落体实验和厄缶 (Eötvös) 的扭摆实验都以极高的精度验证了这一点.
+这个看似巧合的等价性, 成为爱因斯坦建立\textbf{广义相对论}的基石, 即\textbf{等效原理}.
+
+\subsubsection{牛顿定律的适用范围}
+牛顿经典力学取得了巨大的成功, 但它并非宇宙的终极真理. 其适用范围是:
+\begin{itemize}
+    \item \textbf{宏观物体:} 不适用于微观粒子 (需要量子力学).
+    \item \textbf{低速运动:} 物体速度远小于光速 $c$ (否则需要狭义相对论).
+    \item \textbf{弱引力场:} 引力场较弱 (否则需要广义相对论).
+\end{itemize}
+
+\subsection{狭义相对论中的力学原理*}
+爱因斯坦的狭义相对论修正了牛顿的绝对时空观, 建立了新的时空理论, 其基础是两个基本假设:
+\begin{enumerate}
+    \item \textbf{相对性原理:} 所有物理定律 (包括电磁学) 在所有惯性系中形式相同. (这是对伽利略相对性原理的推广).
+    \item \textbf{光速不变原理:} 真空中的光速 $c$ 对所有惯性观测者都是一个恒定的值, 与光源或观测者的运动无关.
+\end{enumerate}
+这导致了全新的时空变换——\textbf{洛伦兹变换}, 并对力学概念产生了深远影响, 例如质量不再是恒定的, 而是随速度增加而增加: $m(v) = \gamma m_0$, 其中 $\gamma = 1/\sqrt{1-v^2/c^2}$.
+
+\subsection{开普勒第一定律的几何证明*}
+虽然在第四章中我们会用动力学方程严格求解开普勒问题, 但这里介绍一个基于纯几何思想的巧妙证明 (由牛顿在《原理》中首次提出, 后由费曼等人用现代语言阐述), 以展示经典力学内部的数学美.
+\begin{enumerate}
+    \item \textbf{椭圆的定义:} 椭圆是到两个定点 (焦点 $F_1, F_2$) 的距离之和为常数 ($2a$) 的点的轨迹.
+    \item \textbf{动力学输入:} 我们只使用两个来自牛顿定律的结果:
+        \begin{itemize}
+            \item (A) \textbf{角动量守恒 (开普勒第二定律):} 行星在相等时间内扫过相等的面积.
+            \item (B) \textbf{平方反比定律:} 行星受到的引力大小与距离的平方成反比. 并且力始终指向太阳.
+        \end{itemize}
+    \item \textbf{证明思路 (速度矢量图):}
+        \begin{itemize}
+            \item (1) 考虑行星的速度矢量 $\vec{v}$. 在很短的时间 $\Delta t$ 内, 速度矢量的变化 $\Delta\vec{v} = \vec{a}\Delta t$. 由于力指向太阳, $\Delta\vec{v}$ 的方向也始终指向太阳.
+            \item (2) 根据角动量守恒, $l=|\vec{r}\times\vec{v}|=rv_\perp$ 是常数, 其中 $v_\perp$ 是速度垂直于径向的分量. 这可以推出, 在相等时间间隔内, 速度矢量 $\vec{v}$ 的方向转过的角度与行星绕太阳转过的角度成正比.
+            \item (3) 综合(1)和(2), 可以证明, 将行星在整个轨道周期中的所有速度矢量 $\vec{v}(t)$ 平移到同一个原点, 这些速度矢量的端点将构成一个\textbf{正圆形}. 这个圆被称为速度矢端图 (hodograph).
+            \item (4) 最后一步是从“速度矢端图是圆形”这个几何事实, 反推出“空间轨道是椭圆”. 这可以通过分析速度矢量与位置矢量的几何关系来完成.
+        \end{itemize}
+\end{enumerate}
+这个证明虽然不比动力学方程求解来得直接, 但它巧妙地将动力学问题转化为了一个纯粹的几何问题, 展现了物理规律背后深刻的数学和谐.
+
+\chapter{第二章 拉格朗日方程}
+
+\section{核心思想: 作用量原理与分析力学}
+
+拉格朗日力学, 作为分析力学的核心, 标志着经典力学从几何直观的牛顿方法向更抽象、更普适的变分方法的转变. 其核心思想不再是瞬时的“力”与“加速度”之间的关系, 而是考察系统在一段时间内的\textbf{整个运动轨迹}.
+
+\subsection{哈密顿原理 (Hamilton's Principle)}
+哈密顿原理, 也称为\textbf{最小作用量原理 (Principle of Least Action)}, 是整个分析力学的基石. 它指出:
+\begin{center}
+\textit{一个动力学系统的真实运动路径, 是使其作用量取驻值 (通常是极小值) 的那条路径.}
+\end{center}
+\begin{itemize}
+    \item \textbf{拉格朗日量 (Lagrangian):} 对于一个经典系统, 我们定义其拉格朗日量 $L$ 为系统的动能 $T$ 与势能 $U$之差:
+        \begin{equation}
+            L(q_j, \dot{q}_j, t) = T(q_j, \dot{q}_j, t) - U(q_j, t)
+        \end{equation}
+        $L$ 是一个包含了系统所有动力学信息的标量函数.
+    \item \textbf{作用量 (Action):} 作用量 $S$ 是拉格朗日量 $L$ 在时间上的积分, 它是一个依赖于整个运动路径 $q_j(t)$ 的泛函:
+        \begin{equation}
+            S[q_j(t)] = \int_{t_1}^{t_2} L(q_j, \dot{q}_j, t) dt
+        \end{equation}
+\end{itemize}
+哈密顿原理的数学表述为, 在所有可能的、连接着相同起点 $q_j(t_1)$ 和终点 $q_j(t_2)$ 的路径中, 真实路径使作用量的变分 $\delta S$ 为零:
+\begin{equation}
+    \boxed{\delta S = \delta \int_{t_1}^{t_2} L dt = 0}
+\end{equation}
+这个看似简单的原理蕴含着巨大的威力, 系统的运动方程将作为其直接的数学推论.
+
+\subsection{约束与广义坐标 (Constraints and Generalized Coordinates)}
+在应用哈密顿原理之前, 我们必须建立描述系统的语言. 这正是广义坐标的用武之地.
+
+\subsubsection{约束的分类}
+\begin{itemize}
+    \item \textbf{完整约束 (Holonomic):} 约束条件可以表示为只含坐标和时间的代数方程: $f(\vec{r}_1, \dots, \vec{r}_N, t) = 0$. 完整约束减少了系统的自由度.
+        \begin{itemize}
+            \item \textbf{定常约束 (Scleronomous):} 约束方程不显含时间, $\partial f / \partial t = 0$. (例如: 珠子在固定的圆环上滑动).
+            \item \textbf{非定常约束 (Rheonomous):} 约束方程显含时间. (例如: 珠子在半径随时间变化的圆环上滑动).
+        \end{itemize}
+    \item \textbf{非完整约束 (Non-holonomic):} 约束条件不能被积分为上述代数方程, 通常以速度或不等式形式出现. (例如: 球在粗糙平面上纯滚动, $v_{cm} = R\omega$). 拉格朗日方程的标准形式不直接适用于非完整约束.
+\end{itemize}
+
+\subsubsection{自由度与广义坐标}
+\begin{itemize}
+    \item \textbf{自由度 (Degrees of Freedom, DOF), $s$:} 唯一地确定一个力学系统的位形所需要的最少\textbf{独立}变量的数目. 对于一个有 $N$ 个质点和 $m$ 个完整约束的系统, 自由度为 $s=3N-m$.
+    \item \textbf{广义坐标 (Generalized Coordinates), $\{q_j\}$:} 描述系统位形的这样一组 $s$ 个独立变量 $\{q_1, \dots, q_s\}$. 广义坐标的引入, 其核心目的就是将一个受约束的系统, 转化为一个在广义坐标空间中\textbf{不受约束}的系统.
+\end{itemize}
+系统的笛卡尔坐标可以表示为广义坐标的函数: $\vec{r}_i = \vec{r}_i(q_1, \dots, q_s, t)$.
+
+\section{拉格朗日方程的推导: 两条路径}
+
+我们可以从两个看似不同但本质相通的物理原理出发, 推导出拉格朗日方程.
+
+\subsection{路径一: 达朗贝尔原理 (D'Alembert's Principle)}
+这条路径从牛顿力学的思想出发, 是一条更为“物理”的路径.
+
+\subsubsection{基本概念}
+\begin{itemize}
+    \item \textbf{虚位移 ($\delta\vec{r}$):} 在时间冻结 ($\delta t=0$) 的瞬间, 符合系统约束条件的、任意无穷小的位移.
+    \item \textbf{理想约束:} 约束力不做虚功.
+    \item \textbf{虚功原理 (静力学):} 对于处于平衡状态的系统, 所有主动力 $\vec{F}_i^{(a)}$ 做的总虚功为零, $\sum \vec{F}_i^{(a)} \cdot \delta\vec{r}_i = 0$.
+    \item \textbf{达朗贝尔原理 (动力学):} 将牛顿定律改写为 $\vec{F}_i - \dot{\vec{p}}_i = 0$, 并将 $(-\dot{\vec{p}}_i)$ 视为“惯性力”. 系统在真实力与惯性力共同作用下处于“动平衡”, 满足虚功原理的推广形式:
+        \begin{equation}
+            \sum_{i=1}^{N} (\vec{F}_i^{(a)} - \dot{\vec{p}}_i) \cdot \delta\vec{r}_i = 0
+        \end{equation}
+\end{itemize}
+
+\subsubsection{推导过程}
+核心任务是将达朗贝尔原理中的所有项用广义坐标 $\{q_j, \dot{q}_j\}$ 表示.
+\begin{enumerate}
+    \item \textbf{变换主动力项}, 定义\textbf{广义力 $Q_j$}:
+    \begin{equation}
+        \sum_{i=1}^{N} \vec{F}_i^{(a)} \cdot \delta\vec{r}_i = \sum_{j=1}^{s} \left(\sum_{i=1}^{N} \vec{F}_i^{(a)} \cdot \frac{\partial\vec{r}_i}{\partial q_j}\right) \delta q_j \equiv \sum_{j=1}^{s} Q_j \delta q_j
+    \end{equation}
+    \item \textbf{变换惯性力项}, 利用恒等式 (详见上一回答中的推导):
+    \begin{equation}
+        \sum_{i=1}^{N} \dot{\vec{p}}_i \cdot \delta\vec{r}_i = \sum_{j=1}^{s} \left[ \frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j}\right) - \frac{\partial T}{\partial q_j} \right] \delta q_j
+    \end{equation}
+    \item \textbf{组合并得到方程:} 将(5)和(6)代入(4), 并利用 $\delta q_j$ 的任意性和独立性, 我们得到普适的拉格朗日方程:
+    \begin{equation}
+        \boxed{\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_j}\right) - \frac{\partial T}{\partial q_j} = Q_j \quad (j=1, \dots, s)}
+    \end{equation}
+\end{enumerate}
+
+\subsection{路径二: 哈密顿原理与变分法}
+这条路径从作用量原理出发, 是一条更优美、更具普适性的数学路径.
+
+\subsubsection{变分法与欧拉方程}
+\begin{itemize}
+    \item \textbf{泛函 (Functional):} 一种“函数的函数”, 其输入是一个函数, 输出是一个数值. 作用量 $S[q(t)]$ 就是一个泛函.
+    \item \textbf{变分 ($\delta$):} 寻求使泛函取驻值的函数, 类似于微积分中求函数的极值. 我们考虑真实路径 $q(t)$ 与其无穷小的偏离路径 $q(t)+\delta q(t)$ 的差异.
+    \item \textbf{欧拉方程:} 对于形式为 $I[y(x)] = \int_{x_1}^{x_2} f(y, y', x) dx$ 的泛函, 其取驻值的条件 ($\delta I=0$) 是被积函数 $f$ 满足如下微分方程:
+        \begin{equation}
+            \frac{d}{dx}\left(\frac{\partial f}{\partial y'}\right) - \frac{\partial f}{\partial y} = 0
+        \end{equation}
+\end{itemize}
+
+\subsubsection{从哈密顿原理到拉格朗日方程}
+哈密顿原理 $\delta S = 0$ 就是一个泛函求驻值的问题.
+\begin{itemize}
+    \item 泛函: $S[q_j(t)] = \int_{t_1}^{t_2} L(q_j, \dot{q}_j, t) dt$
+    \item 变量对应: $x \to t$, $y(x) \to q_j(t)$, $y'(x) \to \dot{q}_j(t)$, $f \to L$
+\end{itemize}
+直接将这些对应代入欧拉方程 (8), 我们立即得到\textbf{欧拉-拉格朗日方程}:
+\begin{equation}
+    \boxed{\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right) - \frac{\partial L}{\partial q_j} = 0 \quad (j=1, \dots, s)}
+\end{equation}
+此方程适用于所有保守系统. 如果系统中存在非保守力 $F_{nc}$, 其虚功为 $\delta W_{nc} = \sum_j Q_{j,nc} \delta q_j$, 那么方程变为:
+\begin{equation}
+    \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right) - \frac{\partial L}{\partial q_j} = Q_{j,nc}
+\end{equation}
+这与从达朗贝尔原理推出的方程是完全等价的.
+
+\section{拉格朗日力学应用: 范例解析}
+
+掌握拉格朗日力学的关键在于实践. 下面我们通过几个经典例子来展示其应用.
+
+\subsubsection{解题策略}
+\begin{enumerate}
+    \item \textbf{分析系统:} 确定系统的自由度 $s$.
+    \item \textbf{选取广义坐标:} 选取一套最方便的广义坐标 $\{q_j\}$.
+    \item \textbf{计算动能 $T$:} 将系统的总动能表示为 $T(q_j, \dot{q}_j, t)$.
+    \item \textbf{计算势能 $U$:} 确定势能零点, 将系统的总势能表示为 $U(q_j, t)$.
+    \item \textbf{构造拉格朗日量:} $L = T - U$.
+    \item \textbf{代入拉格朗日方程:} 对每一个 $q_j$ 应用方程 (9), 得到 $s$ 个二阶微分方程.
+    \item \textbf{求解运动方程:} 结合初始条件求解微分方程.
+\end{enumerate}
+
+\subsection{例题 2.8.3 阿特伍德机 (The Atwood Machine)}
+(该例子展示了如何处理简单的完整约束)
+\begin{itemize}
+    \item \textbf{系统与坐标:} 两个质量为 $m_1, m_2$ 的物体由轻绳跨过无质量滑轮连接. 自由度 $s=1$. 设 $m_1$ 向下的位移为 $x$, 则 $m_2$ 必向上运动 $x$. 广义坐标: $q=x$.
+    \item \textbf{动能与势能:}
+        \begin{align*}
+            T &= \frac{1}{2}m_1 \dot{x}^2 + \frac{1}{2}m_2 \dot{x}^2 = \frac{1}{2}(m_1+m_2)\dot{x}^2 \\
+            U &= -m_1gx + m_2gx = -(m_1-m_2)gx
+        \end{align*}
+    \item \textbf{拉格朗日量:}
+        $L = T - U = \frac{1}{2}(m_1+m_2)\dot{x}^2 + (m_1-m_2)gx$
+    \item \textbf{运动方程:}
+        $\frac{\partial L}{\partial \dot{x}} = (m_1+m_2)\dot{x}$, $\frac{\partial L}{\partial x} = (m_1-m_2)g$.
+        $\frac{d}{dt}(\frac{\partial L}{\partial \dot{x}}) - \frac{\partial L}{\partial x} = 0 \implies (m_1+m_2)\ddot{x} - (m_1-m_2)g = 0$.
+    \item \textbf{解:}
+        $\ddot{x} = \frac{m_1-m_2}{m_1+m_2}g$.
+\end{itemize}
+
+\subsection{例题 2.8.5 滑动楔劈上的粒子}
+(该例子展示了如何处理没有固定坐标系的复杂系统)
+\begin{itemize}
+    \item \textbf{系统与坐标:} 一个质量为 $M$、倾角为 $\alpha$ 的光滑斜面体置于光滑水平面上. 一个质量为 $m$ 的物块从斜面顶端沿斜面下滑.
+    系统有两个自由度 $s=2$. 我们选取:
+    \begin{itemize}
+        \item $q_1 = X$: 楔劈在水平方向的位移.
+        \item $q_2 = s$: 物块沿斜面下滑的距离.
+    \end{itemize}
+    \item \textbf{动能 $T$:} 动能是楔劈和物块的动能之和. 物块的速度是它相对于楔劈的速度与楔劈速度的矢量和.
+    设地面系为 $(x, y)$. 楔劈速度: $\vec{v}_M = (\dot{X}, 0)$.
+    物块相对于楔劈的速度: $\vec{v}_{rel} = (\dot{s}\cos\alpha, -\dot{s}\sin\alpha)$.
+    物块的绝对速度: $\vec{v}_m = \vec{v}_M + \vec{v}_{rel} = (\dot{X}+\dot{s}\cos\alpha, -\dot{s}\sin\alpha)$.
+    物块速度的平方: $v_m^2 = (\dot{X}+\dot{s}\cos\alpha)^2 + (-\dot{s}\sin\alpha)^2 = \dot{X}^2 + \dot{s}^2 + 2\dot{X}\dot{s}\cos\alpha$.
+    总动能:
+    $T = \frac{1}{2}M\dot{X}^2 + \frac{1}{2}m(\dot{X}^2 + \dot{s}^2 + 2\dot{X}\dot{s}\cos\alpha)$.
+    \item \textbf{势能 $U$:} 设水平面为势能零点. 楔劈势能不变. 物块的高度为 $h_0 - s\sin\alpha$.
+    $U = mg(h_0 - s\sin\alpha)$.
+    \item \textbf{拉格朗日量:}
+    $L = \frac{1}{2}(M+m)\dot{X}^2 + \frac{1}{2}m\dot{s}^2 + m\dot{X}\dot{s}\cos\alpha - mg(h_0 - s\sin\alpha)$.
+    \item \textbf{运动方程:}
+        \begin{itemize}
+            \item \textbf{对 $X$:} $X$ 是循环坐标, $\frac{\partial L}{\partial X}=0$. 因此其共轭动量守恒.
+            $p_X = \frac{\partial L}{\partial \dot{X}} = (M+m)\dot{X} + m\dot{s}\cos\alpha = \text{常量}$.
+            这正是系统水平方向动量守恒的体现.
+            \item \textbf{对 $s$:}
+            $\frac{\partial L}{\partial \dot{s}} = m\dot{s} + m\dot{X}\cos\alpha$.
+            $\frac{d}{dt}(\frac{\partial L}{\partial \dot{s}}) = m\ddot{s} + m\ddot{X}\cos\alpha$.
+            $\frac{\partial L}{\partial s} = mg\sin\alpha$.
+            运动方程为: $m\ddot{s} + m\ddot{X}\cos\alpha - mg\sin\alpha = 0$.
+        \end{itemize}
+    \item \textbf{解:} 我们得到了两个耦合的运动方程. 可以联立求解出 $\ddot{s}$ 和 $\ddot{X}$. 这个例子完美展示了拉格朗日方法如何系统地处理多体问题并自然地导出守恒定律.
+\end{itemize}
+
+\subsection{例题 2.8.7 双摆 (Double Pendulum)}
+(该例子是展示拉格朗日力学处理复杂几何约束能力的典范)
+\begin{itemize}
+    \item \textbf{系统与坐标:} 两个质量分别为 $m_1, m_2$, 摆长分别为 $l_1, l_2$ 的质点串联. 自由度 $s=2$.
+    广义坐标: $q_1=\theta_1, q_2=\theta_2$ (与竖直向下方向的夹角).
+    \item \textbf{动能与势能:}
+    $m_1$ 的坐标: $(x_1, y_1) = (l_1\sin\theta_1, -l_1\cos\theta_1)$.
+    $m_2$ 的坐标: $(x_2, y_2) = (l_1\sin\theta_1 + l_2\sin\theta_2, -l_1\cos\theta_1 - l_2\cos\theta_2)$.
+    计算速度平方 $v_1^2 = \dot{x}_1^2 + \dot{y}_1^2 = l_1^2\dot{\theta}_1^2$.
+    计算速度平方 $v_2^2 = \dot{x}_2^2 + \dot{y}_2^2 = l_1^2\dot{\theta}_1^2 + l_2^2\dot{\theta}_2^2 + 2l_1l_2\dot{\theta}_1\dot{\theta}_2\cos(\theta_1-\theta_2)$.
+    总动能: $T = \frac{1}{2}m_1 v_1^2 + \frac{1}{2}m_2 v_2^2$.
+    总势能 (取悬挂点为零点): $U = m_1gy_1 + m_2gy_2 = -(m_1+m_2)gl_1\cos\theta_1 - m_2gl_2\cos\theta_2$.
+    \item \textbf{拉格朗日量:}
+    $L = \frac{1}{2}(m_1+m_2)l_1^2\dot{\theta}_1^2 + \frac{1}{2}m_2l_2^2\dot{\theta}_2^2 + m_2l_1l_2\dot{\theta}_1\dot{\theta}_2\cos(\theta_1-\theta_2) + (m_1+m_2)gl_1\cos\theta_1 + m_2gl_2\cos\theta_2$.
+    \item \textbf{运动方程:} 对 $L$ 分别求 $\theta_1, \theta_2$ 的拉格朗日方程, 将会得到两个高度耦合的、非线性的二阶微分方程. 例如对 $\theta_1$ 的方程为:
+    $\frac{d}{dt}[(m_1+m_2)l_1^2\dot{\theta}_1 + m_2l_1l_2\dot{\theta}_2\cos(\theta_1-\theta_2)] - [-m_2l_1l_2\dot{\theta}_1\dot{\theta}_2\sin(\theta_1-\theta_2) - (m_1+m_2)gl_1\sin\theta_1] = 0$.
+\end{itemize}
+尽管最终的方程非常复杂 (预示着混沌行为), 但拉格朗日方法提供了一条无需分析复杂张力的、直截了当的路径来写出它们. 这正是分析力学的威力所在.
+
+\chapter{第三章 拉格朗日量与Noether定理}
+
+\section{对称性与守恒律: 物理学的深层联系}
+
+守恒定律, 如能量守恒、动量守恒和角动量守恒, 是物理学中最为核心和普适的规律. 在牛顿力学框架下, 它们通常作为运动方程的首次积分出现. 拉格朗日力学提供了一个更深刻的视角: \textbf{每一个守恒定律都根植于系统的一种基本对称性}. 这种对称性与守恒律之间的深刻内在联系, 由伟大的数学家艾米·诺特 (Emmy Noether) 提出的诺特定理给出了完美的阐述.
+
+\subsection{运动积分、广义动量与循环坐标}
+
+\subsubsection{运动积分 (First Integrals)}
+一个力学系统的运动积分, 是一个只依赖于广义坐标和广义速度的函数 $\Phi(q_j, \dot{q}_j)$, 它在系统的真实运动轨迹上保持为一个常数. 守恒量就是一种运动积分. 寻找运动积分是求解复杂动力学问题的关键, 因为每一个运动积分都能将运动方程的阶数降低一阶.
+
+\subsubsection{广义动量与循环坐标}
+\begin{itemize}
+    \item \textbf{广义动量 (Generalized Momentum):} 与广义坐标 $q_j$ 相\textbf{共轭}的广义动量 $p_j$ 定义为:
+        \begin{equation}
+            p_j \equiv \frac{\partial L}{\partial \dot{q}_j}
+        \end{equation}
+        拉格朗日方程可写为 $\dot{p}_j = \frac{\partial L}{\partial q_j}$.
+    \item \textbf{循环坐标 (Cyclic Coordinate):} 如果一个广义坐标 $q_k$ 没有在拉格朗日量 $L$ 中显式出现 (即 $L$ 的函数形式与 $q_k$ 的值无关), 则称 $q_k$ 是一个循环坐标. 数学上即:
+        \begin{equation}
+            \frac{\partial L}{\partial q_k} = 0
+        \end{equation}
+\end{itemize}
+由拉格朗日方程可知, 如果 $q_k$ 是循环坐标, 则 $\dot{p}_k = 0$, 这意味着与之共轭的广义动量 $p_k$ 是一个守恒量, 即一个运动积分.
+\begin{equation}
+    p_k = \frac{\partial L}{\partial \dot{q}_k} = \text{常量}
+\end{equation}
+这个简单的结论是诺特定理的第一个也是最直接的体现. “坐标是循环的” 是一种数学上的表述, 其背后深刻的物理意义是系统具有某种\textbf{对称性}.
+
+\section{时空对称性与三大守恒定律}
+
+均匀、各向同性的空间和均匀的时间是经典力学的基本假设. 这些时空的对称性直接导致了能量、动量和角动量守恒.
+
+\subsection{时间平移不变性与能量守恒}
+
+\subsubsection{物理图像与对称性}
+\textbf{对称性:} 如果一个物理系统的动力学规律不随时间的流逝而改变, 我们就说该系统具有\textbf{时间平移不变性}. 换句话说, 在今天做实验和在明天做同一个实验, 得到的物理规律是完全一样的.
+
+\textbf{数学表述:} 这意味着系统的拉格朗日量 $L(q_j, \dot{q}_j, t)$ 不显式地依赖于时间 $t$.
+\begin{equation}
+    \frac{\partial L}{\partial t} = 0
+\end{equation}
+
+\subsubsection{守恒量的推导}
+我们来考察拉格朗日量 $L$ 沿着真实运动轨迹对时间的全导数:
+\begin{equation}
+    \frac{dL}{dt} = \sum_j \frac{\partial L}{\partial q_j} \dot{q}_j + \sum_j \frac{\partial L}{\partial \dot{q}_j} \ddot{q}_j + \frac{\partial L}{\partial t}
+\end{equation}
+利用拉格朗日方程 $\frac{\partial L}{\partial q_j} = \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right)$ 来替换第一项:
+\begin{equation}
+    \frac{dL}{dt} = \sum_j \left[ \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_j}\right) \right] \dot{q}_j + \sum_j \frac{\partial L}{\partial \dot{q}_j} \ddot{q}_j + \frac{\partial L}{\partial t}
+\end{equation}
+观察上式的前两项, 根据乘积的求导法则, 它们恰好是 $\frac{d}{dt}\left(\sum_j \frac{\partial L}{\partial \dot{q}_j} \dot{q}_j\right)$ 的展开形式. 因此:
+\begin{equation}
+    \frac{dL}{dt} = \frac{d}{dt}\left(\sum_j \frac{\partial L}{\partial \dot{q}_j} \dot{q}_j\right) + \frac{\partial L}{\partial t}
+\end{equation}
+移项整理后得到一个重要的关系:
+\begin{equation}
+    \frac{d}{dt}\left(\sum_j \frac{\partial L}{\partial \dot{q}_j} \dot{q}_j - L\right) = -\frac{\partial L}{\partial t}
+\end{equation}
+我们定义括号内的量为系统的\textbf{能量函数} (或雅可比积分):
+\begin{equation}
+    h(q_j, \dot{q}_j, t) \equiv \sum_j p_j \dot{q}_j - L
+\end{equation}
+结合 (8) 和 (4), 我们可以得出结论:
+\begin{center}
+\textit{如果系统具有时间平移不变性 ($\frac{\partial L}{\partial t} = 0$), 那么其能量函数 $h$ 是一个守恒量 ($\frac{dh}{dt} = 0$)}.
+\end{center}
+
+\subsubsection{能量函数 $h$ 与机械能 $E$ 的关系}
+在什么条件下, 守恒的能量函数 $h$ 就是我们熟悉的总机械能 $E=T+U$?
+$h = \sum_j \frac{\partial L}{\partial \dot{q}_j} \dot{q}_j - (T-U) = \sum_j \frac{\partial T}{\partial \dot{q}_j} \dot{q}_j - T + U$.
+在经典力学中, 如果系统的\textbf{约束是定常的} (即变换方程 $\vec{r}_i(q_j)$ 不显含时间), 那么动能 $T$ 是广义速度 $\{\dot{q}_j\}$ 的齐二次函数, $T = \frac{1}{2}\sum_{j,k} A_{jk}(q_l) \dot{q}_j \dot{q}_k$.
+根据欧拉齐次函数定理, $\sum_j \dot{q}_j \frac{\partial T}{\partial \dot{q}_j} = 2T$.
+代入 $h$ 的表达式:
+\begin{equation}
+    h = 2T - T + U = T + U = E
+\end{equation}
+\textbf{结论:} 对于\textbf{定常约束}下的保守系统, 时间平移不变性 ($\frac{\partial L}{\partial t}=0$) 等价于\textbf{总机械能守恒}.
+
+\subsection{空间平移不变性与动量守恒}
+
+\subsubsection{物理图像与对称性}
+\textbf{对称性:} 如果一个孤立系统在空间中沿着某个方向进行整体的刚性平移, 其物理规律不变, 我们就说该系统具有\textbf{空间平移不变性}. 换言之, 空间是均匀的.
+
+\textbf{数学表述:} 考虑一个无穷小的平移 $\vec{r}_i \to \vec{r}_i' = \vec{r}_i + \delta\vec{\epsilon}$, 其中 $\delta\vec{\epsilon}$ 是一个无穷小的恒定矢量.
+系统的拉格朗日量 $L$ 在此变换下应该是不变的, $\delta L = 0$.
+\begin{equation}
+    \delta L = \sum_i \left( \frac{\partial L}{\partial x_i}\delta x_i + \frac{\partial L}{\partial y_i}\delta y_i + \frac{\partial L}{\partial z_i}\delta z_i \right) = \sum_i \nabla_i L \cdot \delta\vec{r}_i = \left( \sum_i \nabla_i L \right) \cdot \delta\vec{\epsilon} = 0
+\end{equation}
+由于 $\delta\vec{\epsilon}$ 是任意的, 这要求 $\sum_i \nabla_i L = 0$.
+
+\subsubsection{守恒量的推导}
+从拉格朗日方程我们知道 $\frac{\partial L}{\partial x_i} = \frac{d}{dt}(\frac{\partial L}{\partial \dot{x}_i}) = \dot{p}_{x_i}$.
+代入 (11):
+\begin{equation}
+    \sum_i \frac{d}{dt} \nabla_i(\frac{\partial L}{\partial \dot{\vec{r}}_i}) = \frac{d}{dt} \left( \sum_i \frac{\partial L}{\partial \dot{\vec{r}}_i} \right) = 0
+\end{equation}
+这表明矢量 $\vec{P} \equiv \sum_i \frac{\partial L}{\partial \dot{\vec{r}}_i}$ 是一个守恒量. 这个矢量正是系统的\textbf{总正则动量}.
+对于一个由质点组成的系统, $L=T-U$. 如果势能 $U$ 只依赖于粒子间的相对位置 (如 $U(|\vec{r}_i-\vec{r}_j|)$), 那么 $\frac{\partial U}{\partial \dot{\vec{r}}_i}=0$.
+\begin{equation}
+    \vec{P} = \sum_i \frac{\partial T}{\partial \dot{\vec{r}}_i} = \sum_i \frac{\partial}{\partial \dot{\vec{r}}_i} (\frac{1}{2}m_i \dot{\vec{r}}_i^2) = \sum_i m_i \dot{\vec{r}}_i = \sum_i \vec{p}_i
+\end{equation}
+这就是系统的\textbf{总机械动量}.
+
+\begin{center}
+\textit{如果系统具有空间平移不变性, 那么其总动量守恒.}
+\end{center}
+
+\subsection{空间旋转不变性与角动量守恒}
+
+\subsubsection{物理图像与对称性}
+\textbf{对称性:} 如果一个孤立系统绕空间中某个固定轴进行整体的刚性旋转, 其物理规律不变, 我们就说该系统具有\textbf{空间旋转不变性}. 换言之, 空间是各向同性的.
+
+\textbf{数学表述:} 考虑绕 $z$ 轴的一个无穷小旋转, 角度为 $\delta\phi$.
+$\vec{r}_i \to \vec{r}_i' = \vec{r}_i + \delta\vec{\phi} \times \vec{r}_i$, 其中 $\delta\vec{\phi} = (0, 0, \delta\phi)$.
+速度变换为 $\dot{\vec{r}}_i \to \dot{\vec{r}}_i' = \dot{\vec{r}}_i + \delta\vec{\phi} \times \dot{\vec{r}}_i$.
+拉格朗日量 $L$ 在此变换下应该是不变的, $\delta L = 0$.
+\begin{equation}
+    \delta L = \sum_i \left( \frac{\partial L}{\partial \vec{r}_i}\cdot\delta\vec{r}_i + \frac{\partial L}{\partial \dot{\vec{r}}_i}\cdot\delta\dot{\vec{r}}_i \right) = 0
+\end{equation}
+代入拉格朗日方程 $\frac{\partial L}{\partial \vec{r}_i} = \dot{\vec{p}}_i$ 和定义 $\frac{\partial L}{\partial \dot{\vec{r}}_i} = \vec{p}_i$:
+\begin{equation}
+    \delta L = \sum_i \left( \dot{\vec{p}}_i \cdot (\delta\vec{\phi}\times\vec{r}_i) + \vec{p}_i \cdot (\delta\vec{\phi}\times\dot{\vec{r}}_i) \right) = 0
+\end{equation}
+利用矢量混合积的轮换对称性 $\vec{a}\cdot(\vec{b}\times\vec{c}) = \vec{b}\cdot(\vec{c}\times\vec{a})$:
+\begin{equation}
+    \delta L = \sum_i \left( \delta\vec{\phi} \cdot (\vec{r}_i \times \dot{\vec{p}}_i) + \delta\vec{\phi} \cdot (\dot{\vec{r}}_i \times \vec{p}_i) \right) = \delta\vec{\phi} \cdot \sum_i (\vec{r}_i \times \dot{\vec{p}}_i + \dot{\vec{r}}_i \times \vec{p}_i) = 0
+\end{equation}
+观察到括号内的和式恰好是 $\frac{d}{dt}(\vec{r}_i \times \vec{p}_i)$ 的展开. 于是:
+\begin{equation}
+    \delta L = \delta\vec{\phi} \cdot \frac{d}{dt} \left( \sum_i \vec{r}_i \times \vec{p}_i \right) = 0
+\end{equation}
+由于旋转是任意的 ($\delta\vec{\phi}$ 任意), 这要求
+\begin{equation}
+    \frac{d}{dt} \left( \sum_i \vec{r}_i \times \vec{p}_i \right) = 0
+\end{equation}
+我们定义系统的\textbf{总角动量}为 $\vec{L}_{total} = \sum_i \vec{r}_i \times \vec{p}_i$. 上式表明 $\dot{\vec{L}}_{total}=0$.
+
+\begin{center}
+\textit{如果系统具有空间旋转不变性, 那么其总角动量守恒.}
+\end{center}
+
+\subsection{对称性与Noether定理的统一陈述}
+
+诺特定理将以上所有讨论统一在一个普适而深刻的框架下.
+\textbf{诺特定理 (Noether's Theorem):} 如果一个系统的作用量 $S = \int L dt$ 在某个单参数的连续变换群 $q_j \to q'_j(q_j, \epsilon)$ 下保持不变 (即 $L$ 是对称的), 那么必然存在一个守恒量.
+
+诺特定理是现代理论物理的基石, 它不仅统一了经典力学中的守恒定律, 还在量子场论和规范场论中扮演着至关重要的角色 (例如, 电荷守恒对应于波函数的U(1)规范对称性).
+
+\subsection{范例: 带电粒子在电磁场中的运动}
+
+这是一个广义动量不等于机械动量, 且势能依赖于速度的经典例子.
+一个电荷为 $q$ 的粒子在电场 $\vec{E}=-\nabla\phi$ 和磁场 $\vec{B}=\nabla\times\vec{A}$ 中运动, 它受到的洛伦兹力为 $\vec{F} = q(\vec{E} + \vec{v}\times\vec{B})$. 这个力无法从一个普通的势能函数 $U(\vec{r})$ 导出.
+但是, 我们可以构造一个\textbf{广义势能} $U(\vec{r}, \vec{v})$ 使得 $L=T-U$ 能够正确给出洛伦兹力. 这个广义势能是:
+\begin{equation}
+    U = q\phi - q\vec{v}\cdot\vec{A}
+\end{equation}
+因此, 拉格朗日量为:
+\begin{equation}
+    L = \frac{1}{2}m\vec{v}^2 - q\phi + q\vec{v}\cdot\vec{A}
+\end{equation}
+让我们来检验它. 考虑 $x$ 分量:
+\begin{itemize}
+    \item 广义动量: $p_x = \frac{\partial L}{\partial \dot{x}} = m\dot{x} + qA_x$. (正则动量 $\neq$ 机械动量 $m\dot{x}$)
+    \item $\frac{\partial L}{\partial x} = -q\frac{\partial\phi}{\partial x} + q(\dot{x}\frac{\partial A_x}{\partial x} + \dot{y}\frac{\partial A_y}{\partial x} + \dot{z}\frac{\partial A_z}{\partial x}) = -q\frac{\partial\phi}{\partial x} + q\vec{v}\cdot\frac{\partial\vec{A}}{\partial x}$.
+\end{itemize}
+代入拉格朗日方程 $\dot{p}_x = \frac{\partial L}{\partial x}$:
+\begin{equation}
+    m\ddot{x} + q\frac{dA_x}{dt} = -q\frac{\partial\phi}{\partial x} + q\vec{v}\cdot\frac{\partial\vec{A}}{\partial x}
+\end{equation}
+利用 $\frac{dA_x}{dt} = \frac{\partial A_x}{\partial t} + (\vec{v}\cdot\nabla)A_x$ 以及矢量恒等式 $\vec{v}\times(\nabla\times\vec{A}) = \nabla(\vec{v}\cdot\vec{A}) - (\vec{v}\cdot\nabla)\vec{A}$, 经过一番代数运算, 最终可以证明上式就是洛伦兹力方程的 $x$ 分量:
+\begin{equation}
+    m\ddot{x} = q[E_x + (\vec{v}\times\vec{B})_x]
+\end{equation}
+这个例子说明, 拉格朗日形式具有极大的普适性, 能够将复杂的、依赖于速度的力也纳入其统一的框架之内.
+
+\chapter{第四章 向心力场中的运动}
+
+\section{两体问题及其约化}
+
+向心力场问题, 特别是平方反比引力场中的运动 (即开普勒问题), 是经典力学最辉煌的成就之一. 无论是天体运行还是原子中电子的运动 (经典模型), 其核心都是两体问题.
+
+\subsection{两体问题的拉格朗日量}
+考虑一个由质量为 $m_1$ 和 $m_2$ 的两个质点组成的孤立系统. 它们之间的相互作用力是保守的, 并且只依赖于它们之间的距离 $|\vec{r}_1 - \vec{r}_2|$. 这样的力就是向心力.
+系统的拉格朗日量为:
+\begin{equation}
+    L = T - U = \frac{1}{2}m_1\dot{\vec{r}}_1^2 + \frac{1}{2}m_2\dot{\vec{r}}_2^2 - U(|\vec{r}_1 - \vec{r}_2|)
+\end{equation}
+这个系统看似有 6 个自由度 (两个质点在三维空间中运动). 但我们可以通过引入质心坐标和相对坐标来大大简化问题.
+
+\subsection{坐标变换: 从实验室系到质心系}
+\begin{itemize}
+    \item \textbf{质心坐标 (Center of Mass Coordinate):}
+        \begin{equation}
+            \vec{R}_{CM} = \frac{m_1\vec{r}_1 + m_2\vec{r}_2}{m_1+m_2}
+        \end{equation}
+    \item \textbf{相对坐标 (Relative Coordinate):}
+        \begin{equation}
+            \vec{r} = \vec{r}_1 - \vec{r}_2
+        \end{equation}
+\end{itemize}
+反解可得: $\vec{r}_1 = \vec{R}_{CM} + \frac{m_2}{M}\vec{r}$ 和 $\vec{r}_2 = \vec{R}_{CM} - \frac{m_1}{M}\vec{r}$, 其中 $M=m_1+m_2$ 是总质量.
+将这些变换代入动能表达式 $T$:
+\begin{equation}
+    T = \frac{1}{2}M\dot{\vec{R}}_{CM}^2 + \frac{1}{2}\mu\dot{\vec{r}}^2
+\end{equation}
+其中 $\mu$ 是\textbf{约化质量 (Reduced Mass)}:
+\begin{equation}
+    \mu = \frac{m_1 m_2}{m_1 + m_2}
+\end{equation}
+势能只依赖于相对距离, $U = U(r)$, 其中 $r=|\vec{r}|$.
+系统的拉格朗日量现在可以被分离为两部分:
+\begin{equation}
+    L = L_{CM} + L_{rel} = \left(\frac{1}{2}M\dot{\vec{R}}_{CM}^2\right) + \left(\frac{1}{2}\mu\dot{\vec{r}}^2 - U(r)\right)
+\end{equation}
+
+\subsection{问题的约化: 从两体到一体}
+观察分离后的拉格朗日量:
+\begin{itemize}
+    \item \textbf{质心运动:} $L_{CM}$ 中不显含 $\vec{R}_{CM}$ (循环坐标), 这意味着质心动量 $\vec{P}_{CM} = M\dot{\vec{R}}_{CM}$ 守恒. 质心做匀速直线运动. 我们可以选择一个与质心固连的参考系 (质心系), 在这个系中 $\dot{\vec{R}}_{CM}=0$, 质心运动可以被完全忽略.
+    \item \textbf{相对运动:} 剩下的 $L_{rel}$ 描述了一个质量为 $\mu$ 的“等效粒子”在固定力心发出的向心力场 $U(r)$ 中的运动.
+\end{itemize}
+\textbf{结论:} 一个孤立的两体问题, 可以被精确地约化为一个质量为约化质量 $\mu$ 的粒子, 在一个固定力心所产生的向心力场中的\textbf{等效单体问题}.
+
+\section{运动方程与轨道}
+
+现在我们专注于这个等效单体问题. 其拉格朗日量为 $L = \frac{1}{2}\mu\dot{\vec{r}}^2 - U(r)$.
+由于是向心力场, 系统具有旋转对称性, 角动量守恒. 这意味着粒子的运动轨迹将始终保持在一个平面内 (角动量矢量 $\vec{L} = \vec{r}\times\vec{p}$ 的方向固定).
+我们选择这个平面作为极坐标平面, 用 $(r, \theta)$ 来描述粒子的运动.
+\begin{equation}
+    L = \frac{1}{2}\mu(\dot{r}^2 + r^2\dot{\theta}^2) - U(r)
+\end{equation}
+\begin{itemize}
+    \item \textbf{$\theta$ 方向的运动方程:} $\theta$ 是循环坐标, $\frac{\partial L}{\partial \theta} = 0$.
+        \begin{equation}
+            p_\theta = \frac{\partial L}{\partial \dot{\theta}} = \mu r^2 \dot{\theta} \equiv l = \text{常量}
+        \end{equation}
+        $l$ 就是粒子角动量的大小. 这个方程是\textbf{开普勒第二定律}的数学表述 (单位时间扫过的面积 $\frac{1}{2}r^2\dot{\theta}$ 为常数).
+    \item \textbf{$r$ 方向的运动方程:}
+        \begin{equation}
+            \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{r}}\right) - \frac{\partial L}{\partial r} = 0 \implies \mu\ddot{r} - \left(\mu r \dot{\theta}^2 - \frac{\partial U}{\partial r}\right) = 0
+        \end{equation}
+        令向心力 $F(r) = -\frac{\partial U}{\partial r}$, 并用 $l$ 消去 $\dot{\theta}$: $\dot{\theta}=l/(\mu r^2)$.
+        \begin{equation}
+            \mu\ddot{r} = \mu r \left(\frac{l}{\mu r^2}\right)^2 + F(r) = \frac{l^2}{\mu r^3} + F(r)
+        \end{equation}
+\end{itemize}
+这个方程描述了径向的运动. 我们可以引入一个\textbf{有效势能 (Effective Potential)}:
+\begin{equation}
+    U_{eff}(r) = U(r) + \frac{l^2}{2\mu r^2}
+\end{equation}
+于是径向运动方程可以写成 $\mu\ddot{r} = -\frac{\partial U_{eff}}{\partial r}$. 这就像一个在一维有效势能中运动的粒子. 第二项 $\frac{l^2}{2\mu r^2}$ 被称为\textbf{离心势垒}, 它代表了维持角动量所需要的“排斥”效应.
+
+\subsection{轨道微分方程}
+我们通常更关心轨道的形状 $r(\theta)$, 而不是运动的时间演化 $r(t), \theta(t)$.
+利用链式法则: $\dot{r} = \frac{dr}{d\theta}\dot{\theta} = \frac{dr}{d\theta}\frac{l}{\mu r^2}$.
+再求一次导: $\ddot{r} = \frac{d}{d\theta}(\frac{dr}{d\theta}\frac{l}{\mu r^2})\dot{\theta} = \dots$ 这个过程比较繁琐.
+一个更巧妙的变量替换是 $u=1/r$.
+$\dot{r} = \frac{d}{dt}(\frac{1}{u}) = -\frac{1}{u^2}\frac{du}{d\theta}\dot{\theta} = -\frac{1}{u^2}\frac{du}{d\theta}\frac{l u^2}{\mu} = -\frac{l}{\mu}\frac{du}{d\theta}$.
+$\ddot{r} = \frac{d}{dt}(-\frac{l}{\mu}\frac{du}{d\theta}) = -\frac{l}{\mu}\frac{d^2u}{d\theta^2}\dot{\theta} = -\frac{l^2 u^2}{\mu^2}\frac{d^2u}{d\theta^2}$.
+代入径向运动方程 (10):
+\begin{equation}
+    -\frac{l^2 u^2}{\mu}\frac{d^2u}{d\theta^2} = \frac{l^2 u^3}{\mu} + F(1/u) \implies \frac{d^2u}{d\theta^2} + u = -\frac{\mu}{l^2 u^2}F(1/u)
+\end{equation}
+这就是著名的\textbf{比耐公式 (Binet's formula)}. 知道了力 $F(r)$, 就可以解出轨道 $u(\theta)=1/r(\theta)$.
+
+\section{开普勒问题: 平方反比引力}
+对于万有引力或库仑力, $F(r) = -k/r^2 = -ku^2$. 代入比耐公式:
+\begin{equation}
+    \frac{d^2u}{d\theta^2} + u = -\frac{\mu}{l^2 u^2}(-ku^2) = \frac{\mu k}{l^2}
+\end{equation}
+这是一个二阶常系数线性非齐次微分方程. 其通解为齐次解与特解之和.
+特解是 $u_p = \frac{\mu k}{l^2}$. 齐次方程 $\frac{d^2u_h}{d\theta^2} + u_h = 0$ 的解是 $u_h = A\cos(\theta-\theta_0)$.
+总解为:
+\begin{equation}
+    u(\theta) = \frac{1}{r} = \frac{\mu k}{l^2} + A\cos(\theta-\theta_0)
+\end{equation}
+整理后得到圆锥曲线的极坐标标准方程:
+\begin{equation}
+    r = \frac{l^2/(\mu k)}{1 + [Al^2/(\mu k)]\cos(\theta-\theta_0)} = \frac{p}{1+e\cos(\theta-\theta_0)}
+\end{equation}
+其中:
+\begin{itemize}
+    \item \textbf{离心率 (Eccentricity):} $e = \frac{Al^2}{\mu k}$. 它由积分常数 $A$ 决定, 而 $A$ 由总能量 $E$ 决定.
+    \item \textbf{半通径 (Semi-latus rectum):} $p = \frac{l^2}{\mu k}$.
+\end{itemize}
+可以证明, 离心率与能量的关系为:
+\begin{equation}
+    e = \sqrt{1 + \frac{2El^2}{\mu k^2}}
+\end{equation}
+轨道的形状由总能量 $E$ 决定:
+\begin{itemize}
+    \item $E<0 \implies 0 \le e < 1 \implies$ \textbf{椭圆} (束缚态)
+    \item $E=0 \implies e=1 \implies$ \textbf{抛物线} (临界束缚态)
+    \item $E>0 \implies e>1 \implies$ \textbf{双曲线} (非束缚态)
+\end{itemize}
+这完美地解释了\textbf{开普勒第一定律}: 行星绕太阳的轨道是一个椭圆, 太阳位于椭圆的一个焦点上.
+
+\subsection{拉普拉斯-龙格-楞次 (LRL) 矢量}
+对于开普勒问题, 除了能量和角动量守恒外, 还有一个额外的守恒量, 称为LRL矢量.
+\begin{equation}
+    \vec{A} = \vec{p} \times \vec{L} - \mu k \hat{r}
+\end{equation}
+可以证明 $\frac{d\vec{A}}{dt}=0$. 这个矢量的大小与轨道离心率有关, 其方向固定在空间中, 指向轨道的近日点.
+LRL矢量的守恒是一种“隐藏的对称性”, 它解释了为何在平方反比力场中轨道是闭合的. 如果力偏离 $1/r^2$, LRL矢量将不再守恒, 轨道将不再闭合, 产生进动.
+
+\section{弹性碰撞与散射}
+两体问题在非束缚态 ($E>0$) 时表现为碰撞或散射过程.
+
+\subsection{实验室参考系 (L系) 与质心参考系 (C系)}
+\begin{itemize}
+    \item \textbf{L系:} 观测者静止的参考系. 通常靶粒子 $m_2$ 在碰撞前静止 ($\vec{v}_{2,i}=0$).
+    \item \textbf{C系:} 系统总动量为零的参考系. 质心静止于原点.
+\end{itemize}
+在C系中, 分析变得极为简单. 碰撞前, 两粒子以大小相等、方向相反的动量相向运动. 碰撞后, 它们以大小相等、方向相反的动量背向飞离. 对于弹性碰撞, 能量守恒意味着它们飞离的速率与碰撞前的速率相同. 整个过程只是动量矢量方向发生了一个偏转, 改变的角度称为\textbf{质心散射角 $\theta_C$}.
+
+\subsection{散射角的关系}
+我们更关心的是L系中的散射角 $\theta_L$. C系与L系通过质心速度 $\vec{v}_{CM}$ 联系.
+\begin{equation}
+    \vec{v}_{1,f}^L = \vec{v}_{1,f}^C + \vec{v}_{CM}
+\end{equation}
+对于靶粒子静止的情况, $\vec{v}_{CM} = \frac{m_1}{m_1+m_2}\vec{v}_{1,i}^L$.
+通过对 (18) 式进行几何分析, 可以导出L系散射角 $\theta_L$ 与C系散射角 $\theta_C$ 之间的关系:
+\begin{equation}
+    \tan\theta_L = \frac{\sin\theta_C}{\cos\theta_C + m_1/m_2}
+\end{equation}
+
+\subsection{卢瑟福散射 (Rutherford Scattering)}
+这是原子核物理的基石. 一个电荷为 $q_1$ 的粒子 (如 $\alpha$ 粒子) 散射一个电荷为 $q_2$ 的静止靶核. 相互作用是库仑力 $F=k/r^2$, 其中 $k=q_1q_2/(4\pi\epsilon_0)$.
+这是一个双曲线运动. 通过分析轨道方程, 可以建立\textbf{瞄准参数 (impact parameter)} $b$ (入射粒子初始速度方向与靶核的垂直距离) 与质心散射角 $\theta_C$ 之间的关系:
+\begin{equation}
+    b = \frac{k}{2E_C} \cot(\frac{\theta_C}{2})
+\end{equation}
+其中 $E_C = \frac{1}{2}\mu (v_{1,i}^L)^2$ 是质心系能量.
+这个关系式是卢瑟福推导其著名的散射公式的基础, 该公式的实验验证揭示了原子核的存在.
+
+\chapter{第五章 微振动}
+
+\section{引言: 振动在物理世界中的普遍性}
+振动是自然界和工程技术中最普遍的现象之一. 从宏观的摆钟、桥梁的晃动, 到微观的分子振动、晶格振动 (声子), 振动无处不在. 对任何物理系统在其稳定平衡位置附近的小位移运动的研究, 都归结为振动问题. 本章将从最简单的简谐振动入手, 逐步深入到多自由度耦合系统的核心理论——简正模分析, 展示拉格朗日力学在这一领域中的强大威力.
+
+\subsection{简谐振动 (Simple Harmonic Motion)}
+简谐振动是所有振动理论的基础, 它是系统在\textbf{线性恢复力}作用下的运动.
+
+\subsubsection{一维简谐振动}
+考虑一个质量为 $m$ 的粒子, 受到恢复力 $F = -kx$ (胡克定律). 其运动方程为:
+\begin{equation}
+    m\ddot{x} + kx = 0 \quad \text{或} \quad \ddot{x} + \omega_0^2 x = 0
+\end{equation}
+其中 $\omega_0 = \sqrt{k/m}$ 是系统的\textbf{固有角频率 (Natural Angular Frequency)}.
+该方程的通解为:
+\begin{equation}
+    x(t) = A\cos(\omega_0 t - \phi)
+\end{equation}
+其中 $A$ 是振幅, $\phi$ 是初相位, 由初始条件决定.
+
+从拉格朗日力学的角度看:
+$T = \frac{1}{2}m\dot{x}^2$, $U = \frac{1}{2}kx^2$.
+$L = T - U = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}kx^2$.
+拉格朗日方程 $\frac{d}{dt}(\frac{\partial L}{\partial \dot{x}}) - \frac{\partial L}{\partial x} = 0$ 直接给出 $m\ddot{x} - (-kx) = 0$, 即运动方程 (1).
+
+\subsubsection{n维简谐振动}
+对于在 $n$ 维空间中运动的粒子, 如果其势能是坐标的二次型 $U = \frac{1}{2}\sum_{i,j=1}^n k_{ij}x_i x_j$, 那么它在平衡点附近的运动就是 $n$ 维的简谐振动. 这本质上就是一个 $n$ 自由度的耦合振动问题, 将在 5.4 节详细讨论.
+
+\subsection{受迫简谐振动 (Forced Harmonic Motion)}
+当系统除了受到自身恢复力外, 还受到一个外部的周期性驱动力 $F_d(t) = F_0 \cos(\omega t)$ 时, 其运动方程变为:
+\begin{equation}
+    m\ddot{x} + kx = F_0 \cos(\omega t) \quad \text{或} \quad \ddot{x} + \omega_0^2 x = \frac{F_0}{m} \cos(\omega t)
+\end{equation}
+这是一个非齐次线性微分方程. 其通解是齐次解 (瞬态解) 与特解 (稳态解) 之和.
+$x(t) = x_h(t) + x_p(t) = A\cos(\omega_0 t - \phi) + x_{st}(t)$.
+瞬态解 $x_h(t)$ 最终会因阻尼而衰减掉, 系统最终将以驱动频率 $\omega$ 振动.
+稳态解 $x_{st}(t)$ 的形式为 $A_s \cos(\omega t)$. 代入方程 (3) 可求得振幅 $A_s$:
+\begin{equation}
+    A_s = \frac{F_0/m}{\omega_0^2 - \omega^2}
+\end{equation}
+\textbf{共振 (Resonance):} 当驱动频率 $\omega$ 趋近于系统的固有频率 $\omega_0$ 时, 稳态振幅 $A_s \to \infty$. 这种现象称为共振. 在实际系统中, 阻尼会使共振峰值保持有限.
+
+\subsection{阻尼简谐振动 (Damped Harmonic Motion)}
+实际系统中普遍存在摩擦等耗散效应, 阻尼力通常与速度成正比 $F_r = -b\dot{x}$. 运动方程变为:
+\begin{equation}
+    m\ddot{x} + b\dot{x} + kx = 0 \quad \text{或} \quad \ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = 0
+\end{equation}
+其中 $\gamma = b/(2m)$ 是\textbf{阻尼系数}.
+假设解的形式为 $x(t) = e^{\lambda t}$, 代入得到特征方程 $\lambda^2 + 2\gamma\lambda + \omega_0^2 = 0$.
+解得 $\lambda = -\gamma \pm \sqrt{\gamma^2 - \omega_0^2}$. 系统的行为由 $\gamma$ 和 $\omega_0$ 的相对大小决定:
+\begin{enumerate}
+    \item \textbf{欠阻尼 (Underdamped), $\gamma < \omega_0$:} $\lambda$ 为复数. 解是振幅按指数衰减的振动.
+    \begin{equation}
+        x(t) = A e^{-\gamma t} \cos(\omega_d t - \phi), \quad \omega_d = \sqrt{\omega_0^2 - \gamma^2}
+    \end{equation}
+    $\omega_d$ 是阻尼振动频率, 略小于固有频率 $\omega_0$.
+    \item \textbf{临界阻尼 (Critically Damped), $\gamma = \omega_0$:} 特征根为重根. 系统以最快的方式回到平衡位置, 不发生振荡.
+    \item \textbf{过阻尼 (Overdamped), $\gamma > \omega_0$:} 特征根为两个负实根. 系统缓慢地回到平衡位置, 不发生振荡.
+\end{enumerate}
+对于受迫阻尼振动, 稳态振幅为 $A_s(\omega) = \frac{F_0/m}{\sqrt{(\omega_0^2-\omega^2)^2 + (2\gamma\omega)^2}}$, 共振发生在 $\omega_{res} = \sqrt{\omega_0^2 - 2\gamma^2}$ 处.
+
+\section{简正模式 (Normal Modes): 多自由度系统的核心}
+
+当一个拥有多个自由度的系统发生微振动时, 其运动通常看起来非常复杂. 然而, 简正模理论告诉我们, 任何复杂的微振动都可以被分解为若干个独立的、简单的\textbf{简正模}的线性叠加. 每一个简正模都是一种集体运动模式, 其中系统的所有部分都以相同的频率和谐地振动.
+
+\subsection{理论框架: 从拉格朗日量到久期方程}
+考虑一个具有 $s$ 个自由度, 在稳定平衡点 $\{q_{j0}\}$ 附近做小振动的保守系统. 设小位移为 $\eta_j = q_j - q_{j0}$.
+\begin{enumerate}
+    \item \textbf{二次近似的拉格朗日量:}
+    我们将动能 $T$ 和势能 $U$ 在平衡点展开并保留至二阶项, 得到矩阵形式的拉格朗日量:
+    \begin{equation}
+        L = T - U = \frac{1}{2} \left( \dot{\boldsymbol{\eta}}^T \mathbf{T} \dot{\boldsymbol{\eta}} - \boldsymbol{\eta}^T \mathbf{V} \boldsymbol{\eta} \right)
+    \end{equation}
+    其中 $\boldsymbol{\eta}$ 是位移列向量. $\mathbf{T}$ (动能矩阵) 和 $\mathbf{V}$ (势能矩阵) 是两个 $s\times s$ 的实对称正定矩阵, 其元素为:
+    \begin{equation}
+        T_{jk} = \left. \frac{\partial^2 T}{\partial \dot{q}_j \partial \dot{q}_k} \right|_0, \quad V_{jk} = \left. \frac{\partial^2 U}{\partial q_j \partial q_k} \right|_0
+    \end{equation}
+    \item \textbf{运动方程:} 将 (7) 代入拉格朗日方程, 得到耦合的线性微分方程组:
+    \begin{equation}
+        \mathbf{T} \ddot{\boldsymbol{\eta}} + \mathbf{V} \boldsymbol{\eta} = \mathbf{0}
+    \end{equation}
+    \item \textbf{求解: 广义本征值问题}
+    假设简谐振动解 $\boldsymbol{\eta}(t) = \mathbf{a} e^{i\omega t}$, 代入 (9) 得到:
+    \begin{equation}
+        (\mathbf{V} - \omega^2 \mathbf{T})\mathbf{a} = \mathbf{0}
+    \end{equation}
+    这是一个广义本征值问题. 为了得到非零的振幅向量 $\mathbf{a}$, 系数矩阵的行列式必须为零. 这就是\textbf{久期方程 (Secular Equation)}:
+    \begin{equation}
+        \boxed{\det(\mathbf{V} - \omega^2 \mathbf{T}) = 0}
+    \end{equation}
+\end{enumerate}
+
+\subsection{简正频率与简正模}
+\begin{itemize}
+    \item \textbf{简正频率 (Normal Frequencies), $\{\omega_k\}$:} 求解久期方程 (11) 得到的 $s$ 个本征值 $\omega_k^2$ 的正平方根. 它们是系统固有的、不依赖于初始条件的振动频率.
+    \item \textbf{简正模 (Normal Modes), $\{\mathbf{a}_k\}$:} 对于每一个简正频率 $\omega_k$, 将其代回 (10) 所解出的本征向量 $\mathbf{a}_k$. 该向量的分量比值 $(a_{1k}:a_{2k}:\dots:a_{sk})$ 描述了当系统以频率 $\omega_k$ 振动时, 各个广义坐标振幅的相对关系.
+\end{itemize}
+系统的\textbf{一般解}是所有简正模的线性叠加:
+\begin{equation}
+    \boldsymbol{\eta}(t) = \text{Re} \sum_{k=1}^{s} C_k \mathbf{a}_k e^{i(\omega_k t - \phi_k)}
+\end{equation}
+其中复振幅 $C_k e^{-i\phi_k}$ 由初始条件确定.
+
+\subsection{例题 5.4.1: 三个耦合弹簧振子}
+考虑三个质量均为 $m$ 的物体, 由四个弹性系数均为 $k$ 的弹簧连接, 并固定在两端, 在光滑水平面上运动.
+\begin{itemize}
+    \item \textbf{系统与坐标:} 自由度 $s=3$. 广义坐标为三个物体偏离平衡位置的位移 $x_1, x_2, x_3$.
+    \item \textbf{拉格朗日量:}
+    $T = \frac{1}{2}m(\dot{x}_1^2 + \dot{x}_2^2 + \dot{x}_3^2)$.
+    $U = \frac{1}{2}k x_1^2 + \frac{1}{2}k (x_2-x_1)^2 + \frac{1}{2}k (x_3-x_2)^2 + \frac{1}{2}k x_3^2$.
+    \item \textbf{T, V 矩阵:}
+    $\mathbf{T} = m \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$.
+    $U = \frac{k}{2}(2x_1^2+2x_2^2+2x_3^2-2x_1x_2-2x_2x_3)$.
+    $\mathbf{V} = k \begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{pmatrix}$.
+    \item \textbf{久期方程:} $\det(\mathbf{V} - \omega^2 \mathbf{T}) = 0$.
+    $\begin{vmatrix} 2k-m\omega^2 & -k & 0 \\ -k & 2k-m\omega^2 & -k \\ 0 & -k & 2k-m\omega^2 \end{vmatrix} = 0$.
+    解这个行列式方程, 得到三个简正频率:
+    \begin{gather*}
+        \omega_1^2 = (2-\sqrt{2})\frac{k}{m} \\
+        \omega_2^2 = 2\frac{k}{m} \\
+        \omega_3^2 = (2+\sqrt{2})\frac{k}{m}
+    \end{gather*}
+    \item \textbf{简正模:}
+    将每个 $\omega_k^2$ 代回求解本征向量 $\mathbf{a}_k$:
+    \begin{itemize}
+        \item $\mathbf{a}_1 \propto (1, \sqrt{2}, 1)^T$: 三个物体同向运动, 中间物体振幅最大.
+        \item $\mathbf{a}_2 \propto (1, 0, -1)^T$: 中间物体静止, 两边物体反相运动.
+        \item $\mathbf{a}_3 \propto (1, -\sqrt{2}, 1)^T$: 两边物体同向运动, 中间物体反相运动且振幅最大.
+    \end{itemize}
+    这三个独立的运动模式构成了该系统所有可能的小振动行为.
+\end{itemize}
+
+\subsection{参数共振 (Parametric Resonance)}
+这是一种特殊的共振现象, 它不是由外部驱动力引起的, 而是由\textbf{系统自身的某个参数 (如质量、长度、弹性系数) 发生周期性变化}而激发的.
+一个典型的例子是荡秋千: 站着和蹲下周期性地改变了系统的有效摆长 (转动惯量).
+运动方程通常是\textbf{马蒂厄方程 (Mathieu Equation)} 的形式:
+\begin{equation}
+    \ddot{x} + \omega_0^2(1 + h\cos(\gamma t))x = 0
+\end{equation}
+可以证明, 当参数变化的频率 $\gamma$ 约为系统固有频率 $\omega_0$ 的两倍时 ($\gamma \approx 2\omega_0$), 振动会被最有效地激发, 振幅会指数增长.
+
+\end{document}

@@ -1,0 +1,1050 @@
+\documentclass[UTF8,8pt,a4paper]{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\geometry{left=1.8cm,right=1.8cm,top=1.9cm,bottom=1.9cm}
+\makeatletter
+\def\@fnsymbol#1{\ensuremath{%
+  \ifcase#1\or % 0
+    \dagger\or % 1 - 改为 dagger
+    *\or       % 2 - 原来的 dagger 变成 asterisk
+    \ddagger\or % 3
+    \S\or      % 4
+    \P\or      % 5
+    \|\or      % 6 (DOUBLE VERTICAL LINE)
+    **\or      % 7
+    \dagger\dagger\or % 8
+    \ddagger\ddagger % 9
+  \else
+    \@ctrerr
+  \fi
+}}
+\makeatother
+
+\title{\huge\textbf{第一章习题解答}}
+\author{TA：疏宇\thanks{School of Gifted Young, USTC, email:\url{shuyu2023@mail.ustc.edu.cn}}\quad师驰昊\thanks{School of Gifted Young, USTC, email:\url{1984019655@qq.com}}}
+\date{October 5$^{\{\text{th}\}}$, 2025}
+
+\begin{document}
+\maketitle
+
+\section{I 简答题}
+简答题没有标准答案，以下仅提供思路分析.
+\newline
+
+
+\textbf{1 $|\frac{d\vec{v}}{dt}|=0$与$\frac{d|\vec{v}|}{dt}=0$各代表什么样的运动？两者有无区别?}
+
+要理解$|\frac{d\vec{v}}{dt}|=0$与$|\frac{d|\vec{v}|}{dt}|=0$的物理意义及区别，需从矢量微积分和运动学概念出发分析.
+
+对于$|\frac{d\vec{v}}{dt}|=0$，$\frac{d\vec{v}}{dt}$即为加速度矢量$\vec{a}$，故$|\frac{d\vec{v}}{dt}|=|\vec{a}|=0$.
+这意味着加速度大小为零，则速度$\vec{v}$既不改变大小，也不改变方向，对应静止或匀速直线运动（速度的大小、方向均恒定）.
+
+对于$|\frac{d|\vec{v}|}{dt}|=0$，$|\vec{v}$是速率，因此$\frac{d|\vec{v}|}{dt}$是速率对时间的变化率.
+该式要求速率恒定（不随时间变化）.
+速率恒定仅要求速度的大小不变，但速度的方向可以变化.
+因此，该式对应所有速率不变的运动.
+
+二者的区别源于对“速度变化”的约束范围不同：
+\begin{itemize}
+  \item $|\frac{d\vec{v}}{dt}|=0$要求速度的大小和方向均不变（加速度为零），因此只对应匀速直线运动.
+  \item $|\frac{d|\vec{v}|}{dt}|=0$ 仅要求速率（速度大小）不变，方向可变，因此包含“匀速直线运动”和“匀速圆周运动”等更广的运动类型.
+\end{itemize}
+
+具体举例说明：
+\begin{itemize}
+  \item 匀速直线运动：同时满足两者（加速度为零 → 速度大小、方向均不变）.
+  \item 匀速圆周运动：仅满足$\frac{d|\vec{v}|}{dt}=0$（速率恒定），但不满足$|\frac{d\vec{v}}{dt}|=0$（存在向心加速度，加速度大小不为零）.
+\end{itemize}
+
+综上，$|\frac{d\vec{v}}{dt}|=0$是“匀速直线运动”的充分必要条件；而$|\frac{d|\vec{v}|}{dt}|=0$是“速率不变运动”的充分必要条件，前者是后者的子集（匀速直线运动是速率不变运动的一种特殊情况）.
+\newline
+
+
+\textbf{2 当物体的加速度恒定不变时，它的运动方向可否改变？为什么？}
+
+当物体的加速度恒定不变时，它的运动方向可以改变.
+
+加速度是速度的变化率（$\vec{a}=\frac{d\vec{v}}{dt}$），反映速度（矢量，包含大小和方向）变化的快慢与方向.
+加速度恒定时，其大小和方向均不变，但速度的变化由“加速度与速度的方向关系”决定.
+
+当加速度与初速度 不在同一直线上时，物体做曲线运动，运动方向时刻变化.
+例如平抛运动：物体初速度水平，加速度为竖直向下的重力加速度（大小、方向均恒定）.
+由于加速度与速度存在夹角，速度方向会从“水平”逐渐偏转向“倾斜向下”，运动轨迹为抛物线，方向持续改变.
+
+当加速度与初速度在同一直线上时，物体做匀变速直线运动，运动方向也可能改变（当速度减为零后反向）.
+例如竖直上抛运动：物体初速度竖直向上，加速度为竖直向下的重力加速度（恒定）.
+上升阶段速度逐渐减小（方向仍向上）；到最高点速度为零后，速度方向变为向下，运动方向从“向上”改为“向下”.
+
+加速度恒定时，只要加速度与速度方向不完全相同且不为零，速度的方向就可能发生变化（曲线运动中方向持续偏转，或直线运动中方向反向）.
+因为加速度作为速度变化的“驱动”，会持续改变速度这个矢量的大小或方向，而运动方向是速度矢量的固有属性之一.
+\newline
+
+
+\textbf{3 分析下列说法的正确性：（1）作曲线运动的物体，必有切向加速度；（2）作曲线运动的物体，必有法向加速度；（3）具有加速度的物体，其速率必随时间改．}
+
+\textbf{（1）作曲线运动的物体，必有切向加速度}
+
+\textbf{错误}
+
+切向加速度$a_\tau$由速度大小（速率）的变化引起，公式为$a_\tau=\frac{dv}{dt}$（$v$为瞬时速率）.
+若物体做匀速率曲线运动（如匀速圆周运动），速率$v$不变，则$\frac{dv}{dt}=0$，此时切向加速度为零.
+因此，曲线运动不一定存在切向加速度.
+
+\textbf{（2）作曲线运动的物体，必有法向加速度}
+
+\textbf{正确}
+
+法向加速度$a_n$由速度方向的变化引起，公式为$a_n=\frac{v^2}{\rho}$（$\rho$为曲率半径）.
+曲线运动中，速度方向时刻改变，因此法向加速度一定存在（即使速率不变，只要轨迹是曲线，$a_n\neq 0$）.
+
+\textbf{（3）具有加速度的物体，其速率必随时间改变}
+
+\textbf{错误}
+
+加速度是速度（矢量，包含大小和方向）的变化率.
+若加速度只改变速度的方向而不改变大小（如匀速圆周运动），则物体的速率（速度的大小）保持不变.
+因此，存在加速度时，速率不一定随时间改变.
+\newline
+
+
+\textbf{4 篮球运动员跑步投篮时，若瞄准篮投反而投不进，为什么？应如何投才能投准？}
+
+跑步时，运动员（和球）具有水平方向的初速度（与跑步方向一致）.
+若直接“瞄准篮筐”投篮，相当于只考虑了垂直于篮筐的投篮速度，却忽略了球原有的水平初速度.
+
+投出后，球的运动是“水平初速度+垂直投篮速度+重力加速度”的合成（类似斜抛运动）.
+此时：
+\begin{itemize}
+  \item 水平方向：球会保持跑步时的水平速度继续向前飞行；
+  \item 垂直方向：球向篮筐运动，但因水平速度的存在，合运动轨迹会偏离原本“瞄准篮筐”的直线方向.
+\end{itemize}
+
+因此，球会因水平初速度“飞过”或“偏出”篮筐，而非准确落入.
+
+要让跑步投篮的球准确入筐，核心是“让球相对于篮筐的运动轨迹准确指向篮筐”，需从以下方面调整：
+\begin{itemize}
+  \item 调整出手时机与力度：跑步过程中，需在提前量的位置出手（而非正对篮筐时再投）.例如：向前跑动时，要在距离篮筐“稍前方”的位置投篮，让球的水平初速度与垂直投篮速度合成后，轨迹恰好指向篮筐.同时，出手力度需略小于静止投篮，以抵消水平速度的影响.
+  \item 调整出手角度：跑步时，出手角度需比静止投篮更陡峭（即增加垂直分速度的比例）.这样能削弱水平初速度对轨迹的干扰，让球更快“克服”水平速度，向篮筐方向汇聚.
+  \item 利用“缓冲动作”抵消水平速度：投篮瞬间，通过手腕、手指的“缓冲”动作（如短暂持球再出手），让球与手短暂接触，削弱跑步带来的水平初速度，使球相对静止地脱离手掌，再以接近静止投篮的轨迹飞向篮筐.
+\end{itemize}
+
+跑步投篮的本质是“运动中的相对静止”，需通过出手时机、角度、力度的调整，让球在保持水平初速度的同时，合运动轨迹能准确指向篮筐，而非简单套用静止时的“直线瞄准”逻辑.
+
+注：专业篮球训练中，跑步投篮还会结合步伐、身体平衡等细节，但物理原理的核心是“补偿运动状态下的初速度”，让球的相对运动轨迹准确.
+\newline
+
+
+\section{II 教材习题}
+教材习题部分答案与教材给出答案有出入，以本习题解析为准.
+\newline
+
+
+\textbf{TB1.1 甲乙两列火车在同一水平直路上以相等的速率（$30km/h$）相向而行.当它们相隔$60km$的时候，一只鸟以$60km/h$的恒定速度离开甲车头向乙车头飞去，当到达立即返回，如此来回往返不止.试求：}
+
+\textbf{(1) 当两车头相遇时，鸟往返了多少次？}
+
+两列火车与鸟均做匀速直线运动，鸟每次从一辆火车飞向另一辆火车再返回时，由于火车在持续靠近，鸟往返一次所需的时间会逐渐缩短，且这一过程会无限重复（类似“无穷级数”的思想，每次间隔时间趋近于0但次数无限）.
+因此，当两车头相遇时，鸟往返了无穷多次.
+
+但是，实际上，考虑到火车间距离越来越近，在某一时刻起，鸟的长度已经不能忽略不计，鸟不能视为质点，此后终到某一时刻，鸟无法再完成完整的往返飞行.
+故，当两车头相遇时，鸟往返了无穷多次，但实际只往返了有限次.
+
+\textbf{(2) 鸟共飞行了多少时间及距离？}
+
+鸟从飞离甲车到两车相遇的这段时间内始终在飞行，因此鸟飞行的总时间等于两列火车从初始相距60km到相遇所需的时间.
+
+两列火车相向而行，相对速度为两者速度之和：$v_{rel}=30km/h+30km/h=60km/h$.
+
+初始间距$s_0=60km$，则两车相遇所需时间即鸟的飞行时间：$t=\frac{s_0}{v_{rel}}=\frac{60km}{60km/h}=1h$.
+
+鸟的飞行速度$v_{bird}=60km/h$，飞行距离为速度与时间的乘积：$s_{bird}=v_{bird}t=60km/h\times 1h=60km$.
+
+故鸟共飞行了$1h$，飞行距离为$60km$.
+\newline
+
+
+\textbf{TB1.3 一物体做直线运动，它的位置由方程$x=10t^2+6$决定，其中$x$的单位为$m$，$t$的单位为$s$.试计算：}
+
+\textbf{(1) 在$3.00~3.10s$、$3.00~3.01s$及$3.000~3.001s$间隔时间内的平均速度；}
+
+$3.00s~3.10s$：
+\begin{equation*}
+  \bar{v}=\frac{x_2-x_1}{t_2-t_1}=\frac{(10\times3.10^2+6)m-(10\times3.00^2+6)m}{3.10s-3.00s}=61.0m/s
+\end{equation*}
+
+$3.00s~3.01s$：
+\begin{equation*}
+  \bar{v}=\frac{x_2-x_1}{t_2-t_1}=\frac{(10\times3.01^2+6)m-(10\times3.00^2+6)m}{3.01s-3.00s}=60.1m/s
+\end{equation*}
+
+$3.00s~3.001s$：
+\begin{equation*}
+  \bar{v}=\frac{x_2-x_1}{t_2-t_1}=\frac{(10\times3.001^2+6)m-(10\times3.00^2+6)m}{3.001s-3.00s}=60.01m/s
+\end{equation*}
+
+\textbf{(2) 在$t=3.00s$时的瞬时速度；}
+
+\begin{equation*}
+  \begin{aligned}
+    v&=\lim_{\Delta t\to0}\frac{\Delta x}{\Delta t}=\lim_{\Delta t\to0}\frac{[10(t+\Delta t)^2+6]-[10t^2+6]}{\Delta t}=\lim_{\Delta t\to0}\frac{10(2t\Delta t+\Delta t^2)}{\Delta t}=\lim_{\Delta t\to0}\frac{20t\Delta t+10\Delta t^2}{\Delta t}=20t \\
+     &=20\times 3m/s=60m/s
+  \end{aligned}
+\end{equation*}
+
+\textbf{(3) 用微分方法求它的速度及加速度公式.}
+
+\begin{equation*}
+  \begin{cases}
+    v=\dot{x}=\frac{d}{dt}(10t^2+6)=20t m/s \\
+    a=\ddot{x}=\dot{v}=\frac{d}{dt}(20t)=20m/s^2
+  \end{cases}
+\end{equation*}
+\newline
+
+
+\textbf{TB1.25 在小山上安一靶子，由炮位所在处观测靶子的仰角为 $\alpha$，炮与靶子间的水平距离为 $L$，向目标射击时，炮身的仰角为 $\beta$.略去空气阻力，求能射中靶子的子弹的初速度 $v_0$.}
+
+以炮口为坐标原点，水平方向为$x$轴，竖直方向为$y$轴.
+
+已知炮位观测靶子的仰角为$\alpha$，炮与靶的水平距离为$L$，因此靶子的水平坐标$x=L$，竖直坐标$y=L\tan\alpha$.
+
+炮身仰角为$\beta$，子弹初速度$v_0$可分解为水平和竖直分量，水平分速度$v_{0x}=v_0\cos\beta$，竖直分速度$v_{0y}=v_0\sin\beta$.
+
+子弹的运动分为水平和竖直两个方向.
+水平方向为匀速直线运动，$x=v_{0x}t$，代入$x=L$，得$t=\frac{L}{v_0\cos\beta}$.
+竖直方向为竖直上抛运动，加速度为$-g$，$y=v_{0y}t-\frac{1}{2}gt^2$，代入$y=L\tan\alpha$和$t=\frac{L}{v_0\cos\beta}$，得：
+\begin{equation*}
+  L\tan\alpha=v_0\sin\beta\frac{L}{v_0\cos\beta}-\frac{1}{2}g(\frac{L}{v_0\cos\beta})^2
+\end{equation*}
+
+简化竖直方向的方程：
+\begin{equation*}
+  \begin{aligned}
+    L\tan\alpha=L\tan\beta-\frac{gL^2}{2v_0^2\cos^2\beta} \\
+    \Rightarrow \tan\alpha=\tan\beta-\frac{gL}{2v_0^2\cos^2\beta} \\
+    \Rightarrow \tan\beta-\tan\alpha=\frac{gL}{2v_0^2\cos^2\beta}
+  \end{aligned}
+\end{equation*}
+
+利用三角恒等式化简$\tan\beta-\tan\alpha$：
+\begin{equation*}
+  \tan\beta-\tan\alpha=\frac{\sin\beta}{\cos\beta}-\frac{\sin\alpha}{\cos\alpha}=\frac{\sin\beta\cos\alpha-\sin\alpha\cos\beta}{\cos\beta\cos\alpha}=\frac{\sin(\beta-\alpha)}{\cos\beta\cos\alpha}
+\end{equation*}
+
+代入上方程：
+\begin{equation*}
+  \tan\beta-\tan\alpha=\frac{\sin(\beta-\alpha)}{\cos\beta\cos\alpha}=\frac{gL}{2v_0^2\cos^2\beta}
+\end{equation*}
+
+解出$v_0^2$：
+\begin{equation*}
+  v_0^2=\frac{gL\cos\beta\cos\alpha}{2\cos^2\beta\sin(\beta-\alpha)}=\frac{gL\cos\alpha}{2\cos\beta\sin(\beta-\alpha)}
+\end{equation*}
+
+开平方得到初速度$v_0$：
+\begin{equation*}
+  v_0=\sqrt{\frac{gL\cos\alpha}{2\cos\beta\sin(\beta-\alpha)}}
+\end{equation*}
+\newline
+
+
+\textbf{TB1.31 一物体从静止出发沿半径 $ R = 3.0\,\text{m} $ 的圆周运动，切向加速度 $ a_t = 3.0\,\text{m/s}^2 $.试问：}
+
+\textbf{(1) 经过多长时间它的总加速度 $ \vec{a} $ 恰与半径成 $ 45^\circ $ 角？}
+
+在圆周运动中，总加速度$\vec{a}$由切向加速度$a_\tau$和法向加速度$a_n$合成，且两者垂直.
+
+当总加速度$\vec{a}$与半径成$45^\circ$角时，由于法向加速度$a_n$的方向与半径方向相反（法向加速度指向圆心，半径从圆心指向物体），此时$a_\tau$与$a_n$的大小关系满足$\tan 45^\circ=\frac{a_\tau}{a_n}$，即$a_\tau=a_n$.
+
+已知切向加速度$a_\tau=3.0m/s^2$，则法向加速度$a_n$也应为$3.0m/s^2$.
+法向加速度有$a_n=\frac{v^2}{R}$.
+物体从静止出发（初速度$v_0=0$），由匀加速直线运动规律$v=v_0+a_\tau t$，则$v=a_\tau t$.
+
+结合以上条件，易得$a_\tau=\frac{(a_\tau t)^2}{R}$，代入数值，得$t=1.0s$.
+
+\textbf{(2) 在上述时间内物体所通过的路程 $ s $ 等于多少？}
+
+物体从静止出发，切向加速度恒定，路程$s$（标量，表示轨迹长度）满足匀加速直线运动公式：
+\begin{equation*}
+  s=v_0t+\frac{1}{2}a_\tau t^2
+\end{equation*}
+
+代入数值，得$s=1.5m$.
+\newline
+
+
+\textbf{TB1.33 一杆以匀角速度 $\omega_0$ 绕其固定端 $O$ 且垂直于杆的轴转动.在 $t = 0$ 时，位于 $O$ 点的小球从相对于杆静止开始沿杆作加速度为 $a_0$ 的匀加速运动.求小珠在时刻 $t$ 的速度和加速度.}
+
+由于小珠是在水平面上运动，采用极坐标系，原点在$O$点，同时规定径向单位矢量$\hat{r}$和切向单位矢量$\hat{\theta}$.
+
+杆旋转角速度为$\omega_0$,故$\theta(t)=\omega_0 t$.
+
+小珠沿杆运动，即沿径向运动.
+由于它从$O$点出发，初速为零，加速度为$a_0$（相对于杆），则其相对于杆的径向位置为$r(t)=\frac{1}{2}a_0 t^2$.
+
+在极坐标中，一个质点的速度公式为：
+\begin{equation*}
+  \vec{v}=\dot{r}\hat{r}+r\dot{\theta}\hat{\theta}
+\end{equation*}
+
+其中，$\dot{r}=\frac{dr}{dt}=a_0 t$，$\dot{\theta}=\frac{d\theta}{dt}=\omega_0$.
+
+代入$r(t)=\frac{1}{2}a_0 t^2$，得：
+\begin{equation*}
+  \vec{v}=(a_0 t)\hat{r}+(\frac{1}{2}a_0 t^2)\omega_0\hat{\theta}=a_0 t\hat{r}+\frac{1}{2}a_0\omega_0 t^2\hat{\theta}
+\end{equation*}
+
+在极坐标中，加速度有：
+\begin{equation*}
+    \vec{a}=\dot{\vec{v}}=\frac{d}{dt}(\dot{r}\hat{r}+r\dot{\theta}\hat{\theta})=(\ddot{r}-r\dot{\theta}^2)\hat{r}+(r\ddot{\theta}+2\dot{r}\dot{\theta})\hat{\theta}
+\end{equation*}
+
+逐项计算，$r=\frac{1}{2}a_0 t$，$\dot{r}=a_0 t$，$\ddot{r}=a_0$，$\dot{\theta}=\omega_0$，$\ddot{\theta}=0$.
+
+则径向分量：
+\begin{equation*}
+  a_r=\ddot{r}-r\dot{\theta}^2=a_0-(\frac{1}{2}a_0 t^2)\omega_0^2
+\end{equation*}
+
+切向分量：
+\begin{equation*}
+  a_\theta=r\ddot{\theta}+2\dot{r}\dot{\theta}=2a_0 \omega_0 t
+\end{equation*}
+
+因此，加速度矢量为：
+\begin{equation*}
+  \vec{a}(t)=a_r\hat{r}+a_\theta\hat{\theta}=(a_0-\frac{1}{2}a_0 \omega_0^2 t^2)\hat{r}+2a_0 \omega_0 t\hat{\theta}
+\end{equation*}
+
+注：切向加速度为$2a_0 \omega_0 t$，是科里奥利加速度（Coriolis acceleration）的表现.
+
+故，答案为：
+\begin{equation*}
+  \begin{cases}
+    \vec{v}(t)=a_0 t\hat{r}+\frac{1}{2}a_0\omega_0 t^2\hat{\theta} \\
+    \vec{a}(t)=(a_0-\frac{1}{2}a_0 \omega_0^2 t^2)\hat{r}+2a_0 \omega_0 t\hat{\theta}
+  \end{cases}
+\end{equation*}
+\newline
+
+
+\section{III 补充习题}
+\textbf{1 设有矢量$\vec{A}=3\vec{\imath}+4\vec{\jmath}-4\vec{k}$，（$\vec{\imath}$，$\vec{\jmath}$，$\vec{k}$分别为$x$，$y$，$z$方向的单位矢量）}
+
+\textbf{(a) 在$x-y$平面内找到一个单位向量$\hat{\vec{B}}$，使其垂直于向量$\vec{A}$；}
+
+在$x-y$平面内的向量$\hat{\vec{B}}$满足$z$分量为零，故$\hat{\vec{B}}=a\vec{\imath}+b\vec{\jmath}+0\vec{k}$.
+
+$\hat{\vec{B}}$为单位向量，模长为1，故：
+\begin{equation*}
+  \sqrt{a^2+b^2}=1
+\end{equation*}
+
+$\hat{\vec{B}}\bot\vec{A}$，故：
+\begin{equation*}
+  \vec{A}\cdot\hat{\vec{B}}=(3\vec{\imath}+4\vec{\jmath}-4\vec{k})\cdot(a\vec{\imath}+b\vec{\jmath}+0\vec{k})=3a+4b=0
+\end{equation*}
+
+解得$b=-\frac{3}{4}a$，代入模长方程，得：
+\begin{equation*}
+  \begin{cases}
+    a=\frac{4}{5} \\ b=-\frac{3}{5}
+  \end{cases}
+\end{equation*}
+
+或：
+\begin{equation*}
+  \begin{cases}
+    a=-\frac{4}{5} \\ b=\frac{3}{5}
+  \end{cases}
+\end{equation*}
+
+则$\hat{\vec{B}}=-\frac{4}{5}\vec{\imath}+\frac{3}{5}\vec{\jmath}$或$\hat{\vec{B}}=\frac{4}{5}\vec{\imath}-\frac{3}{5}\vec{\jmath}$.
+
+\textbf{(b) 找到一个单位向量$\hat{\vec{C}}$，使得$\hat{\vec{C}}\bot\vec{A}$，$\hat{\vec{C}}\bot\hat{\vec{B}}$；}
+
+方法一：设$\hat{\vec{C}}=a\vec{\imath}+b\vec{\jmath}+c\vec{k}$，由垂直条件和模长条件解得.（具体过程类似上问，略）
+
+方法二：考虑外积的性质，$\vec{A}\times\hat{\vec{B}}$垂直于$\vec{A}$和$\hat{\vec{B}}$，且不为零矢量，因此可取单位化后的外积作为$\hat{\vec{C}}$.
+
+取$\hat{\vec{B}}=\frac{4}{5}\vec{\imath}-\frac{3}{5}\vec{\jmath}$，计算外积：
+\begin{equation*}
+  \vec{A}\times\hat{\vec{B}}= \begin{vmatrix}
+    \vec{\imath} & \vec{\jmath} & \vec{k} \\
+    3 & 4 & -4 \\
+    4/5 & -3/5 & 0
+  \end{vmatrix} = -\frac{12}{5}\vec{\imath}-\frac{16}{5}\vec{\jmath}-\frac{25}{5}\vec{k}
+\end{equation*}
+
+归一化，得：
+\begin{equation*}
+  \hat{\vec{C}}=\frac{-\frac{12}{5}\vec{\imath}-\frac{16}{5}\vec{\jmath}-\frac{25}{5}\vec{k}}{\sqrt{\frac{12}{5}^2+\frac{16}{5}^2+\frac{25}{5}^2}}=-\frac{12}{\sqrt{1025}}\vec{\imath}-\frac{16}{\sqrt{1025}}\vec{\jmath}-\frac{25}{\sqrt{1025}}\vec{k}
+\end{equation*}
+
+同样地，我们也可以取$\hat{\vec{B}}=-\frac{4}{5}\vec{\imath}+\frac{3}{5}\vec{\jmath}$，计算外积，得到另一个方向的$\hat{\vec{C}}=\frac{12}{\sqrt{1025}}\vec{\imath}+\frac{16}{\sqrt{1025}}\vec{\jmath}+\frac{25}{\sqrt{1025}}\vec{k}$.
+
+\textbf{(c) 证明$\vec{A}$垂直于$\hat{\vec{B}}$和$\hat{\vec{C}}$所在的平面.}
+
+要证明一个向量垂直于一个平面，只需证明它垂直于该平面内的两个不共线向量.
+
+由于$\hat{\vec{B}}\bot\hat{\vec{C}}$，且二者模均不为零，则二者必不共线.
+则矢量垂直于二者张成的平面等价于矢量同时垂直于$\hat{\vec{B}}$和$\hat{\vec{C}}$.
+
+$\vec{A}\bot\hat{\vec{B}}$为 (a) 的题设条件，故无需证明.
+
+$\vec{A}\bot\hat{\vec{C}}$也为 (b) 的题设条件，故无需证明.
+我们也可以简单验证一下：
+\begin{equation*}
+  \vec{A}\cdot\hat{\vec{C}}=(3\vec{\imath}+4\vec{\jmath}-4\vec{k})\cdot(-\frac{12}{\sqrt{1025}}\vec{\imath}-\frac{16}{\sqrt{1025}}\vec{\jmath}-\frac{25}{\sqrt{1025}}\vec{k})=0
+\end{equation*}
+
+由$\vec{A}\bot\hat{\vec{B}}$且$\vec{A}\bot\hat{\vec{C}}$，可知$\vec{A}$垂直于$\hat{\vec{B}}$和$\hat{\vec{C}}$所在的平面. (Q.E.D.)
+\newline
+
+
+\textbf{2 设$\vec{a}=(1,-2,1)$，$\vec{b}=(1,-1,3)$，$\vec{c}=(2,5,-3)$，求$\vec{a}\times\vec{b}$，$(\vec{a}\times\vec{b})\cdot\vec{c}$，$\vec{a}\times(\vec{b}\times\vec{c})$.}
+
+首先计算$\vec{a}\times\vec{b}$：
+\begin{equation*}
+  \vec{a}\times\vec{b}= \begin{vmatrix}
+    \vec{\imath} & \vec{\jmath} & \vec{k} \\
+    1 & -2 & 1 \\
+    1 & -1 & 3
+  \end{vmatrix} = (-5,-2,1)
+\end{equation*}
+
+对于$\vec{a}\times\vec{b}\cdot\vec{c}$：
+\begin{equation*}
+  \vec{a}\times\vec{b}\cdot\vec{c}=(-5,-2,1)\cdot(2,5,-3)=-10-10-3=-23
+\end{equation*}
+
+对于$\vec{a}\times(\vec{b}\times\vec{c})$，我们可以直接计算：
+\begin{equation*}
+  \vec{a}\times(\vec{b}\times\vec{c})= (1,-2,1)\times\begin{vmatrix}
+    \vec{\imath} & \vec{\jmath} & \vec{k} \\
+    1 & -1 & 3 \\
+    2 & 5 & -3
+  \end{vmatrix} = (1,-2,1)\times(-12,9,7)=\begin{vmatrix}
+    \vec{\imath} & \vec{\jmath} & \vec{k} \\
+    1 & -2 & 1 \\
+    -12 & 9 & 7
+  \end{vmatrix} = (-23,-19,-15)
+\end{equation*}
+
+很多时候，计算外积需要利用行列式，行列式的计算成本是比较大的，我们可以利用矢量三重积公式简化计算量：
+\begin{equation*}
+  \begin{aligned}
+    \vec{a}\times(\vec{b}\times\vec{c}) &= (\vec{a}\cdot\vec{c})\vec{b}-(\vec{a}\cdot\vec{b})\vec{c} \\
+                                        &= ((1,-2,1)\cdot(2,5,-3))(1,-1,3) - ((1,-2,1)\cdot(1,-1,3))(2,5,-3) \\
+                                        &= (-11)(1,-1,3) - (6)(2,5,-3) = (-23,-19,-15)
+  \end{aligned}
+\end{equation*}
+\newline
+
+
+\textbf{3 求下列函数的导函数：}
+
+\textbf{(a) $y=8x^3+x+7$；}
+
+\begin{equation*}
+  y'=(8x^3)'+x'+(7)'=24x^2+1
+\end{equation*}
+
+\textbf{(b) $y=(x+1)(x-1)\tan x$；}
+
+\begin{equation*}
+  \begin{aligned}
+    y'&=(x+1)'(x-1)\tan x+(x+1)(x-1)'\tan x+(x+1)(x-1)\tan'x \\
+      &=(x-1)\tan x+(x+1)\tan x+(x+1)(x-1)\frac{1}{\cos^2 x} \\
+      &=2x\tan x+\frac{(x+1)(x-1)}{\cos^2 x}
+  \end{aligned}
+\end{equation*}
+
+\textbf{(c) $y=\frac{9x+x^2}{5x+6}$；}
+
+\begin{equation*}
+  \begin{aligned}
+    y'&=\frac{(9x+x^2)'(5x+6)-(9x+x^2)(5x+6)'}{(5x+6)^2}=\frac{(9+2x)(5x+6)-(9x+x^2)5}{(5x+6)^2} \\
+      &=\frac{5x^2+12x+54}{25x^2+60x+36}
+  \end{aligned}
+\end{equation*}
+
+\textbf{(d) $y=x\cos x+\frac{\sin x}{x}$.}
+
+\begin{equation*}
+  \begin{aligned}
+    y'&=(x\cos x)'+(\frac{\sin x}{x})'=x'\cos x+x\cos'x+\frac{\sin'x\cdot x-\sin x\cdot x'}{x^2} \\
+      &=\cos x-x\sin x-\frac{x\cos x-\sin x}{x^2}
+  \end{aligned}
+\end{equation*}
+\newline
+
+
+\textbf{4 求不定积分：}
+
+\textbf{(a) $\int (3x^3+\sin x+\frac{5}{x})dx$；}
+
+\begin{equation*}
+  \int (3x^3+\sin x+\frac{5}{x})dx=\int 3x^3dx+\int\sin xdx+\int\frac{5}{x}dx=\frac{3}{4}x^4 - \cos x + 5\ln|x| + C 
+\end{equation*}
+
+\textbf{(b) $\int \sqrt{a^2-x^2}dx(a>0)$.}
+
+这是一个标准的三角代换积分.
+令$x=a\sin\theta$，$-\frac{\pi}{2}\leq\theta\leq\frac{\pi}{2}$，则$dx=a\cos\theta d\theta$.
+
+则：
+\begin{equation*}
+  \sqrt{a^2-x^2}=\sqrt{a^2-a^2\sin^2\theta}=\sqrt{a^2(1-\sin^2\theta)}=\sqrt{a^2\cos^2\theta}=a|\cos\theta|
+\end{equation*}
+
+由于$-\frac{\pi}{2}\leq\theta\leq\frac{\pi}{2}$范围内$\cos\theta\geq 0$，故：
+\begin{equation*}
+  \sqrt{a^2-x^2}=a\cos\theta
+\end{equation*}
+
+代入积分：
+\begin{equation*}
+  \int\sqrt{a^2-x^2}dx=\int(a\cos\theta)(a\cos\theta d\theta)=a^2\int\cos^2\theta d\theta
+\end{equation*}
+
+利用三角恒等式$\cos^2\theta=\frac{1+\cos 2\theta}{2}$，所以：
+\begin{equation*}
+  a^2\int\cos^2\theta d\theta=a^2\int\frac{1+\cos 2\theta}{2}d\theta=\frac{a^2}{2}\int(1+\cos 2\theta)d\theta=\frac{a^2}{2}(\theta+\frac{1}{2}\sin 2\theta)+C
+\end{equation*}
+
+注意到$\sin 2\theta=2\sin\theta\cos\theta$，故：
+\begin{equation*}
+  \frac{a^2}{2}(\theta+\frac{1}{2}\sin 2\theta)+C=\frac{a^2}{2}(\theta+\sin\theta\cos\theta)+C
+\end{equation*}
+
+将结果还原到$x$，$\theta=\arcsin\frac{x}{a}$，得到：
+\begin{equation*}
+  \begin{aligned}
+    \sin\theta &= \frac{x}{a} \\
+    \cos\theta &= \sqrt{1-\sin^2\theta}=\sqrt{1-\frac{x^2}{a^2}}=\frac{\sqrt{a^2-x^2}}{a} \\
+    \sin\theta\cos\theta &= \frac{x\sqrt{a^2-x^2}}{a^2}
+  \end{aligned}
+\end{equation*}
+
+代入，得：
+\begin{equation*}
+  \frac{a^2}{2}(\arcsin\frac{x}{a}+\frac{x\sqrt{a^2-x^2}}{a^2})+C=\frac{a^2}{2}\arcsin\frac{x}{a}+\frac{1}{2}x\sqrt{a^2-x^2}+C
+\end{equation*}
+
+最终答案为：
+\begin{equation*}
+  \int\sqrt{a^2-x^2}dx=\frac{a^2}{2}\arcsin\frac{x}{a}+\frac{1}{2}x\sqrt{a^2-x^2}+C
+\end{equation*}
+\newline
+
+
+\textbf{5 验证函数$y=C_1\cos\omega t+C_2\sin\omega t$（其中$C_1$，$C_2$为任意函数）是微分方程$y''+\omega^2y=0$的解.}
+
+要验证函数 $y = C_1 \cos \omega t + C_2 \sin \omega t$（其中 $C_1, C_2$ 是任意常数）是微分方程 $y'' + \omega^2 y = 0$ 的解，需将函数代入微分方程并验证等式成立.
+
+对 $y = C_1 \cos \omega t + C_2 \sin \omega t$ 关于 $t$ 求导：
+\begin{equation*}
+  y' = \frac{d}{dt}(C_1 \cos \omega t) + \frac{d}{dt}(C_2 \sin \omega t) = -C_1 \omega \sin \omega t + C_2 \omega \cos \omega t
+\end{equation*}
+
+对 $y' = -C_1 \omega \sin \omega t + C_2 \omega \cos \omega t$ 再次对 $t$ 求导：
+\begin{equation*}
+  y'' = \frac{d}{dt}(-C_1 \omega \sin \omega t) + \frac{d}{dt}(C_2 \omega \cos \omega t) = -C_1 \omega \cdot \omega \cos \omega t + C_2 \omega \cdot (-\omega \sin \omega t)
+\end{equation*}
+
+简化得：
+\begin{equation*}
+  y'' = -\omega^2 C_1 \cos \omega t - \omega^2 C_2 \sin \omega t
+\end{equation*}
+
+微分方程为 $y'' + \omega^2 y = 0$，将 $y''$ 和 $y$ 代入方程：
+\begin{equation*}
+  \begin{aligned}
+  y'' + \omega^2 y &= ( -\omega^2 C_1 \cos \omega t - \omega^2 C_2 \sin \omega t ) + \omega^2 ( C_1 \cos \omega t + C_2 \sin \omega t ) \\
+                   &= -\omega^2 C_1 \cos \omega t - \omega^2 C_2 \sin \omega t + \omega^2 C_1 \cos \omega t + \omega^2 C_2 \sin \omega t \\
+                   &= 0
+  \end{aligned}
+\end{equation*}
+
+由于 $y'' + \omega^2 y = 0$ 恒成立，因此函数 $y = C_1 \cos \omega t + C_2 \sin \omega t$ 是微分方程 $y'' + \omega^2 y = 0$ 的解. (Q.E.D.)
+\newline
+
+
+\textbf{6 为了让电梯在上升、下降过程中平稳运行，将按照如下的加速度从静止启动，}
+
+\textbf{$a(t)=(a_m/2)(1-\cos(2\pi t/T)),0\le t\le T$ }
+
+\textbf{$a(t)=-(a_m/2)(1+\cos(2\pi t/T)),T\le t\le 2T$ }
+
+\textbf{其中$a_m$是最大的加速度，$2T$是运行一趟（静止-运行-静止）所需的总时间．}
+
+\textbf{(a) 电梯运行的最大速度是多少？}
+
+速度是加速度的积分：
+\begin{equation*}
+  v(t) = \int_0^t a(\tau)\, d\tau
+\end{equation*}
+
+由于加速度在 $ [0, T] $ 内为正，电梯加速；在 $ [T, 2T] $ 内为负，电梯减速.
+因此，最大速度出现在 $ t = T $ 时刻.
+
+计算：
+\begin{equation*}
+  v(T) = \int_0^T a(t)\, dt = \int_0^T \frac{a_m}{2} \left(1 - \cos\left(\frac{2\pi t}{T}\right)\right)\, dt
+\end{equation*}
+
+拆分积分：
+\begin{equation*}
+  v(T) = \frac{a_m}{2} \int_0^T 1\, dt - \frac{a_m}{2} \int_0^T \cos\left(\frac{2\pi t}{T}\right)\, dt
+\end{equation*}
+
+计算各项：
+\begin{equation*}
+  \begin{aligned}
+    \int_0^T 1\, dt = T \\
+    \int_0^T \cos\left(\frac{2\pi t}{T}\right)\, dt = \left[ \frac{T}{2\pi} \sin\left(\frac{2\pi t}{T}\right) \right]_0^T = \frac{T}{2\pi} (\sin(2\pi) - \sin(0)) = 0
+  \end{aligned}
+\end{equation*}
+
+因此：
+\begin{equation*}
+  v(T) = \frac{a_m}{2} \cdot T - 0 = \frac{a_m T}{2}
+\end{equation*}
+
+因此最大速度为$v_{\max} = \frac{a_m T}{2}$
+
+\textbf{(b) 在电梯启动的很短时间内$t\ll T$，写出其速度的近似表达式；}
+
+方法一：先精确积分，再泰勒展开.
+
+先精确积分得到速度的表达式：
+\begin{equation*}
+  \begin{aligned}
+    v(t) &= \int_0^t \frac{a_m}{2} \left(1 - \cos\left(\frac{2\pi \tau}{T}\right)\right) d\tau \\
+         &= \frac{a_m}{2} \left[ \int_0^t 1\,d\tau - \int_0^t \cos\left(\frac{2\pi \tau}{T}\right) d\tau \right] \\
+         &= \frac{a_m}{2} \left[ t - \frac{T}{2\pi} \sin\left(\frac{2\pi t}{T}\right) \right]
+  \end{aligned}
+\end{equation*}
+
+令 $x = \dfrac{2\pi t}{T}$，当 $t \ll T$ 时，$x \ll 1$.  
+对 $\sin x$ 做泰勒展开至三阶项：
+\begin{equation*}
+  \sin x = x - \frac{x^3}{6} + \mathcal{O}(x^5)
+\end{equation*}
+
+代入得：
+\begin{equation*}
+  \frac{T}{2\pi} \sin\left(\frac{2\pi t}{T}\right) = \frac{T}{2\pi} \left( \frac{2\pi t}{T} - \frac{1}{6} \left(\frac{2\pi t}{T}\right)^3 + \cdots \right) = t - \frac{2\pi^2 t^3}{3T^2} + \mathcal{O}(t^5)
+\end{equation*}
+
+代入速度表达式
+\begin{equation*}
+  \begin{aligned}
+    v(t) &= \frac{a_m}{2} \left[ t - \left( t - \frac{2\pi^2 t^3}{3T^2} + \cdots \right) \right] \\
+         &= \frac{a_m}{2} \cdot \frac{2\pi^2 t^3}{3T^2} + \mathcal{O}(t^5) \\
+         &= \frac{\pi^2 a_m}{3T^2} t^3 + \mathcal{O}(t^5)
+  \end{aligned}
+\end{equation*}
+
+则在$t\ll T$ 时，速度表达式为：
+\begin{equation*}
+  v(t) \approx \frac{\pi^2 a_m}{3T^2} t^3
+\end{equation*}
+
+方法二：先展开加速度，再积分.
+
+利用 $\cos x = 1 - \dfrac{x^2}{2} + \dfrac{x^4}{24} - \cdots$，得：
+\begin{equation*}
+  1 - \cos x = \frac{x^2}{2} - \frac{x^4}{24} + \cdots
+\end{equation*}
+
+令 $x = \dfrac{2\pi t}{T}$，则：
+\begin{equation*}
+  \begin{aligned}
+    a(t) &= \frac{a_m}{2} \left(1 - \cos\left(\frac{2\pi t}{T}\right)\right) \\
+         &= \frac{a_m}{2} \left( \frac{1}{2} \left(\frac{2\pi t}{T}\right)^2 + \mathcal{O}(t^4) \right) \\
+         &= \frac{a_m}{2} \cdot \frac{2\pi^2 t^2}{T^2} + \mathcal{O}(t^4) \\
+         &= \frac{\pi^2 a_m}{T^2} t^2 + \mathcal{O}(t^4)
+  \end{aligned}
+\end{equation*}
+
+积分求速度，得：
+\begin{equation*}
+  \begin{aligned}
+    v(t) &= \int_0^t a(\tau)\,d\tau \\
+         &= \int_0^t \left( \frac{\pi^2 a_m}{T^2} \tau^2 + \mathcal{O}(\tau^4) \right) d\tau \\
+         &= \frac{\pi^2 a_m}{T^2} \cdot \frac{t^3}{3} + \mathcal{O}(t^5) \\
+         &= \frac{\pi^2 a_m}{3T^2} t^3 + \mathcal{O}(t^5)
+  \end{aligned}
+\end{equation*}
+
+则在$t\ll T$ 时，速度表达式为：
+\begin{equation*}
+  v(t) \approx \frac{\pi^2 a_m}{3T^2} t^3
+\end{equation*}
+
+事实上，从物理意义的角度分析，在 $t = 0$ 时，$a(0) = \frac{a_m}{2}(1 - \cos 0) = 0$，即电梯从静止开始平滑启动，无冲击.
+加速度在初始时刻的变化率不为零，其主导行为为 $a(t) \propto t^2$（因为 $1 - \cos x \sim x^2/2$）.
+由于 $v(t) = \int_0^t a(\tau)\,d\tau$，若 $a(\tau) \sim \tau^2$，则 $v(t) \sim t^3$.
+因此，速度在启动初期必然与 $t^3$ 成正比，比例系数由 $a_m$ 和 $T$ 决定.
+通过上述两种数学方法可严格确定该系数为 $\dfrac{\pi^2 a_m}{3T^2}$.
+
+\textbf{(c) 求电梯运行一趟距离为$D$所需要的时间．}
+
+运行一趟的距离 $ D $ 等于速度对时间的积分：
+\begin{equation*}
+  D = \int_0^{2T} v(t)\, dt
+\end{equation*}
+
+由对称性：前半段 $ [0,T] $ 加速，后半段 $ [T,2T] $ 减速，且加速度对称，故速度曲线关于 $ t = T $ 对称.
+
+因此：
+\begin{equation*}
+  D = 2 \int_0^T v(t)\, dt
+\end{equation*}
+
+而：
+\begin{equation*}
+  v(t) = \int_0^t a(\tau)\, d\tau = \frac{a_m}{2} \left( t - \frac{T}{2\pi} \sin\left(\frac{2\pi t}{T}\right) \right)
+\end{equation*}
+
+所以：
+\begin{equation*}
+  \int_0^T v(t)\, dt = \int_0^T \frac{a_m}{2} \left( t - \frac{T}{2\pi} \sin\left(\frac{2\pi t}{T}\right) \right)\, dt
+= \frac{a_m}{2} \left[ \int_0^T t\, dt - \frac{T}{2\pi} \int_0^T \sin\left(\frac{2\pi t}{T}\right)\, dt \right]
+\end{equation*}
+
+计算：
+\begin{equation*}
+  \begin{aligned}
+    \int_0^T t\, dt = \frac{1}{2} T^2 \\
+    \int_0^T \sin\left(\frac{2\pi t}{T}\right)\, dt = \left[ -\frac{T}{2\pi} \cos\left(\frac{2\pi t}{T}\right) \right]_0^T = -\frac{T}{2\pi} (\cos(2\pi) - \cos(0)) = -\frac{T}{2\pi} (1 - 1) = 0
+  \end{aligned}
+\end{equation*}
+
+因此：
+\begin{equation*}
+  \int_0^T v(t)\, dt = \frac{a_m}{2} \cdot \frac{1}{2} T^2 = \frac{a_m T^2}{4}
+\end{equation*}
+
+于是：
+\begin{equation*}
+  D = 2 \cdot \frac{a_m T^2}{4} = \frac{a_m T^2}{2}
+\end{equation*}
+
+解出 $ T $：
+\begin{equation*}
+  T^2 = \frac{2D}{a_m} \Rightarrow T = \sqrt{\frac{2D}{a_m}}
+\end{equation*}
+
+但注意：总时间为 $ 2T $，所以：
+\begin{equation*}
+  t_{\text{total}} = 2T = 2 \sqrt{\frac{2D}{a_m}} = 2\sqrt{2} \sqrt{\frac{D}{a_m}}
+\end{equation*}
+\newline
+
+
+\textbf{7 如图1所示，一个运动员站在一倾角为$\phi$的山坡顶上往坡面扔石头，为使得石头扔出最远的距离，应该从水平面以多大的角度向上扔出石头？}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{Fig/1.png}
+  \caption{图1}
+\end{figure}
+
+设起点为原点 $O$，水平向右为 $x$ 轴，竖直向上为 $y$ 轴.
+山坡向下倾斜，其表面满足$y = -x \tan\phi$.
+
+石块的抛体运动方程为：
+\begin{equation*}
+  \begin{cases}
+    x(t) = v_0 \cos\theta \cdot t, \\
+    y(t) = v_0 \sin\theta \cdot t - \dfrac{1}{2} g t^2.
+  \end{cases}
+\end{equation*}
+
+落地时满足轨迹与坡面相交，即：
+\begin{equation*}
+  v_0 \sin\theta \cdot t - \frac{1}{2} g t^2 = - (v_0 \cos\theta \cdot t) \tan\phi.
+\end{equation*}
+
+两边除以 $t \neq 0$ 得：
+\begin{equation*}
+  v_0 \sin\theta - \frac{1}{2} g t = - v_0 \cos\theta \tan\phi,
+\end{equation*}
+
+解得飞行时间$t = \frac{2v_0}{g} \left( \sin\theta + \cos\theta \tan\phi \right)$.
+
+代入 $x(t)$ 得：
+\begin{equation*}
+  x = v_0 \cos\theta \cdot t = \frac{2v_0^2}{g} \cos\theta \left( \sin\theta + \cos\theta \tan\phi \right).
+\end{equation*}
+
+整理为：
+\begin{equation*}
+  x(\theta) = \frac{2v_0^2}{g} \left( \cos\theta \sin\theta + \cos^2\theta \tan\phi \right).
+\end{equation*}
+
+令$f(\theta) = \cos\theta \sin\theta + \cos^2\theta \tan\phi$,对 $\theta$ 求导：
+\begin{equation*}
+  f'(\theta) = \cos 2\theta - \sin 2\theta \tan\phi.
+\end{equation*}
+
+令 $f'(\theta) = 0$，得：
+\begin{equation*}
+  \cos 2\theta = \sin 2\theta \tan\phi \quad \Rightarrow \quad \tan 2\theta = \cot\phi.
+\end{equation*}
+
+因此：
+\begin{equation*}
+  2\theta = \frac{\pi}{2} - \phi \quad \Rightarrow \quad \theta = \frac{\pi}{4} - \frac{\phi}{2}.
+\end{equation*}
+
+为使石块沿坡面飞行距离最远，应以与水平方向夹角为$\theta = \frac{\pi}{4} - \frac{\phi}{2}$
+（即 $\theta = 45^\circ - \dfrac{\phi}{2}$）抛出.
+
+当 $\phi = 0$（平地），$\theta = 45^\circ$，符合经典结论.
+ 坡度 $\phi$ 越大，最优抛射角越小，应“低抛”以获得最大坡面射程.
+\newline
+
+
+\textbf{8 以椭圆一个焦点$F$为原点，沿半长轴方向设置极轴，椭圆的极坐标方程是$r=r_0/(1+e\cos\theta)$. 设所给椭圆的半长轴为$A$，半短轴为$B$，且$F$位于椭圆中心$O$的右侧，如图2所示，}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{Fig/2.png}
+  \caption{图2}
+\end{figure}
+
+\textbf{(a) 确定参量$r_0$, $e$与$A$，$B$的关系；}
+
+椭圆的基本几何关系：
+\begin{equation*}
+  c = \sqrt{A^2 - B^2}, \quad e = \frac{c}{A} = \frac{\sqrt{A^2 - B^2}}{A}
+\end{equation*}
+
+在极坐标中，当 $\theta = 0$ 时，对应最近点（右顶点）：
+\begin{equation*}
+  r_{\min} = A - c = \frac{r_0}{1 + e}
+\end{equation*}
+
+当 $\theta = \pi$ 时，对应最远点（左顶点）：
+\begin{equation*}
+  r_{\max} = A + c = \frac{r_0}{1 - e}
+\end{equation*}
+
+联立解得：
+\begin{equation*}
+  A = \frac{r_0}{1 - e^2} \quad \Rightarrow \quad r_0 = A(1 - e^2)
+\end{equation*}
+
+由于 $e^2 = \dfrac{A^2 - B^2}{A^2}$，所以：
+\begin{equation*}
+  1 - e^2 = \frac{B^2}{A^2} \quad \Rightarrow \quad r_0 = A \cdot \frac{B^2}{A^2} = \frac{B^2}{A}
+\end{equation*}
+
+故，答案为：
+\begin{equation*}
+  \begin{aligned}
+    e &= \frac{\sqrt{A^2 - B^2}}{A} \\
+    r_0 &= \frac{B^2}{A}
+  \end{aligned}
+\end{equation*}
+
+\textbf{(b) 若质点以$\theta=\omega t$方式沿椭圆运动，试导出$v_{\theta}$，$a_{\theta}$与质点角位置$\theta$的关系.}
+
+已知 $\theta = \omega t$，故 $\dot{\theta} = \omega$，$\ddot{\theta} = 0$.
+
+极坐标下速度与加速度的横向分量为：
+\begin{equation*}
+  v_\theta = r \dot{\theta}, \quad a_\theta = r \ddot{\theta} + 2 \dot{r} \dot{\theta} = 2 \dot{r} \omega
+\end{equation*}
+
+椭圆方程$r(\theta) = \frac{r_0}{1 + e \cos\theta}$.
+
+则切向速度有：
+\begin{equation*}
+  v_\theta(\theta) = r \omega = \frac{\omega r_0}{1 + e \cos\theta} = \frac{\omega B^2}{A(1 + e \cos\theta)}
+\end{equation*}
+
+对于切向加速度，先求 $\dot{r}$：
+\begin{equation*}
+  \frac{dr}{d\theta} = \frac{r_0 e \sin\theta}{(1 + e \cos\theta)^2}
+  \Rightarrow
+  \dot{r} = \frac{dr}{d\theta} \cdot \omega = \omega \cdot \frac{r_0 e \sin\theta}{(1 + e \cos\theta)^2}
+\end{equation*}
+
+因此：
+\begin{equation*}
+  a_\theta(\theta) = 2 \omega \dot{r} = 2 \omega^2 \cdot \frac{r_0 e \sin\theta}{(1 + e \cos\theta)^2} = \frac{2 \omega^2 B^2 e \sin\theta}{A(1 + e \cos\theta)^2}
+\end{equation*}
+
+则，最终答案为：
+\begin{equation*}
+  \begin{aligned}
+    v_\theta(\theta) &= \frac{\omega B^2}{A(1 + e \cos\theta)} \\
+    a_\theta(\theta) &= \frac{2 \omega^2 B^2 e \sin\theta}{A(1 + e \cos\theta)^2}
+  \end{aligned}
+\end{equation*}
+\newline
+
+
+\textbf{9 极坐标系下的对数螺旋线可表述为$r=r_0e^{\alpha\theta}$，试用运动学方法导出曲率半径$\rho$.}
+
+在平面曲线运动中，质点沿轨迹运动时，其加速度可分解为：
+\begin{itemize}
+    \item 切向加速度：$ a_t = \frac{dv}{dt} $
+    \item 法向加速度：$ a_n = \frac{v^2}{\rho} $
+\end{itemize}
+其中 $ \rho $ 是曲率半径，正是我们要找的.
+
+因此，如果我们能写出质点在该曲线上运动时的速度和加速度，并从中分离出法向加速度，就可以通过公式$a_n = \frac{v^2}{\rho} \quad \Rightarrow \quad \rho = \frac{v^2}{a_n}$求出曲率半径.
+
+设质点在极坐标中运动，位置为 $ (r, \theta) $，则可求得速度和加速度表达式.
+
+速度分量：
+\begin{equation*}
+  \begin{aligned}
+    v_r &= \dot{r} \\
+    v_\theta &= r\dot{\theta} \\
+    v^2 &= \dot{r}^2 + (r\dot{\theta})^2
+  \end{aligned}
+\end{equation*}
+
+加速度分量：
+\begin{equation*}
+  \begin{aligned}
+    a_r &= \ddot{r} - r\dot{\theta}^2 \\
+    a_\theta &= r\ddot{\theta} + 2\dot{r}\dot{\theta} \\
+    a^2 &= a_r^2 + a_\theta^2
+  \end{aligned}
+\end{equation*}
+
+但更关键的是，法向加速度是垂直于速度方向的，其大小为：
+\begin{equation*}
+  a_n = \sqrt{a^2 - a_t^2}
+\end{equation*}
+
+也可以直接从运动学关系得出：
+\begin{equation*}
+a_n = \frac{v^2}{\rho}
+\end{equation*}
+
+所以关键是计算 $ v^2 $ 和 $ a_n $.
+
+我们令：
+\begin{equation*}
+  r(\theta) = r_0 e^{a\theta}
+\end{equation*}
+
+假设质点以某种方式运动，比如我们让 $ \theta = \omega t $，即匀角速运动，这样便于计算.但由于我们要求的是\textbf{几何性质}（曲率半径），它应与参数化无关，因此我们可以任意选择参数化方式.为了简化，不妨令 $ \theta = t $，即时间 $ t $ 等于角坐标 $ \theta $.
+
+于是：
+\begin{equation*}
+  \theta = t \quad \Rightarrow \quad \dot{\theta} = 1, \quad \ddot{\theta} = 0
+\end{equation*}
+
+那么：
+\begin{equation*}
+  r = r_0 e^{a t} \quad \Rightarrow \quad \dot{r} = a r_0 e^{a t} = a r \quad \Rightarrow \quad \ddot{r} = a \dot{r} = a^2 r
+\end{equation*}
+
+因此，代入速度和加速度分量，得：
+\begin{equation*}
+  \begin{aligned}
+    v_r &= \dot{r} = a r \\
+    v_\theta &= r \dot{\theta} = r \cdot 1 = r \\
+    v^2 &= v_r^2 + v_\theta^2 = (a r)^2 + r^2 = r^2(a^2 + 1) \\
+    a_r &= \ddot{r} - r \dot{\theta}^2 = a^2 r - r \cdot 1 = r(a^2 - 1) \\
+    a_\theta &= r \ddot{\theta} + 2 \dot{r} \dot{\theta} = 0 + 2(a r)(1) = 2a r
+  \end{aligned}
+\end{equation*}
+
+总加速度大小平方为：
+\begin{equation*}
+  a^2 = a_r^2 + a_\theta^2 = [r(a^2 - 1)]^2 + (2a r)^2 = r^2[(a^2 - 1)^2 + 4a^2]
+\end{equation*}
+
+展开：
+\begin{equation*}
+  (a^2 - 1)^2 + 4a^2 = a^4 - 2a^2 + 1 + 4a^2 = a^4 + 2a^2 + 1 = (a^2 + 1)^2
+\end{equation*}
+
+所以：
+\begin{equation*}
+  a^2 = r^2 (a^2 + 1)^2 \quad \Rightarrow \quad a = r(a^2 + 1)
+\end{equation*}
+
+我们知道：
+\begin{equation*}
+  a^2 = a_t^2 + a_n^2
+\end{equation*}
+
+先求切向加速度 $ a_t $.它是速度大小的时间导数：
+\begin{equation*}
+  v = \sqrt{v^2} = r \sqrt{a^2 + 1}
+\end{equation*}
+
+因为 $ r = r_0 e^{a t} $，所以 $ v = r_0 e^{a t} \sqrt{a^2 + 1} $.
+
+那么：
+\begin{equation*}
+  a_t = \frac{dv}{dt} = \frac{d}{dt} \left( r \sqrt{a^2 + 1} \right) = \dot{r} \sqrt{a^2 + 1} = a r \sqrt{a^2 + 1}
+\end{equation*}
+
+现在我们有：
+\begin{itemize}
+    \item $ v^2 = r^2 (a^2 + 1) $
+    \item $ a_t = a r \sqrt{a^2 + 1} $
+\end{itemize}
+
+所以：
+\begin{equation*}
+  a_n^2 = a^2 - a_t^2 = [r^2 (a^2 + 1)^2] - [a^2 r^2 (a^2 + 1)] = r^2 (a^2 + 1)^2 (1 - a^2 / (a^2 + 1)) 
+\end{equation*}
+
+更简单地直接算：
+\begin{equation*}
+  a_n^2 = a^2 - a_t^2 = r^2(a^2 + 1)^2 - a^2 r^2 (a^2 + 1) = r^2 (a^2 + 1) \left[ (a^2 + 1) - a^2 \right] = r^2 (a^2 + 1) \cdot 1 = r^2 (a^2 + 1)
+\end{equation*}
+
+所以：
+\begin{equation*}
+  a_n = r \sqrt{a^2 + 1}
+\end{equation*}
+
+由：
+\begin{equation*}
+  a_n = \frac{v^2}{\rho} \quad \Rightarrow \quad \rho = \frac{v^2}{a_n}
+\end{equation*}
+
+我们有：
+\begin{itemize}
+    \item $ v^2 = r^2 (a^2 + 1) $
+    \item $ a_n = r \sqrt{a^2 + 1} $
+\end{itemize}
+
+所以：
+\begin{equation*}
+  \rho = \frac{r^2 (a^2 + 1)}{r \sqrt{a^2 + 1}} = r \sqrt{a^2 + 1}
+\end{equation*}
+
+将 $ r = r_0 e^{a\theta} $ 代入，得：
+\begin{equation*}
+  \rho = r_0 e^{a\theta} \sqrt{a^2 + 1}
+\end{equation*}
+
+或写作：
+\begin{equation*}
+  \rho = r \sqrt{a^2 + 1}
+\end{equation*}
+
+综上所述，使用运动学方法，通过分析质点在对数螺旋线 $ r = r_0 e^{a\theta} $ 上的运动，计算其速度、加速度，分离出法向加速度，利用 $ a_n = v^2 / \rho $，得到曲率半径为：
+\begin{equation*}
+  \rho = r \sqrt{a^2 + 1}
+\end{equation*}
+
+\end{document}

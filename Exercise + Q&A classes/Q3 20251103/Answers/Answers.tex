@@ -1,0 +1,763 @@
+\documentclass[UTF8,8pt,a4paper]{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bookmark}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+
+\geometry{left=1.8cm,right=1.8cm,top=1.9cm,bottom=1.9cm}
+\makeatletter
+\def\@fnsymbol#1{\ensuremath{%
+  \ifcase#1\or % 0
+    \dagger\or % 1 - 改为 dagger
+    *\or       % 2 - 原来的 dagger 变成 asterisk
+    \ddagger\or % 3
+    \S\or      % 4
+    \P\or      % 5
+    \|\or      % 6 (DOUBLE VERTICAL LINE)
+    **\or      % 7
+    \dagger\dagger\or % 8
+    \ddagger\ddagger % 9
+  \else
+    \@ctrerr
+  \fi
+}}
+\makeatother
+
+\title{\huge\textbf{第二章习题解答}}
+\author{TA：疏宇\thanks{School of Gifted Young, USTC, email:\url{shuyu2023@mail.ustc.edu.cn}}\quad{}师驰昊\thanks{School of Gifted Young, USTC, email:\url{1984019655@qq.com}}}
+\date{October 27$^{\{\text{th}\}}$, 2025}
+
+\begin{document}
+\maketitle
+
+\section{I 简答题}
+简答题没有标准答案，以下仅提供思路分析.
+\newline
+
+
+\textbf{1 有人认为牛顿第一定律只是牛顿第二定律的一个特例，因而是多余的．你怎么看？}
+
+有人认为牛顿第一定律是牛顿第二定律的一个特例，理由是在没有外力作用的情况下（即合外力为0），根据牛顿第二定律可以推导出加速度 $a = 0$，这相当于牛顿第一定律所述的内容. 然而，这种观点忽略了牛顿第一定律在物理概念上的独立重要性. 
+
+牛顿第一定律不仅仅是一个数学结果，它还引入了惯性的概念，并定义了惯性参考系. 也就是说，它确立了一个基本的前提：存在这样的参考系，在这些参考系中，若无外力作用，物体会保持其原有的运动状态不变. 这一前提对于理解牛顿力学的基础至关重要，因为它帮助我们区分了非惯性参考系和惯性参考系，并且为牛顿第二定律的应用提供了一个必要的框架. 
+
+因此，虽然从数学角度上看，牛顿第一定律可以被视为牛顿第二定律的一个特殊情况，但从物理学的角度来看，牛顿第一定律提供了对惯性和惯性参考系的基本理解，这是牛顿第二定律无法单独提供的. 所以，称牛顿第一定律“多余”并不准确，它具有不可替代的重要性. 
+\newline
+
+
+\textbf{2 一重物 $m$ 用线 C 悬挂于支点，重物下面另系一线 D，如图1所示，两线粗细与质料均相同．今用手猛力拉 D，则 D 断；若慢慢拉 D，则 C 断，试说明理由.}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.12\textwidth]{Fig/1.png}
+  \caption{图1.2}
+\end{figure}
+
+本题的关键在于区分猛力拉和慢慢拉两种情形下系统的动力学行为差异，尤其是惯性效应的作用. 
+
+当用手猛然向下拉线 $ D $ 时，作用力突然增大，但由于重物 $ m $ 具有惯性，其加速度无法瞬间建立，因此在极短时间内仍可视为静止. 此时，线 $ D $ 直接承受施加的冲击力，张力急剧上升；线 $ C $ 的张力仍近似等于重物的重力 $ mg $，因为重物尚未发生明显位移或加速. 线 $ D $ 上的张力远大于线 $ C $，一旦超过其最大承受能力，$ D $ 先断裂. 
+
+
+当缓慢拉 $ D $ 时，系统处于准静态过程，加速度接近零，各部分受力趋于平衡. 设所施加的拉力为 $ F $，则线 $ D $ 的张力为 $ F $，线 $ C $ 必须同时支持重物的重力 $ mg $ 和下方线 $ D $ 的拉力 $ F $，因此其张力为：$T_C = mg + F$. 随着 $ F $ 逐渐增大，$ T_C $ 持续增加. 当 $ F $ 尚未达到使 $ D $ 断裂的程度时，$ T_C $ 已先达到最大承受力，从而导致 $ C $ 先断裂. 
+\newline
+
+
+\textbf{3 一轻绳跨过一无摩擦的轻质定滑轮，一猴子抓住绳的一端，绳的另一端系着一面与猴子质量相等的镜子，初始时镜子与猴子均静止且镜子比猴子略高，如图2所示，问：}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.18\textwidth]{Fig/2.png}
+  \caption{图1.3}
+\end{figure}
+
+\textbf{（1）猴子能否沿着绳向上爬而照见镜子？}
+
+\textbf{不能}
+
+猴子向上爬时，绳长恒定强制镜子同步上升. 猴子位移$\Delta s \uparrow$，镜子位移$\Delta s \uparrow$，相对高度差$\Delta y = H$保持不变. 镜面始终位于猴子正下方，视线垂直向下，反射光线被猴子身体阻挡无法进入眼睛. 此由绳长约束（$y_m + y_m' = \text{常数}$）与牛顿运动定律严格确定，相对位置无变化，故无法照见镜子. 
+
+\textbf{（2）猴子能否沿着绳向下爬而照见镜子？}
+
+\textbf{不能}
+
+猴子向下爬时，绳长约束使镜子同步下降. 猴子位移$\Delta s \downarrow$，镜子位移$\Delta s \downarrow$，相对高度差$\Delta y = H$恒定. 镜面未发生水平偏移，持续在猴子正下方，视线被正下方镜面阻挡. 初始高度差$H$不变，爬行后镜面位置未改变，反射路径无效，因此猴子无法照见镜子. 
+
+\textbf{（3）猴子能否放开绳让镜下落而照见镜子？}
+
+\textbf{不能}
+
+猴子松绳后，镜子仅受重力自由下落（加速度$g$），猴子位置固定. 镜子位置$y_m' = -H - \frac{1}{2}gt^2$，相对距离$d(t) = |0 - y_m'| = H + \frac{1}{2}gt^2$. $d(t)$随时间单调增大（$\frac{dd}{dt} = gt > 0$），镜面持续远离猴子，反射光线无法到达眼睛. 故相对距离增大导致反射条件彻底失效，无法照见镜子. 
+\newline
+
+
+\textbf{4 $S$是惯性系，$S'$相对$S$作加速运动，$S'$是非惯性系．但根据运动的相对性，也可认为$S$相对$S'$作加速运动，能否认为$S'$是惯性系，而$S$是非惯性系呢? 请说明理由.}
+
+\textbf{不能}
+
+设 $ S $ 为惯性系，即在其中牛顿第一定律成立：不受外力作用的物体保持静止或匀速直线运动状态. 若参考系 $ S' $ 相对于 $ S $ 作加速运动（包括平动加速度或转动），则 $ S' $ 为非惯性系. 这是因为在 $ S' $ 中观察一个不受真实外力作用的自由质点，其运动轨迹将表现出加速度，违反牛顿第一定律. 
+
+尽管从运动学角度看，运动具有相对性——即 $ S' $ 相对 $ S $ 加速，等价于 $ S $ 相对 $ S' $ 加速——但这种相对性仅适用于运动描述，不适用于动力学定律的适用性判断. 惯性系与非惯性系的区别是物理意义上的绝对区分，而非纯粹的运动学相对性问题. 
+
+关键在于：在 $ S' $ 中，要使牛顿第二定律形式成立，必须引入惯性力（如平动惯性力 $-m\vec{a}_0$、科里奥利力、离心力等），这些力无施力源，是非真实的力. 而在 $ S $ 中，所有加速度均可由真实力解释，无需引入额外假想力. 
+
+因此，惯性系的定义具有物理绝对性：它是牛顿运动定律自然成立的参考系. 一旦确定 $ S $ 是惯性系，则所有相对于 $ S $ 做匀速直线运动的参考系（即与 $ S $ 保持伽利略变换关系的参考系）也是惯性系；而所有相对于 $ S $ 加速的参考系均为非惯性系. 
+
+综上，尽管运动描述具有相对性，但惯性系的属性由物理规律的成立与否决定，不能颠倒 $ S $ 与 $ S' $ 的惯性性质. 故不能认为 $ S' $ 是惯性系而 $ S $ 是非惯性系. 
+\newline
+
+
+\section{II 教材习题}
+教材习题部分答案与教材给出答案有出入，以本习题解析为准.
+\newline
+
+
+\textbf{TB2.1 如图所示的装置可用来测物体A与桌面间的摩擦系数$\mu$. 设已知A，B的质量分别是$m_A$和$m_B$，它们的加速度是$a$，试导出摩擦系数的表达式.}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/3.png}
+  \caption{图T2.1}
+\end{figure}
+
+设绳中张力为$T$，则对物体A、B列出牛顿运动方程得：
+\begin{equation}
+  \begin{cases}
+    m_Bg-T=m_Ba\\
+    T-\mu m_Ag=m_Aa
+  \end{cases}
+\end{equation}
+
+解得：
+\begin{equation}
+  \mu=\frac{m_B(g-a)-m_Aa}{m_Ag}
+\end{equation}
+\newline
+
+
+\textbf{TB2.7 两个质量分别为$m_1$和$m_2$的小环，用细线连着套在一个竖直固定的大圆环上，如果连线对圆心的张角为$\alpha$，如图所示，当大圆环和小圆环之间的摩擦力和线的质量都略去不计是，求证：连线与竖直方向的夹角$\theta$满足$\tan\theta=\frac{m_1+m_2}{m_1-m_2}\cot\frac{\alpha}{2}$．}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/4.png}
+  \caption{图T2.7}
+\end{figure}
+
+如图T2.7.1所示，设圆环的支持力分别为$N_1$和$N_2$，绳中张力为$T$，由几何知识得：
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/12.png}
+  \caption{图T2.7.1}
+\end{figure}
+\begin{equation}
+  \begin{cases}
+    \alpha+2\beta=\pi\\
+    \gamma_2+\beta=\theta\\
+    \gamma_1+\gamma_2=\alpha
+  \end{cases}
+\end{equation}
+
+解得：
+\begin{equation}
+  \begin{cases}
+    \beta=(\pi-\alpha)/2\\
+    \gamma_1=(\pi+\alpha)/2-\theta\\
+    \gamma_2=\theta-(\pi-\alpha)/2
+  \end{cases}
+\end{equation}
+
+又，列出牛顿运动方程：
+\begin{equation}
+  \begin{cases}
+    m_2g\sin\gamma_2=T\sin\beta\\
+    m_1g\sin\gamma_1=T\sin\beta
+  \end{cases}
+\end{equation}
+
+于是$m_1\sin\gamma_1=m_2\sin\gamma_2$，代入角度关系式解得：
+\begin{equation}
+  m_1\cos(\frac{\alpha}{2}+\theta)+m_2\cos(\frac{\alpha}{2}-\theta)=0
+\end{equation}
+
+化简，得：
+\begin{equation}
+  \tan\theta=\frac{m_1+m_2}{m_1-m_2}\cot\frac{\alpha}{2}
+\end{equation}
+\newline
+
+
+\textbf{TB2.9 质量分别为$m_1$和$m_2$的两物体A、B，固定在倔强系数为$k$的弹簧两端，竖直地放在水平桌面上. 如图所示，用一力$\vec{F}$垂直地压在A上，并使其静止不动，然后突然撤去$\vec{F}$，问欲使B离开桌面$\vec{F}$至少应多大？}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.1\textwidth]{Fig/5.png}
+  \caption{图T2.9}
+\end{figure}
+
+欲使B恰好弹起，则A到达最高点时弹簧的伸长量至少应为$x_1=\frac{m_Bg}{k}$. 假设力$\vec{F}$作用下弹簧的压缩量为$x_0$，则弹簧无形变时A的坐标为0，取竖直向下的方向为$x$轴正向，如图T2.9.1所示.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/13.png}
+  \caption{图T2.9.1}
+\end{figure}
+
+在撤去$\vec{F}$后且B离开桌面前A的运动方程为：
+\begin{equation}
+  m_Ag-kx=m_A\ddot{x}
+\end{equation}
+
+解为：
+\begin{equation}
+  x=A\cos(\sqrt{\frac{k}{m_A}}t+\phi)+\frac{m_Ag}{k}
+\end{equation}
+
+代入初始条件，$t=0$时，$\dot{x}=0$，$x=x_0=\frac{F+m_Ag}{k}$，得：
+\begin{equation}
+  \phi=0, \quad A=\frac{F}{k}
+\end{equation}
+
+则方程有解：
+\begin{equation}
+  x=\frac{F}{k}\cos\sqrt{\frac{k}{m_A}}t+\frac{m_Ag}{k}
+\end{equation}
+
+从而最高点有：
+\begin{equation}
+  x=-\frac{F}{k}+\frac{m_Ag}{k}=-x_1=-\frac{m_Bg}{k}
+\end{equation}
+
+解得：
+\begin{equation}
+  F=(m_A+m_B)g
+\end{equation}
+\newline
+
+
+\textbf{TB2.11 收尾速度问题，空气对物体的阻力由许多因素决定. 然而，一个有用的近似公式是，阻力$\vec{f}=-\beta\vec{v}$，其中$\vec{v}$是物体的速度，$\beta$是一个与速度无关的常数. 现在考虑空气中的一个自由下落物体，将$z$轴的正方向取为竖直向下.}
+
+\textbf{（1）给出落体的牛顿方程.}
+
+易得：
+\begin{equation}
+  mg-\beta\dot{z}=m\ddot{z}
+\end{equation}
+
+
+\textbf{（2）当物体的速度$v(t_0)$等于多少时，物体不再加速（这个速度叫做收尾速度）？}
+
+由于$v=\dot{z}$从而方程化为：
+\begin{equation}
+  mg-\beta v=m\frac{dv}{dt}
+\end{equation}
+
+当物体不再加速时，应有$\frac{dv}{dt}=0$，从而方程化为：
+\begin{equation}
+  mg-\beta v(t_0)=0
+\end{equation}
+
+解得：
+\begin{equation}
+  v(t_0)=\frac{mg}{\beta}
+\end{equation}
+
+即收尾速度为$mg/\beta$. 
+
+
+\textbf{（3）试证，速度随时间变化的关系为：$v(t)=v(t_0)\times(1-e^{-\frac{\beta}{m}t})$，并作出$v-t$曲线.}
+
+改写方程，得：
+\begin{equation}
+  \frac{dv}{g-\frac{\beta v}{m}}=dt
+\end{equation}
+
+积分，得：
+\begin{equation}
+  ln(\frac{\beta}{m}v-g)=-\frac{\beta}{m}(t+C)
+\end{equation}
+
+解得：
+\begin{equation}
+  v(t)=\frac{m}{g}(g-e^{-\frac{\beta}{m}(t+C)})
+\end{equation}
+
+考虑到$t=0$时$v=0$，有：
+\begin{equation}
+  g-e^{-\frac{\beta}{m}C}=0\Rightarrow e^{-\frac{\beta}{m}C}=g
+\end{equation}
+
+从而：
+\begin{equation}
+  v(t)=\frac{m}{\beta}(g-ge^{-\frac{\beta}{m}t})=\frac{mg}{\beta}(1-e^{-\frac{\beta}{m}t})=v(t_0)(1-e^{-\frac{\beta}{m}t})
+\end{equation}
+
+图略. 
+\newline
+
+
+\textbf{TB2.22 如图所示，一长为$l$、质量为$M$的均匀链条套在一表面光滑、顶角为$\alpha$的圆锥上，当链条在圆锥面上静止时，求链中的张力.}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.15\textwidth]{Fig/6.png}
+  \caption{图T2.22}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{Fig/14.png}
+  \caption{图T2.22.1}
+\end{figure}
+
+由图T2.22.1左侧图所示，取一段圆心角为$d\theta$的小微元，如图T2.22.1右侧图所示，将该小微元隔离出来. 设该小微元所受重力为$F_2$，受圆锥表面的正压力为$F_1$，该小微元两端链条的张力分别为$T_1$和$T_2$，有：
+\begin{equation}
+  F_2=Mg\frac{d\theta}{2\pi}
+\end{equation}
+
+因为链条静止，所以：
+\begin{equation}
+  F_2=F_1\sin\frac{\alpha}{2}
+\end{equation}
+
+为了使链条保持静止，图T2.22.1右侧中的三力平衡，则：
+\begin{equation}
+  \begin{cases}
+    T_1\sin\frac{d\theta}{2}+T_2\sin\frac{d\theta}{2}=F_1\cos\frac{\alpha}{2}\\
+    T_1\cos\frac{d\theta}{2}=T_2\cos\frac{d\theta}{2}
+  \end{cases}
+\end{equation}
+
+利用$\sin\frac{d\theta}{2}=\frac{d\theta}{2}$，可得：
+\begin{equation}
+  T_1=T_2=\frac{F_1\cos\frac{\alpha}{2}}{d\theta}=\frac{F_2\cot\frac{\alpha}{2}}{d\theta}=\frac{Mg}{2\pi}\cot\frac{\alpha}{2}
+\end{equation}
+
+即：
+\begin{equation}
+  T=\frac{Mg}{2\pi}\cot\frac{\alpha}{2}
+\end{equation}
+\newline
+
+
+\textbf{TB3.6 如图所示，一个圆盘直径为 $d$，绕通过圆心的垂直轴以角速度 $\omega$ 匀速旋转. 今有一人站在圆盘上的点 $A$ 射出一颗子弹，已知子弹出膛速度为 $v$，且 $v \gg \omega d$. 现在希望子弹击中点 $A$ 的对径点 $B$（$AB$ 是圆盘直径），则应瞄准点 $C$. 问 $BC$ 的弧长是多少？又问这颗子弹在圆盘上的轨迹是什么？求出相应的曲率半径.}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/7.png}
+  \caption{图T3.6}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{Fig/15.png}
+  \caption{图T3.6.1}
+\end{figure}
+
+如图T3.6.1，设圆盘为$K'$系，此为非惯性系. 在地面参考系子弹的加速度为（不考虑重力）：
+\begin{equation}
+  \vec{a}=\vec{a'}+\vec{a_0}+2\vec{\omega}\times\vec{v'}+\vec{\omega}\times(\vec{\omega}\times\vec{r'})=0
+\end{equation}
+
+由于：
+\begin{equation}
+  \vec{a_0}=0, \vec{\omega}\bot\vec{r'}
+\end{equation}
+
+有：
+\begin{equation}
+  \vec{a'}=\omega^2\vec{r'}-2\vec{\omega}\times\vec{v'}
+\end{equation}
+
+而$\vec{\omega}\bot\vec{v'}$，由题设可知：
+\begin{equation}
+  |\frac{x\vec{\omega}\times\vec{v'}}{\omega^2\vec{r'}}|=\frac{2\omega v'}{\omega^2 r'}>\frac{2\omega v'}{\omega^2 R}>\frac{v'}{\omega d}\gg 1
+\end{equation}
+
+于是：
+\begin{equation}
+  \vec{a'}\approx -2\vec{\omega}\times\vec{v'}\bot\vec{v'}
+\end{equation}
+
+即轨迹是圆的一部分，则有如下参数：
+\begin{equation}
+  \begin{cases}
+    \rho = \frac{v'^3}{|\vec{a'}\times\vec{v'}|}=\frac{v'^3}{2\omega v'^2}=\frac{v}{2\omega}\\
+    \theta = \frac{R}{\rho}=\frac{2\omega R}{v'}=\frac{\omega d}{v}\\
+    BC\text{弧长}=\theta d=\frac{\omega d^2}{v}
+  \end{cases}
+\end{equation}
+
+即$BC$的弧长为$\frac{\omega d^2}{v}$，子弹在圆盘上的轨迹是圆弧，曲率半径为$\frac{v}{2\omega}$.
+\newline
+
+
+\textbf{TB3.10 一根光滑的钢丝弯成如图所示的形状，其上套有一小环. 当钢丝以恒定角速度 $\omega$ 绕其竖直对称轴旋转时，小环在其上任何位置都能相对静止. 求钢丝的形状（即写出 $y$ 与 $x$ 的关系）.}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/8.png}
+  \caption{图T3.10}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/16.png}
+  \caption{图T3.10.1}
+\end{figure}
+
+小球受力分析如图T3.10.1所示，小球受力有：重力$F_1$、惯性离心力$F_2$、钢丝的正压力$N$. 又$F_1=mg$，$F_2=m\omega^2x$. 因为任一时刻小球都是静止的，这三个力平衡，即：
+\begin{equation}
+  \vec{F_1}+\vec{F_2}+\vec{N}=0
+\end{equation}
+
+于是$\frac{F_2}{F_1}=\tan\theta$，且$\tan\theta=\frac{dy}{dx}$，从而：
+\begin{equation}
+  \frac{\omega^2x}{g}=\frac{dy}{dx}
+\end{equation}
+
+且$x=0$，$y=0$，故：
+\begin{equation}
+  y=\frac{\omega^2}{2g}x^2
+\end{equation}
+\newline
+
+
+\textbf{TB3.11 一圆盘绕其竖直的对称轴以恒定的角速度 $\omega$ 旋转. 在圆盘上沿径向开有一光滑小槽，槽内一质量为 $m$ 的质点以 $v_0$ 的初速从圆心开始沿半径向外运动. 试求：}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/9.png}
+  \caption{图T3.11}
+\end{figure}
+
+\textbf{（1）质点到达图示位置（即 $y = y_0$）时的速度 $v$；}
+
+在随圆盘转动的参考系中，小球所受惯性力$F=m\omega^2y$，方向$+y$，所以在$y$方向上$\ddot{y}=\omega^2y$，可化为：
+\begin{equation}
+  \frac{d\dot{y}}{dt}=\frac{d\dot{y}}{dy}\cdot\dot{y}=\frac{1}{2}\frac{d\dot{y}^2}{dy}=\omega^2y
+\end{equation}
+
+积分得：
+\begin{equation}
+  \int_{v_0}^{v_1}\frac{1}{2}d\dot{y}^2=\int_{0}^{y_0}\omega^2ydy, v_1^2-v_0^2=\omega^2y_0^2
+\end{equation}
+
+所以在$y$方向上$v_1^2=v_0^2+\omega^2y_0^2$. 在惯性参考系中，该质点还有垂直于$y$方向上的速度$v_2=\omega y_0$，所以速率为：
+\begin{equation}
+  v=\sqrt{v_1^2+v_2^2}=\sqrt{v_0^2+2\omega^2y_0^2}
+\end{equation}
+
+
+\textbf{（2）质点到达该处所需的时间 $t$；}
+
+由（1）问可知$v_1^2=\omega^2y_0^2+v_0^2$，所以：
+\begin{equation}
+  \frac{dy}{dt}=\sqrt{\omega^2y^2+v_0^2}\quad(y|_{t=0}=0)
+\end{equation}
+
+解得：
+\begin{equation}
+  t=\int_{0}^{y_0}\frac{dy}{\sqrt{\omega^2y^2+v_0^2}}=\frac{1}{\omega}\ln(\frac{\omega y_0}{v_0}+\sqrt{\frac{1+\omega^2y_0^2}{v_0^2}})
+\end{equation}
+
+
+\textbf{（3）质点在该处所受到的槽壁对它的侧向作用力 $F$.}
+
+此时所受切向作用力为：
+\begin{equation}
+  F=2m\omega v_1=2m\omega\sqrt{v_0^2+\omega^2y_0^2}
+\end{equation}
+\newline
+
+
+\textbf{TB3.12 一圆柱形刚性杆 $Ox$ 上套有一质量为 $m$ 的小环，杆的一端固定，整个杆绕着通过固定端 $O$ 的竖直轴 $Oz$ 以恒定的角速度旋转，旋转时杆与竖直轴的夹角 $\alpha$ 保持不变. 设小环与杆之间的摩擦系数为 $\mu$，已知当小环相对杆运动到图示位置 $x$ 时其相对于杆的速度为 $\dot{x}$，试列出此时小环沿杆的运动方程（不要求解出此方程）. }
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/10.png}
+  \caption{图T3.12}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{Fig/17.png}
+  \caption{图T3.12.1}
+\end{figure}
+
+取相对于杆静止的转动参考系，受力如图T3.12.1所示，所受科里奥利力：
+\begin{equation}
+  F_{cor}=2m|\vec{\omega}\times\vec{v'}|=2m\omega\dot{x}\sin\alpha
+\end{equation}
+
+科里奥利力的方向垂直于$Oz$和$Ox$所确定的平面.
+
+惯性离心力：
+\begin{equation}
+  F=m\omega^2x\sin\alpha
+\end{equation}
+
+惯性离心力和重力的方向在$Oz$和$Ox$所确定的平面上. 
+
+在垂直于杆$Oz$和$Ox$所确定的平面上. 
+
+在垂直于杆$Ox$的平面上，正压力$\vec{N}$、科里奥利力$\vec{F_{cor}}$、惯性离心力$\vec{F}$和重力$m\vec{g}$的合力为零，所以：
+\begin{equation}
+  N=\sqrt{(F\cos\alpha+mg\sin\alpha)^2+F_{cor}^2}
+\end{equation}
+
+摩擦力：
+\begin{equation}
+  f=\mu N=\mu\sqrt{(F\cos\alpha+mg\sin\alpha)^2+F_{cor}^2}
+\end{equation}
+
+于是沿$Ox$方向的运动方程（小环沿杆向上运动）为：
+\begin{equation}
+  m\ddot{x}=F\sin\alpha-mg\cos\alpha-f
+\end{equation}
+
+代入化简，有：
+\begin{equation}
+  \begin{aligned}
+    m\ddot{x}&=m\omega^2x\sin^2\alpha-mg\cos\alpha-\mu\sqrt{(F\cos\alpha+mg\sin\alpha)^2+(2m\omega\dot{x}\sin\alpha)^2}\\
+    &=m\omega^2x\sin^2\alpha-mg\cos\alpha-\mu\sqrt{(m\omega^2x\sin\alpha\cos\alpha+mg\sin\alpha)^2+(2m\omega\dot{x}\sin\alpha)^2}\\
+    &=m\omega^2x\sin^2\alpha-mg\cos\alpha-\mu m\sin\alpha\sqrt{(\omega^2x\cos\alpha+g)^2+4\omega^2\dot{x}^2}
+  \end{aligned}
+\end{equation}
+
+即，小环沿杆$Ox$向上运动时:
+\begin{equation}
+  m\ddot{x}=m\omega^2x\sin^2\alpha-mg\cos\alpha-\mu m\sin\alpha\sqrt{(\omega^2x\cos\alpha+g)^2+4\omega^2\dot{x}^2}
+\end{equation}
+
+小环沿杆$Ox$上静止时，在牛顿运动方程中，$\ddot{x}=\dot{x}=0$，$-\mu N\leqslant f\leqslant\mu N$，则有：
+\begin{equation}
+  -\mu m\sin\alpha(\omega^2x\cos\alpha+g)\leqslant m\omega^2x\sin^2\alpha-mg\cos\alpha\leqslant \mu m\sin\alpha(\omega^2x\cos\alpha+g)
+\end{equation}
+
+化简，得：
+\begin{equation}
+  \frac{g(\cos\alpha-\mu\sin\alpha)}{\omega^2\sin\alpha(\sin\alpha+\mu\cos\alpha)}\leqslant x\leqslant \frac{g(\cos\alpha+\mu\sin\alpha)}{\omega^2\sin\alpha(\sin\alpha-\mu\cos\alpha)}
+\end{equation}
+\newline
+
+
+\textbf{TB3.13 质量为 $m$ 的小球置于光滑水平台面，用长为 $l$ 的细线系于台面上的 $P$ 点，水平台面绕着过 $O$ 点的铅垂轴以恒定角速度 $\omega$ 旋转，$P$ 点与 $O$ 点的距离为 $b$，试列出小球的运动方程. 设在小球运动过程中，线始终保持拉直状态.}
+
+由于水平面光滑，小球仅受绳子拉力（真实力）．
+
+取 $O$ 点为原点，相对于 $OP$ 静止的参考系为 $K'$ 系，如图T3.13.1所示．在 $K'$ 系中，设 $OP$ 为 $x'$ 轴，$Pm$ 与 $OP$ 的夹角为 $\theta(t)$，$m$ 点的坐标、速度和加速度分别为 $\vec{r}'(t)$、$\vec{v}'(t)$、$\vec{a}'(t)$，且设 $\overrightarrow{Pm} = \vec{R}(t)$，题设 $|\vec{R}(t)| = l$．
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/18.png}
+  \caption{图T3.13}
+\end{figure}
+
+由于 $K'$ 系为非惯性系，作用于 $m$ 点的力除了真实力 $\vec{T} = -T\hat{\vec{R}}$ （$\hat{\vec{R}} = \dfrac{\vec{R}}{R}$ 为单位向量）外，还有惯性离心力和科里奥利力．
+
+\begin{align*}
+\text{惯性离心力} \quad & \vec{F} = m\omega^2 \vec{r}' \\
+\text{科里奥利力} \quad & \vec{F}_{cor} = -2m\vec{\omega} \times \vec{v}' = 2m\omega v' \hat{\vec{R}}
+\end{align*}
+
+其中$v' = l \frac{d\theta}{dt}$，$v'$ 可正可负，$v'$ 为负值时矢量 $\vec{v}'$ 的方向与所示方向相反.
+
+于是有：
+\begin{equation}
+  m\vec{a}' = -T\hat{\vec{R}} + \vec{F} + \vec{F}_{\mathrm{cor}} = -T\hat{\vec{R}} + m\omega^2 \vec{r}' + 2m\omega v' \hat{\vec{R}}
+\end{equation}
+
+设 $x'$ 轴的单位向量为 $\hat{\vec{i}}'$，由图可知：
+\begin{equation}
+  \vec{r}' = b\hat{\vec{i}}' + \vec{R} = b\hat{\vec{i}}' + R\hat{\vec{R}}
+\end{equation}
+
+代入前述方程，得：
+\begin{equation}
+m\vec{a}' = -T\hat{\vec{R}} + m\omega^2 (b\hat{\vec{i}}' + R\hat{\vec{R}}) + 2m\omega v' \hat{\vec{R}} 
+\end{equation}
+
+在 $K'$ 系中，将原点换为 $P$，建立极坐标 $(R(t), \theta(t))$，坐标单位向量为 $\hat{\vec{R}}$、$\hat{\vec{\theta}}$，有：
+\begin{equation}
+\hat{\vec{i}}' = \hat{\vec{R}}\cos\theta - \hat{\vec{\theta}}\sin\theta
+\end{equation}
+
+代入方程，得：
+\begin{equation}
+  m\vec{a}' = (-T + m\omega^2 b\cos\theta + m\omega^2 R + 2m\omega v')\hat{\vec{R}} - \hat{\vec{\theta}} m\omega^2 b\sin\theta
+\end{equation}
+
+由于题设在小球运动过程中，线不可伸长并始终保持拉直状态，故小球沿绳方向的加速度 $a'_R(t) = 0$，垂直于绳方向的加速度
+\begin{equation}
+a'_\theta = -\omega^2 b\sin\theta \tag{④}
+\end{equation}
+
+而 $a'_\theta = 2\dot{R}\dot{\theta} + R\ddot{\theta} = l\ddot{\theta}$，代入得：
+\begin{equation}
+  l\ddot{\theta} + \omega^2 b\sin\theta = 0
+\end{equation}
+
+这是一个振动方程．
+\newline
+
+
+\section{III 补充习题}
+\textbf{1 长为$l$、质量为$m$、张力为$F_T$的细丝架在温度为$T$的玻璃箱中，由于受到空气分子的撞击，细丝具有大小为$kT$若干倍的动能而作无规振动，$k$为玻耳兹曼常量. 试用量纲分析法确定振动的幅度如何依赖于上述各个量.}
+
+设振幅 $ A $ 与各物理量的关系为：
+\begin{equation}
+  A \propto l^a m^b F_T^c (kT)^d
+\end{equation}
+
+各量的量纲如下：
+\begin{align*}
+[A] &= [L] \\
+[l] &= [L] \\
+[m] &= [M] \\
+[F_T] &= [M][L][T]^{-2} \\
+[kT] &= [M][L]^2[T]^{-2}
+\end{align*}
+
+代入得右边量纲：
+\begin{equation}
+  [M]^{b + c + d} [L]^{a + c + 2d} [T]^{-2c - 2d}
+\end{equation}
+
+令与左边 $[L]$ 一致，得方程组：
+\begin{equation}
+  \begin{cases}
+    b + c + d = 0 & \text{(质量)} \\
+    a + c + 2d = 1 & \text{(长度)} \\
+    -2c - 2d = 0 & \text{(时间)}
+  \end{cases}
+\end{equation}
+
+解得：
+\begin{equation}
+  c = -d,\quad b = 0,\quad a = 1 - d
+\end{equation}
+
+取 $ d = \frac{1}{2} $，得：
+\begin{equation}
+  a = \frac{1}{2},\quad b = 0,\quad c = -\frac{1}{2}
+\end{equation}
+
+故：
+\begin{equation}
+  A \propto l^{1/2} F_T^{-1/2} (kT)^{1/2} = \sqrt{ \frac{l kT}{F_T} }
+\end{equation}
+
+则：
+\begin{equation}
+  A \propto \sqrt{ \frac{l kT}{F_T} }
+\end{equation}
+
+即，振幅与细丝长度的平方根成正比，与张力的平方根成反比，与热能的平方根成正比，且与总质量 $ m $ 无关. 
+\newline
+
+
+\textbf{2 将劲度系数各为$k_1$、$k_2$且原长相同的两弹簧分别（1）串联；（2）并联，求由此而构成的新弹簧的劲度系数．}
+
+当两弹簧串联时，受到相同外力 $ F $，但总伸长量为两弹簧伸长之和. 
+
+由胡克定律：
+\begin{equation}
+  x_1 = \frac{F}{k_1},\quad x_2 = \frac{F}{k_2}
+\end{equation}
+
+总伸长：
+\begin{equation}
+  x = x_1 + x_2 = F\left( \frac{1}{k_1} + \frac{1}{k_2} \right)
+\end{equation}
+
+设等效劲度系数为 $ k_{\text{串}} $，则：
+\begin{equation}
+  x = \frac{F}{k_{\text{串}}}\Rightarrow \frac{1}{k_{\text{串}}} = \frac{1}{k_1} + \frac{1}{k_2}
+\end{equation}
+
+故：
+\begin{equation}
+  k_{\text{串}} = \frac{k_1 k_2}{k_1 + k_2}
+\end{equation}
+
+当两弹簧并联时，伸长量相同 $ x $，总力为两弹簧弹力之和：
+\begin{equation}
+  F = F_1 + F_2 = k_1 x + k_2 x = (k_1 + k_2)x
+\end{equation}
+
+设等效劲度系数为 $ k_{\text{并}} $，则：
+\begin{equation}
+  F = k_{\text{并}} x \Rightarrow k_{\text{并}} = k_1 + k_2
+\end{equation}
+
+故：
+\begin{equation}
+  k_{\text{并}} = k_1 + k_2
+\end{equation}
+\newline
+
+
+\textbf{3 太空电梯或太空缆索在很多科幻作品里出现过，它们是一种低成本地将有效载荷从地球或其它星球的表面运输到空间的解决方案. 纽约建筑公司 Clouds Architecture Offce 设计了一栋名为 “Analemma Tower” 的建筑，使用一种叫做 “全球轨道支援系统”（Universal Orbital Support System）的技术，一种可能的设计如图3所示．请根据图中的参数，验证该方案是否具有可行性（图中 GSO 为 Geosynchronous orbit，即地球同步轨道）．}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{Fig/11.png}
+  \caption{图3.3}
+\end{figure}
+
+\begin{table}
+  \centering
+  \caption{符号说明与数值}
+  \begin{tabular}{|c|l|c|}
+    \hline
+    符号 & 描述 & 数值 \\
+    \hline
+    $ A $ & 小行星质量 & $ M_A = 4 \times 10^{10} \, \text{kg} $ \\
+    $ B $ & 建筑模块质量 & $ M_B = 4 \times 10^7 \, \text{kg} $ \\
+    $ C $ & 地球质量 & $ M_E = 5.972 \times 10^{24} \, \text{kg} $ \\
+    $ D $ & $ A $ 与 $ B $ 间距 & $ 3.3 \times 10^7 \, \text{m} $ \\
+    $ E $ & $ B $ 高度 & $ 2.786 \times 10^6 \, \text{m} $ \\
+    $ r_B $ & $ B $ 距地心 & $ 9.157 \times 10^6 \, \text{m} $ \\
+    $ r_A $ & $ A $ 轨道半径 & $ 4.2197 \times 10^7 \, \text{m} $ \\
+    $ \omega $ & 地球自转角速度 & $ 7.272 \times 10^{-5} \, \text{rad/s} $ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+我们先分析小行星 $ A $ 的轨道稳定性.
+
+所需向心力：
+\begin{equation}
+  F_{\text{cent},A} = M_A \omega^2 r_A = 4 \times 10^{10} \cdot (5.288 \times 10^{-9}) \cdot (4.2197 \times 10^7) \approx 8.92 \times 10^9 \, \text{N}
+\end{equation}
+
+地球引力：
+\begin{equation}
+  F_{\text{grav},A} = \frac{G M_E M_A}{r_A^2} \approx \frac{1.595 \times 10^{25}}{1.780 \times 10^{15}} \approx 8.96 \times 10^9 \, \text{N}
+\end{equation}
+
+二者接近，则$ A $ 可稳定运行. 
+
+接下来分析建筑模块 $ B $ 的受力.
+
+地球引力：
+\begin{equation}
+  F_{E,B} = \frac{G M_E M_B}{r_B^2} \approx \frac{1.595 \times 10^{22}}{8.385 \times 10^{13}} \approx 1.90 \times 10^8 \, \text{N}
+\end{equation}
+
+小行星引力：
+\begin{equation}
+  F_{A,B} = \frac{G M_A M_B}{D^2} = \frac{1.068 \times 10^8}{1.089 \times 10^{15}} \approx 9.81 \times 10^{-8} \, \text{N}
+\end{equation}
+
+比值：$ \sim 5 \times 10^{-16} $，因此可忽略. 
+
+考虑力学平衡.
+
+$ B $ 所需向心力：
+\begin{equation}
+  F_{\text{cent},B} = M_B \omega^2 r_B \approx 1.936 \times 10^6 \, \text{N}
+\end{equation}
+
+缆绳张力 $ T $ 满足：
+\begin{equation}
+  T - F_{E,B} = -F_{\text{cent},B} \Rightarrow T = 1.90 \times 10^8 - 1.936 \times 10^6 \approx 1.88 \times 10^8 \, \text{N}
+\end{equation}
+
+$ A $ 受力：$ F_{\text{net}} = F_{E,A} - T = 8.96 \times 10^9 - 1.88 \times 10^8 = 8.772 \times 10^9 \, \text{N} < F_{\text{cent},A} $
+
+因此向心力不足，$ A $ 将向外漂移. 
+
+此题言之有理即可.
+
+\end{document}

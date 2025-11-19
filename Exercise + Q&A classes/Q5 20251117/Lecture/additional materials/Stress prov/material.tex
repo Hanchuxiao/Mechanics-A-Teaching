@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm} % For bold math symbols like vectors and tensors
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{应力张量及理想流体性质的严谨证明}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+本文旨在对连续介质力学中应力张量的基本性质, 以及理想流体和静止流体的应力状态进行详细的数学证明.
+
+\section{应力张量的性质证明}
+
+应力张量 $\boldsymbol{\sigma}$ 是一个二阶张量, 其分量 $\sigma_{ij}$ 表示在 $i$ 方向平面上, 沿 $j$ 方向的应力分量.
+\begin{equation}
+    \boldsymbol{\sigma} = 
+    \begin{pmatrix}
+        \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+        \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
+        \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+    \end{pmatrix}
+\end{equation}
+
+\subsection{证明一: 应力张量是对称张量 ($\sigma_{ij} = \sigma_{ji}$)}
+\textbf{物理原理: 角动量守恒}
+
+我们考察一个无穷小的立方体流体元, 其中心位于坐标原点, 边长分别为 $dx, dy, dz$. 考虑该流体元绕 $z$ 轴的转动.
+作用在 $y$ 方向正负平面 (面积为 $dx dz$) 上的剪切力, 会产生绕 $z$ 轴的力矩.
+\begin{itemize}
+    \item 在 $+y/2$ 平面上, 沿 $x$ 方向的剪切应力为 $\sigma_{yx}$. 作用力为 $F_x = \sigma_{yx} (dx dz)$. 该力到 $z$ 轴的力臂为 $dy/2$. 产生的力矩为 $\tau_1 = (\sigma_{yx} dx dz) \frac{dy}{2}$.
+    \item 在 $-y/2$ 平面上, 沿 $x$ 方向的剪切应力为 $-\sigma_{yx}$. 作用力为 $-F_x = -\sigma_{yx} (dx dz)$. 该力到 $z$ 轴的力臂为 $-dy/2$. 产生的力矩为 $\tau_2 = (-\sigma_{yx} dx dz) (-\frac{dy}{2}) = (\sigma_{yx} dx dz) \frac{dy}{2}$.
+\end{itemize}
+这两个力矩方向相同, 总力矩为 $\tau_{yx} = \sigma_{yx} (dx dz dy) = \sigma_{yx} dV$.
+
+同理, 作用在 $x$ 方向正负平面 (面积为 $dy dz$) 上的剪切力 $\sigma_{xy}$ 会产生一个反方向的力矩, 其大小为 $\tau_{xy} = \sigma_{xy} (dx dy dz) = \sigma_{xy} dV$.
+
+因此, 绕 $z$ 轴的净力矩为:
+\begin{equation}
+    \tau_{net, z} = (\sigma_{yx} - \sigma_{xy}) dV
+\end{equation}
+根据转动定律, $\tau_{net} = I \alpha$, 其中 $I$ 是转动惯量, $\alpha$ 是角加速度.
+对于此立方体元, 其绕 $z$ 轴的转动惯量 $I_z$ 正比于 $m (\text{length})^2$. 设流体密度为 $\rho$, 则 $m = \rho dV = \rho dx dy dz$.
+$I_z \propto (\rho dV)(dx^2+dy^2)$. 这是一个高阶无穷小量, 大约为 $(\text{边长})^5$.
+于是我们有:
+\begin{equation}
+    (\sigma_{yx} - \sigma_{xy}) dV = I_z \alpha
+\end{equation}
+将 $dV$ 看作是边长 $L$ 的三次方, 即 $L^3$, 则 $I_z \propto L^5$.
+\begin{equation}
+    (\sigma_{yx} - \sigma_{xy}) L^3 \propto L^5 \alpha
+\end{equation}
+\begin{equation}
+    (\sigma_{yx} - \sigma_{xy}) \propto L^2 \alpha
+\end{equation}
+当微元尺寸趋向于零时 ($L \to 0$), 为了保持角加速度 $\alpha$ 为一个有限值, 等式左边必须为零.
+\begin{equation}
+    \sigma_{yx} - \sigma_{xy} = 0 \implies \sigma_{yx} = \sigma_{xy}
+\end{equation}
+同理可证 $\sigma_{xz} = \sigma_{zx}$ 和 $\sigma_{yz} = \sigma_{zy}$. 因此, 应力张量 $\boldsymbol{\sigma}$ 是一个对称张量, 即 $\sigma_{ij} = \sigma_{ji}$.
+
+\subsection{证明二: 应力张量存在三个相互垂直的主轴}
+\textbf{数学原理: 实对称矩阵的谱定理 (Spectral Theorem)}
+
+在一个点上, 通过该点的任意一个微小面元, 其法向量为单位向量 $\vec{n}$. 该面元上所受的应力矢量 (也称为面力) $\vec{T}$ 可以通过应力张量计算:
+\begin{equation}
+    \vec{T} = \boldsymbol{\sigma} \cdot \vec{n} \quad (\text{在分量形式下为 } T_i = \sum_j \sigma_{ij} n_j)
+\end{equation}
+我们寻找一个特殊的方向 $\vec{n}$, 使得作用在该方向平面上的应力矢量 $\vec{T}$ 与该平面的法向量 $\vec{n}$ 共线. 这样的方向被称为\textbf{主轴}或\textbf{主方向}.
+数学上, 这意味着 $\vec{T}$ 正比于 $\vec{n}$:
+\begin{equation}
+    \vec{T} = \sigma \vec{n}
+\end{equation}
+其中 $\sigma$ 是一个标量, 称为\textbf{主应力}.
+
+结合上面两个方程, 我们得到:
+\begin{equation}
+    \boldsymbol{\sigma} \cdot \vec{n} = \sigma \vec{n}
+\end{equation}
+这是一个典型的\textbf{本征值问题} (或称特征值问题). 其中, $\boldsymbol{\sigma}$ 是矩阵 (算子), $\vec{n}$ 是其\textbf{本征向量} (特征向量), $\sigma$ 是对应的\textbf{本征值} (特征值).
+
+根据线性代数中的\textbf{谱定理}, 任何一个 $n \times n$ 的实对称矩阵 (我们已经证明应力张量是对称的):
+\begin{enumerate}
+    \item 拥有 $n$ 个实数特征值. (对于三维空间, 意味着有三个实的主应力 $\sigma'_{xx}, \sigma'_{yy}, \sigma'_{zz}$).
+    \item 这些特征值对应的特征向量构成一个\textbf{正交完备基}. (对于三维空间, 意味着存在三个相互正交的主方向).
+\end{enumerate}
+
+因此, 总能找到三个相互垂直的主轴. 如果我们以这三个主轴作为新的坐标系的基矢, 那么在该坐标系 (主轴坐标系) 中, 应力张量 $\boldsymbol{\sigma}$ 表现为一个对角矩阵, 对角元就是三个主应力:
+\begin{equation}
+    \boldsymbol{\sigma'} = 
+    \begin{pmatrix}
+        \sigma'_{xx} & 0 & 0 \\
+        0 & \sigma'_{yy} & 0 \\
+        0 & 0 & \sigma'_{zz}
+    \end{pmatrix}
+\end{equation}
+
+\textbf{推论: 在与主轴方向垂直的面上, 只有法向应力, 切向应力为零.}
+这实际上是主应力定义的直接结果. 主平面就是与主轴垂直的平面. 设其法向量为主方向 $\vec{n}$. 那么根据定义, 该平面上的应力矢量 $\vec{T} = \sigma \vec{n}$, 完全平行于法向量 $\vec{n}$. 因此, 应力矢量没有垂直于法向量的分量, 即切向分量 (剪切应力) 为零.
+
+\section{理想流体与静止流体应力性质的证明}
+
+\subsection{理想流体的定义与推论}
+\textbf{定义:} 理想流体是一种没有任何粘性, 对剪切形变没有任何抵抗能力的流体.
+\begin{itemize}
+    \item \textbf{推论1: 应力必与所在面垂直.} 因为流体不能抵抗剪切, 所以在任何一个面上, 应力矢量 $\vec{T}$ 不可能存在切向分量, 否则流体元会发生无限的剪切形变. 因此, $\vec{T}$ 必须始终沿着法线方向 $\vec{n}$.
+    \item \textbf{推论2: 法向应力必为压力.} 流体一般不能承受拉伸. 如果法向应力是拉力 (即 $\vec{T}$ 与 $\vec{n}$ 同向), 流体将会被撕裂. 因此, 法向应力必须是压力 (即 $\vec{T}$ 与 $\vec{n}$ 反向).
+\end{itemize}
+
+\subsection{证明三: 同一点各不同方向上法向应力相等 (帕斯卡定律)}
+\textbf{物理原理: 牛顿第二定律 (或静力平衡)}
+
+我们取流体中任意一点 P, 在该点构造一个无穷小的四面体微元 O-ABC, 如图所示. 三个面 OAB, OAC, OBC 分别垂直于 $z, y, x$ 轴, 其面积记为 $dA_z, dA_y, dA_x$. 斜面 ABC 的面积为 $dA$, 其单位法向量为 $\vec{n} = (n_x, n_y, n_z)$.
+根据几何关系, $dA_x = n_x dA$, $dA_y = n_y dA$, $dA_z = n_z dA$.
+
+设作用在 $x, y, z$ 各正交面上的压力分别为 $p_x, p_y, p_z$, 作用在斜面上的压力为 $p_n$. 根据理想流体的推论, 这些力都垂直于各自所在的平面.
+作用在四面体上的表面力为:
+\begin{itemize}
+    \item $x$ 面: $\vec{F}_x = (p_x dA_x, 0, 0) = (p_x n_x dA, 0, 0)$
+    \item $y$ 面: $\vec{F}_y = (0, p_y dA_y, 0) = (0, p_y n_y dA, 0)$
+    \item $z$ 面: $\vec{F}_z = (0, 0, p_z dA_z) = (0, 0, p_z n_z dA)$
+    \item 斜面: $\vec{F}_n = -p_n dA \cdot \vec{n} = (-p_n n_x dA, -p_n n_y dA, -p_n n_z dA)$
+\end{itemize}
+四面体还可能受到体积力 (如重力) $\vec{f}_{body} dV$ 和产生加速度 $\vec{a}$. 根据牛顿第二定律, $\sum \vec{F} = m\vec{a} = \rho dV \vec{a}$.
+\begin{equation}
+    \vec{F}_x + \vec{F}_y + \vec{F}_z + \vec{F}_n + \vec{f}_{body} dV = \rho dV \vec{a}
+\end{equation}
+四面体的体积 $dV$ 是其边长 $L$ 的三阶无穷小 ($L^3$), 而面积 $dA$ 是二阶无穷小 ($L^2$). 当我们让这个四面体缩小到点 P 时 ($L \to 0$), 体积项 ($dV$) 比面积项 ($dA$) 快得多地趋于零. 因此, 在极限情况下, 体积力和惯性项可以忽略不计, 只有表面力达到平衡:
+\begin{equation}
+    \vec{F}_x + \vec{F}_y + \vec{F}_z + \vec{F}_n = 0
+\end{equation}
+考察上式在 $x$ 方向的分量:
+\begin{equation}
+    p_x n_x dA - p_n n_x dA = 0 \implies (p_x - p_n) n_x dA = 0
+\end{equation}
+由于 $n_x$ 和 $dA$ 不一定为零, 故 $p_x = p_n$.
+同理, 考察 $y$ 和 $z$ 方向的分量可得 $p_y = p_n$ 和 $p_z = p_n$.
+\begin{equation}
+    p_x = p_y = p_z = p_n
+\end{equation}
+由于斜面的方向 $\vec{n}$ 是任意选取的, 这证明了在流体中的任意一点, 来自任何方向的压力大小都是相等的. 这个压力 $p$ 是一个标量, 称为静压强.
+因此, 在理想流体中, 应力张量可以写为:
+\begin{equation}
+    \sigma_{xx} = \sigma_{yy} = \sigma_{zz} = -p
+\end{equation}
+并且所有剪切应力分量为零 ($\sigma_{ij} = 0$ for $i \neq j$). 最终, 应力张量形式为:
+\begin{equation}
+    \boldsymbol{\sigma} = 
+    \begin{pmatrix}
+        -p & 0 & 0 \\
+        0 & -p & 0 \\
+        0 & 0 & -p
+    \end{pmatrix}
+    = -p \boldsymbol{I}
+\end{equation}
+其中 $\boldsymbol{I}$ 是单位张量.
+
+\subsection{静止流体的性质}
+\textbf{结论:} 静止流体 (无论是理想的还是粘性的) 的应力性质与理想流体完全相同.
+
+\textbf{证明:} 粘性流体 (如牛顿流体) 的剪切应力 $\tau$ 正比于流体的速度梯度, 即剪切应变率.
+\begin{equation}
+    \tau = \mu \frac{du}{dy}
+\end{equation}
+其中 $\mu$ 是粘度.
+对于\textbf{静止}流体, 流体中各点的速度均为零, 因此速度梯度处处为零. 
+\begin{equation}
+    \frac{du}{dy} \equiv 0 \implies \tau = 0
+\end{equation}
+这意味着, 即使流体本身具有粘性, 但只要它处于静止状态, 其内部就不能承受任何剪切应力. 这与理想流体的定义是等效的. 因此, 所有适用于理想流体的应力分析 (如帕斯卡定律) 也同样适用于任何静止的流体.
+
+\end{document}

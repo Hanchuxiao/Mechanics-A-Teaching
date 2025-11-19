@@ -1,0 +1,506 @@
+%!TEX program = xelatex
+\documentclass[aspectratio=169]{beamer}
+\usepackage[UTF8]{ctex} % Use default font set
+\usepackage{hyperref}
+
+% other packages
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{siunitx} % For \SI command
+\usepackage{graphicx,pstricks,listings,stackengine}
+
+\author{Yu Shu \& Chihao Shi}
+\title{力学A（PHYS1001A.04）：第五次习题课}
+\subtitle{Course NOT easy: The Survival Guide 5, Halfway to final success!}
+\institute{School of Physics, USTC}
+\date{Nov.17, 2025}
+\usepackage{USTC} 
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.15\linewidth]{pic/ustc_logo_fig-eps-converted-to.pdf}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{内容回顾与补充拓展}
+
+\subsection{角动量定理}
+
+\begin{frame}
+    角动量：从给定参考点指向质点的位矢与质点动量的矢量积
+
+    $\boxed{\vec{L}=\vec{r}\times\vec{p}}$
+
+    方向：右手定则；大小：$L=|\vec{L}|=rp\sin\theta=mvr\sin\theta$
+
+    角动量是相对于给定的参考点定义的，且参考点在所选的参考系中必须是固定点；参考点不同，角动量不同。一般把参考点取在坐标原点。
+\end{frame}
+
+\begin{frame}
+    掠面速度矢量：矢径$\vec{r}$在单位时间内扫过的面积$S$，称该面积$S$为位矢$\vec{r}$对应质点$P$的扫面速度
+
+    $\boxed{\vec{S}=\frac{1}{2}\vec{r}\times\vec{v}=\frac{\vec{L}}{2m}}$
+
+    对于单质点的孤立体系，我们找到的守恒量是掠面速度矢量$\vec{S}$
+
+    \begin{figure}
+        \begin{center}
+            \includegraphics[width=0.4\linewidth]{pic/1.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{单质点的角动量定理}
+    力矩：\boxed{$$\vec{M}=\vec{r}\times\vec{F}$$}
+    \begin{equation}
+        \begin{aligned}
+            \frac{d\vec{L}}{dt}=\frac{d}{dt}(\vec{r}\times\vec{p})=\frac{d\vec{r}}{dt}\times\vec{p}+\vec{r}\times\frac{d\vec{p}}{dt}\\
+            \frac{d\vec{r}}{dt}\times\vec{p}=0,\quad\frac{d\vec{p}}{dt}=\vec{F}
+        \end{aligned}
+    \end{equation}
+
+    则：\boxed{\vec{L}=\vec{r}\times\vec{p}}
+
+    质点角动量定理：质点对任一固定点的角动量的时间变化率等于合外力对该点的力矩
+
+    \begin{figure}
+        \begin{center}
+            \includegraphics[width=0.8\linewidth]{pic/2.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{质点系角动量定理}
+    质点系对给定点的角动量为各质点对该点的角动量矢量和
+    
+    两质点之间一对作用力与反作用力相对于同一参考点力矩之和必为零，内力的力矩之和为0
+
+    质点系角动量定理：质点系对给定点（参考点）的角动量的时间变化率等于作用在体系上所有外力对该点力矩矢量
+
+    $\boxed{\frac{d\vec{L}}{dt}=\sum_{i}\vec{r}_i\times\vec{F}_i=\sum_{i}\vec{M}_{i,ex}=\vec{M}_{ex}}$
+\end{frame}
+
+\begin{frame}{角动量守恒定律}
+    当外力对给定点的总外力矩之和为0时，体系的角动量守恒
+    
+    $\boxed{\frac{d\vec{L}}{dt}=\vec{M}_{ex}=0\Rightarrow\vec{L}=const}$
+\end{frame}
+
+\begin{frame}{质心系中的角动量定理}
+    体系的角动量等于质心角动量与体系相对于质心的角动量之和
+
+    $\boxed{
+        \begin{aligned}
+            &\vec{L}=\vec{L}_c+\vec{L}_s\\
+            &\vec{L}_c=\vec{r}_c\times m\vec{v}_c,\quad\vec{L}'=\sum_{i}m_i\vec{r}'_i\times\vec{v}'_i
+        \end{aligned}
+        }$
+
+    类似于体系动能的柯尼希定理：$E_k=\frac{1}{2}m\vec{v}_c^2+\sum_{i}\frac{1}{2}m_i(\vec{v}'_i)^2$
+
+    角动量定理和角动量守恒定律只在惯性系中成立。质心系若为非惯性系，则加上惯性力的力矩，角动量定理仍适用。
+\end{frame}
+
+\begin{frame}{质心系中的角动量定理}
+    质心角动量定理：$\boxed{\frac{d\vec{L}_c}{dt}=\vec{M}_c}$
+
+    $\vec{M}_c$为将所有外力平移到质心处相对于参考点的力矩
+
+    质心系角动量定理：$\boxed{\frac{d\vec{L}'}{dt}=\vec{M}'_{ex}+\vec{M}'_{I}=\vec{M}'_{ex}}$
+
+    $\vec{M}'_{I}$为为惯性力的力矩，$\vec{M}'_{ex}$为外力对质心的力矩之和
+
+    \begin{equation}
+        \vec{M}'_{I}=\sum_i\vec{r'}_i\times\vec{F}'_i=\sum_i\vec{r}'_i\times(-m_i\vec{a}_c)=(\sum_i-m_i\vec{r}'_i)\times\vec{a}_c=0
+    \end{equation}
+
+    不论质心系是惯性系还是非惯性系，在质心系中，角动量定理仍然适用（不需要考虑惯性力的力矩）
+
+    当外力相对质心的总力矩为零时，体系相对质心的角动量为恒量
+\end{frame}
+
+\begin{frame}{两体问题}
+    质心：$\vec{r}_c=\frac{m_1\vec{r}_1+m_2\vec{r}_2}{m_1+m_2}$
+
+    约化质量：$\mu=\frac{m_1m_2}{m_1+m_2}$
+
+    相对质心的角动量：$\vec{L}'=\mu\vec{r}\times\vec{v}$
+
+    质心系下，质点系对于任意固定点的角动量均相等
+
+    $\vec{r}$和$\vec{v}$是两质点间的相对位移和速度，均与参考点无关
+\end{frame}
+
+\begin{frame}{Laplace–Runge–Lenz矢量}
+    两个物体以平方反比有心力相互作用运动，则LRL矢量是一个守恒量， 即不管在轨道的任何位置，计算出来的LRL向量都一样
+
+    $\boxed{\vec{F}=-\frac{k}{r^2}\hat{\vec{r}},\quad\vec{B}=\vec{v}\times\vec{L}-k\frac{\vec{r}}{r}},\quad\frac{d\vec{B}}{dt}=0$
+
+    或者写成：$\boxed{\vec{A}=m\vec{B}=\vec{p}\times\vec{L}-mk\frac{\vec{r}}{r}}$
+
+    万有引力：$\vec{B}=\vec{v}\times\vec{L}-GMm\frac{\vec{r}}{r}$
+\end{frame}
+
+\subsection{守恒律与对称性}
+
+\begin{frame}
+    动量守恒：若体系合外力$\vec{F}_{ex}=0$，则$\vec{P}$为守恒量
+
+    机械能守恒：若体系受合外力做功为0，且非保守内力做功为0，则体系机械能$E=E_k+V$为守恒量
+
+    从微观角度看，不存在耗散性的相互作用，机械能守恒定律可表述为更一般的能量守恒定律
+
+    角动量守恒：若体系合外力矩$\vec{M}_{ex}=0$，则$\vec{L}$为守恒量
+\end{frame}
+
+\begin{frame}
+    对称性（symmetry）研究的是物质的状态、运动规律在某种变换下的性质
+
+    空间变换：
+    \begin{enumerate}
+        \item 镜面反演（reflection）：$(x,y,z)\rightarrow(-x,y,z)$
+        \item 空间反演（parity）：$\vec{r}\rightarrow-\vec{r},\quad(x,y,z)\rightarrow(-x,-y,-z)$
+        \item 空间平移（translation）：$\vec{r}\rightarrow\vec{r}+\vec{r}_0$
+        \item 轴转动：$(x,y)\rightarrow R(x,y)$，$R$为二维转动矩阵
+        \item 点转动：$\vec{r}\rightarrow R\vec{r}$，$R$为三维转动矩阵
+    \end{enumerate}
+
+    时间变换：
+    \begin{enumerate}
+        \item 时间反演：$t\rightarrow-t$
+        \item 时间平移：$t\rightarrow t+t_0$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    如果某一物理定律或某物理量在某种变换下其形式或量值保持不变，则称这种变换具有不变性或协变性$\Rightarrow$ 这个定律或物理量对某种变换具有对称性或不变
+
+    Noether's theorem：对称性与守恒律之间存在普遍的关联，每个对称性都有着相应的守恒定律
+
+    对于不受外力作用的物质系统，假如体系势能在时空变换方面具有对称性， 则可以找到相应的守恒律
+\end{frame}
+
+\subsection{天体运动}
+
+\begin{frame}
+    开普勒行星运动三定律：
+    \begin{enumerate}
+        \item 轨道定律：行星都沿着椭圆轨道运行，太阳则位于椭圆的一个焦点上
+        \item 面积定律：行星到太阳的连线在相同的时间内扫过相同的面积
+        \item 各行星绕太阳运动的周期的平方与该行星的椭圆轨道的半长轴的立方成正比，即：$T\varpropto r^{3/2}$，$T$是行星运动的周期；$r$是椭圆轨道的半长轴
+    \end{enumerate} 
+\end{frame}
+
+\begin{frame}{有心力场中的质点运动}
+    在有心力场中质点运动的一般特征：
+    \begin{enumerate}
+        \item 角动量守恒
+        \item 运动必定在一个平面上（因为角动量守恒或掠面速度守恒）
+        \item 体系机械能守恒（因为保守力可以定义势能）
+    \end{enumerate}
+
+    体系机械能守恒：$\boxed{E_k+V(r)=\frac{1}{2}m(v_r^2+v_{\theta}^2)+V(r)=\frac{1}{2}m\dot{r}^2+\frac{L^2}{2mr^2}=E}$
+
+    有效势能：$\boxed{V_{eff}(r)=V(r)+\frac{L^2}{2mr^2}}$
+
+    $\boxed{\frac{1}{2}m\dot{r}^2+V_{eff}(r)=E}$与一维运动质点的机械能守恒方程相同
+\end{frame}
+
+\begin{frame}{轨道定律}
+    轨道方程：$\boxed{r=\frac{p}{1+\epsilon\cos\theta}}$
+
+    半正交弦：$p=\frac{L^2}{GMm^2}$，偏心率：$\epsilon=\sqrt{1+\frac{2EL^2}{G^2M^2m^3}}$
+
+    \begin{enumerate}
+        \item $E<0\Rightarrow\epsilon<1$，为椭圆轨迹，M位于其中一个焦点
+        \item $E=0\Rightarrow\epsilon=1$，为抛物线，M位于焦点
+        \item $E>0\Rightarrow\epsilon>1$，为双曲线之一，M位于内焦点
+    \end{enumerate}
+
+    逃逸速度：$v_p=\sqrt{\frac{2GM}{r_p}}$
+\end{frame}
+
+\begin{frame}{面积定律\&周期定律}
+    质点位矢在单位时间内所扫过的面积相等
+
+    $\boxed{\kappa=\frac{ds}{dt}=\frac{1}{2}r^2\dot{\theta}=\frac{L}{2m}}$
+
+    $\boxed{\frac{T^2}{a^3}=\frac{4\pi^2}{GM}}$
+\end{frame}
+
+\subsection{流体静力学}
+
+\begin{frame}
+    流体的性质：
+    \begin{enumerate}
+        \item 流动性：静止流体不能承受切向应力，任何切向应力都会使流体元间产生。取消力的作用后，流体元之间并不恢复其原有位置。正是流体的这一基本特性使它能同刚体和弹性体区别开来。
+        \item 黏性：运动流体，相邻两层之间会产生对流动的抵抗，称为黏性。
+        \item 压缩性：流体的体积会随温度和压强而变化，称为可压缩性。可压缩程度与流体性质和外界条件相关。
+    \end{enumerate}
+
+    理想流体：无（不考虑）黏性的流体，为理想模型
+
+    流体的静止状态：流体各部分之间没有相对运动，或者说流体的形状不发生改变的状态，静止流体内部无切向应力，粘性完全不发生作用，只有法向应力，即压强
+\end{frame}
+
+\begin{frame}
+    流体中的作用力：
+    \begin{enumerate}
+        \item 不需要接触，作用于全部流体上的力，称为体积力或质量力（重力、磁力、惯性力）
+        \item 直接与物体相接触而施加的力，称为表面力（压力、粘性力）
+        \begin{enumerate}
+            \item 表面力（Surface force）是指作用在一物体表面（或是内部截面）的力。所有物体之间的凝聚力和接触力都视为是表面力。常见的正向力和摩擦力也都是表面力。
+            \item 应力（stress）：单位面积上的表面力
+            \item 表面张力：当液体出现自由表面时，液体表面层中的液体分子都受到指向液体内部的拉力，称为表面张力
+        \end{enumerate}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{应力}
+    $\boxed{\vec{T}=\lim_{\Delta S\to 0}\frac{\Delta\vec{F}}{\Delta S}}$
+
+    法向应力、正应力：$T_{nn}=\sigma=\lim_{\Delta S\to 0}\frac{\Delta\vec{F}_n}{\Delta S}$
+
+    切应力：$T_{n\tau}=\tau=\lim_{\Delta S\to 0}\frac{\Delta\vec{F}_{\tau}}{\Delta S}$
+
+    柯西应力张量（Cauchy stress tensor）：
+    \begin{equation}
+        \sigma=\begin{bmatrix}
+            \sigma_{xx}& \sigma_{xy}& \sigma_{xz} \\
+            \sigma_{yx}& \sigma_{yy}& \sigma_{yz} \\
+            \sigma_{zx}& \sigma_{zy}& \sigma_{zz}
+        \end{bmatrix}
+    \end{equation}
+
+    对于法线方向为$\vec{n}$的截面的应力：$\vec{\sigma}_n = \sigma\cdot\vec{n}$
+\end{frame}
+
+\begin{frame}{应力}
+    \begin{figure}{htbp}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/3.png}
+    \end{figure}
+
+    \href{run:additional materials/Stress prov/material.pdf}{prov.}
+\end{frame}
+
+\begin{frame}
+    积分形式的静止流体平衡方程：$\boxed{\oint\vec{T}dS+\int\vec{F}\rho dV=0}$
+
+    静止的流体不可能存在切应力，只有正应力。而且流体中通常只有压应力（即应力与法向方向相反），用$p$表示：$\boxed{-\oint pd\vec{S}+\int\vec{F}\rho dV=0}$
+
+    高斯散度定理：$\oint pd\vec{S}=\int\nabla fdV$
+
+    微分形式的流体平衡方程$\boxed{\nabla p=\rho\vec{F}},\quad \partial_{i}p=\rho F_i$
+\end{frame}
+
+\begin{frame}{压强}
+    静止流体内的应力，除了与所取截面垂直、且一般表现为压力外，还有一个特征：只与位置有关，与截面取向无关
+
+    等高点的压强相等
+
+    高度差为$h$的两点，压强差$\Delta p=\rho gh$
+
+    帕斯卡原理（Pascal's law）：当液体表面压强增加$\Delta p_0$时，液体内任一点的压强也增大了$\Delta p_0$
+\end{frame}
+
+\begin{frame}{浮力}
+    阿基米德原理：浸在流体中的物体所受到的浮力等于物体所排开流体所受的重力
+
+    浮力的作用点称为浮心，位于与浸入流体那部分物体同体积、同形状的流体的重心上
+\end{frame}
+
+\subsection{流体运动学}
+
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/4.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{拉格朗日法（随体法）}
+    从质点运动学出发，将流体分成许多无穷小的微元，求出它们各自的运动轨迹。实际上是用质点组动力学方法来讨论流体的运动
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/5.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{拉格朗日法（随体法）}
+    迹线（pathline）：流体质点在连续时间内描绘出来的曲线
+
+    由于迹线是流体质点运动过程的路径，在Lagrange法中，就是流体质点的位置函数，即：
+    \begin{equation}
+        \begin{cases}
+            x=x(x_0,y_0,z_0,t)\\
+            y=y(x_0,y_0,z_0,t)\\
+            z=z(x_0,y_0,z_0,t)
+        \end{cases}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{欧拉法（当地法）}
+    把注意力集中到各空间点，观察流体微元经过每个空间点的流速$\vec{v}$，寻求它的空间分布和随时间的演化规律。用场的观点研究流体运动
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/6.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{欧拉法（当地法）}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/7.png}
+    \end{figure} 
+\end{frame}
+
+\begin{frame}{欧拉法（当地法）}
+    $\boxed{\frac{Df}{Dt}=\frac{\partial f}{\partial t}+\vec{v}\cdot\nabla f}$
+
+    以上三个部分分别为随体导数、局部导数和对流导数
+
+    物质导数的物理含义：运动的流体微团的物理量随时间的变化率，等于该物理量由当地时间变化引起的变化率，与流体对流引起的变化率的总和
+
+    加速度：$\boxed{\vec{a}=\frac{d\vec{u}}{dt}=\frac{\partial\vec{u}}{\partial t}+(\vec{u}\cdot\nabla)\vec{u}}$
+
+    对于均匀流场：$(\vec{u}\cdot\nabla)\vec{u}=0$
+\end{frame}
+
+\begin{frame}{Euler法与Lagrange法}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/8.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    定常流（stationary fluid）：欧拉法描述的流体，$\vec{u}$不随时间变化
+
+    \begin{enumerate}
+        \item 流线（streamline）：在某一时刻上，流体速度方向相切的曲线，每点切线方向与瞬时速度方向一致，可能随时间变化
+        \item 迹线（pathline）：单个流体质点随时间的运动轨迹，单个质点的“轨道”，会随时间变化
+        \item 烟线（streakline）：由所有在不同时间经过同一点的流体质点组成的曲线，连续注入染料看到的线，会随时间变化
+        \item 时间线（timeline）：由在同一时刻通过某一曲线（如染料线）注入的流体质点组成的线，某时刻释放的一串质点的形变线，会随时间变化
+        \item 流管（streamtube）：假想的由一束相邻流线形成的一个管道。因流管壁由流线构成，速度与之平行，所以不会有流体穿越管壁流进流出
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/9.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    连续性方程的积分形式：$\oint\rho\vec{v}\cdot d\vec{S}=-\int\frac{\partial}{\partial t}\rho dV$
+
+    微分形式：$\boxed{\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\vec{v})=0}$
+
+    定常流连续性方程：$\boxed{\rho\vec{v}\cdot d\vec{S}=const},\quad\oint\rho\vec{v}\cdot d\vec{S}=0,\quad\nabla\cdot(\rho\vec{v})=0$
+
+    当流体密度恒定时（不可压缩流体）：$\boxed{\oint\vec{v}\cdot d\vec{S}=0,\quad\nabla\cdot\vec{v}=0}$
+\end{frame}
+
+\begin{frame}
+    $\boxed{-\oint\rho d\vec{S}+\int\vec{F}\rho dV=\rho\Delta V\vec{a}}$
+
+    $\boxed{\vec{F}_{ex}=Q_m(\vec{v}_2-\vec{v}_1)}$
+
+    伯努利方程：$\boxed{\frac{1}{2}\rho v^2+\rho gz+p=const}$
+\end{frame}
+
+\subsection{粘滞流体}
+
+\begin{frame}
+    理想流体不论在静止或运动中都不存在切向力，但实际流体当其各部分间发生相对滑动时，就存在阻碍相对滑动的力，此即粘滞力
+
+    设想流体中两层的速度不同，则快的一层对慢的一层有拉力作用，而慢的一层对快的一层有阻力的作用。这一对力就叫粘滞力或内摩擦力。流体的这种性质称为粘滞性（Viscosity）
+
+    从分子运动的观点来看，气体的粘滞性是由于不同速度的相邻流体层间发生动量交换
+
+    液体的粘滞性只有一小部分直接起因于分子的动量传递，而主要起因于流动中分子团的形变
+\end{frame}
+
+\begin{frame}
+    粘滞定律：$\boxed{F=\eta A\frac{\partial u}{\partial y}}$
+
+    动力粘度（Dynamic viscosity）：$\eta$
+
+    运动粘度（Kinematic viscosity）：$\nu=\frac{\eta}{\rho}$
+
+    符合粘滞定律的流体称为牛顿流体，但也存在非牛顿流体，也就是说其剪应力与剪应变呈非线性关系。
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/10.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    泊肃叶公式：适用于不可压缩、不具有加速度、层流稳定且长于管径的牛顿流体，对于流量$Q$，$\boxed{Q=\frac{\pi(p_2-p_1)R^4}{8l\eta}}$
+
+    各层互不相扰的分层流动称为层流（Laminar flow）。当流速增大到一定程度时，定常流动的状态会被破坏，流动会不稳定，并出现周期性的变化，但流动仍具有部分层流的特征。当流速进一步增大，层流状态将被破坏，流体将作不规则流动这样的流动称为湍流（Turbulent flow）。
+
+    雷诺数：$\boxed{Re=\frac{\rho vr}{\eta}},\quad Re=\frac{\rho vL}{\eta}$，$L$为特征长度
+
+    雷诺数较小时，粘滞力对流场的影响大于惯性力，流场中流速的扰动会因粘滞力而衰减，流体流动稳定，为层流；反之，若雷诺数较大时，惯性力对流场的影响大于黏滞力，流体流动较不稳定，流速的微小变化容易发展、增强，形成紊乱、不规则的紊流流场。
+
+    斯托克斯公式（Stokes' law）：$\boxed{F_f=F_{fv}+F_{fp}=6\pi\eta rv}$
+\end{frame}
+
+\section{作业习题讲解}
+
+\begin{frame}
+    \begin{center}
+        {\Huge 作业习题讲解}
+    \end{center}
+\end{frame}
+
+\section{Q\&A}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Q\&A}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Thanks!}
+    \end{center}
+\end{frame}
+
+\end{document}

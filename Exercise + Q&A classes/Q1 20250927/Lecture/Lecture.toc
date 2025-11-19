@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{数学知识补充}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{行列式}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{矢量}{9}{0}{1}
+\beamer@subsectionintoc {1}{3}{导数与展开}{12}{0}{1}
+\beamer@subsectionintoc {1}{4}{积分}{20}{0}{1}
+\beamer@sectionintoc {2}{内容回顾与补充拓展}{26}{0}{2}
+\beamer@subsectionintoc {2}{1}{绪论}{27}{0}{2}
+\beamer@subsectionintoc {2}{2}{第一章：质点运动学}{39}{0}{2}
+\beamer@sectionintoc {3}{学习经验分享}{68}{0}{3}
+\beamer@sectionintoc {4}{Q\&A}{70}{0}{4}

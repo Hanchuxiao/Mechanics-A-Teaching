@@ -1,0 +1,476 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[UTF8]{ctex} % Use default font set
+\usepackage{hyperref}
+
+% other packages
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{siunitx} % For \SI command
+\usepackage{graphicx,pstricks,listings,stackengine}
+
+\author{Yu Shu \& Chihao Shi}
+\title{力学A（PHYS1001A.04）：第二次习题课}
+\subtitle{Course NOT easy: The Survival Guide 1+1}
+\institute{School of Physics, USTC}
+\date{Oct.13, 2025}
+\usepackage{USTC}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+
+\begin{document}
+
+\kaishu
+
+\begin{frame}
+    \titlepage
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.15\linewidth]{pic/ustc_logo_fig-eps-converted-to.pdf}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{内容回顾与补充拓展}
+
+\subsection{自然坐标系与微分几何}
+
+\begin{frame}{自然坐标系}
+    在质点运动的轨迹线上任取一点$O$为自然坐标原点，以质点所在位置$P$点与$O$点间轨迹的长度$s$来确定质点的位置，则称$s$为质点的自然坐标
+
+    为描写平面内质点的运动，我们还需规定两个依赖于质点位置的单位矢量：
+    \begin{itemize}
+        \item $\vec{e_\tau}$：切向单位矢量，沿曲线切向，且指向自然坐标增大方向
+        \item $\vec{e_n}$：法向单位矢量，沿曲线法向，且指向曲线的凹侧
+    \end{itemize}
+
+    $\vec{e_\tau}$和$\vec{e_n}$不是常矢量：长度不变，但是方向取决于质点的位置
+
+    只是轨道上的点才对应有坐标和单位矢量，轨道外的点不能用自然坐标系来描写
+\end{frame}
+
+\begin{frame}{运动分解}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/1.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{运动分解}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/2.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{运动分解}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/3.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{运动分解}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/4.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{知识拓展：Fernet Frame}
+    单位切向量$\mathbf{T}$，单位法向量$\mathbf{N}$，单位副法向量$\mathbf{B}$，被称作弗勒内标架，他们的具体定义如下：
+    \begin{itemize}
+        \item $\mathbf{T}$是与曲线相切的单位向量，指向运动方向。
+        \item $\mathbf{N}$是法线单位向量，是切向量$\mathbf{T}$对弧长参数的微分单位化得到的向量。
+        \item $\mathbf{B}$是$\mathbf{T}$与$\mathbf{N}$的外积。
+    \end{itemize}
+
+    我们也有一组方程，称为Ferne-Serret Formulas：
+    \begin{equation*}
+        \begin{cases}
+            \frac{d\mathbf{T}}{dt} = \kappa\mathbf{N} \\
+            \frac{d\mathbf{N}}{dt} = -\kappa\mathbf{T} + \tau\mathbf{B} \\
+            \frac{d\mathbf{B}}{dt} = -\tau\mathbf{N}
+        \end{cases}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{知识拓展：Fernet Frame}
+    \begin{equation*}
+        \begin{aligned}
+            &s(t) = \int_{0}^{t}||\vec{r}'(\tau)||d\tau \\
+            &\mathbf{T}=\frac{d\vec{r}}{ds}
+            &\mathbf{N}=\frac{\frac{d\mathbf{T}}{ds}}{||\frac{d\mathbf{T}}{ds}||} \\
+            &\mathbf{B}=\mathbf{T}\times\mathbf{N} \\
+            &\text{由于}|\mathbf{T}|=1,\frac{d\mathbf{T}\cdot T}{ds}=2\mathbf{T}\cdot\mathbf{N}=0,\mathbf{T}\perp\mathbf{N} \\
+            &\text{故}\begin{bmatrix}
+            &\mathbf{T}' \\ \mathbf{N}' \\ \mathbf{B}'
+            &\end{bmatrix}=\begin{bmatrix}
+                0 & \kappa & 0 \\ -\kappa & 0 & \tau \\ 0 & -\tau & 0
+            \end{bmatrix}\begin{bmatrix}
+                \mathbf{T} \\ \mathbf{N} \\ \mathbf{B}
+            \end{bmatrix}
+        \end{aligned}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{知识拓展：Fernet Frame}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/5.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{知识拓展：Fernet Frame}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/6.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{知识拓展：Fernet Frame}
+    以圆周运动为例
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/7.png}
+    \end{figure}
+\end{frame}
+
+\subsection{运动的相对性}
+
+\begin{frame}{相对运动}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/8.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{平动}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/9.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{平动}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/10.png}
+    \end{figure}
+\end{frame}
+
+\subsection{运动学总结}
+
+\begin{frame}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/11.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/12.png}
+    \end{figure}
+\end{frame}
+
+\subsection{牛顿运动定律}
+
+\begin{frame}{牛顿之前}
+    \begin{itemize}
+        \item 亚里士多德
+        \item 哥白尼、开普勒、伽利略
+        \item 笛卡尔、惠更斯、胡克
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{牛顿第一定律（惯性定律）}
+    任何物体都保持静止状态或匀速直线运动状态，直到其它物体的作用迫使它改变这种状态为止
+
+    \begin{itemize}
+        \item 第一定律是大量观察与实验事实的抽象与概括，不能用实验直接验证。不可能不受其他物体作用
+        \item 第一定律定性提出了“力”和“惯性”两个重要概念
+        \begin{itemize}
+            \item 惯性（Inertial）：运动物体自身具有保持其匀速运动或静止的属性，这种属性称为“惯性”
+            \item 力是一个物体对另一物体的相互作用。是改变物体运动状态的原因，而不是维持运动状态的原因
+        \end{itemize}
+        \item 惯性定律的意义是在于断言：一定存在着这样的参考系，相对于它，所有不受外力作用的物体都保持自己的速度
+        \item 第一定律具有公理性
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{惯性系}
+    牛顿第一定律定律成立的参考系为惯性参考系（L.Lange, 1885）。
+
+    在惯性系中，从同一点向三个不同方向（非共面）扔出的质点都会直线运动。
+
+    常用的惯性参考系：
+    \begin{itemize}
+        \item 地面参考系：又称实验室参考系。由于地球的自转造成的的加速度为$3.4\times 10^{-2}m/s^2$，在精度不太高时，自转的加速度效应可以忽略，因此可将地球参考系可以看作惯性参考系
+        \item 地心参考系：即地球─恒星参考系，以地心为原点，坐标轴指向恒星的惯性参考系。地球公转造成的加速度为$5.9\times 10^{-3}m/s^2$，常在发射人造地球卫星时采用
+        \item 太阳系：即太阳─恒星参考系，以太阳中心为原点，坐标轴指向其它恒星的惯性参考系。太阳对银河系中心的转动加速度为$10^{-10}m/s^2$， 常在在研究行星等天体运动时采用
+        \item 基本星表参考系（Catalogues of Fundamental Stars，FK系）：是以相对于选定的大量恒星的平均静止位形作为基准的参考系
+        \item 马赫原理
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{牛顿第二定律}
+    运动的改变与所加的外力成正比，并发生在所加的力的那个直线方向上
+
+    \begin{equation*}
+        \begin{aligned}
+            \vec{p} &= m\vec{v} \\
+            \vec{F} &= \frac{d\vec{p}}{dt}=\frac{dm}{dt}\vec{v}+m\frac{d\vec{v}}{dt}
+        \end{aligned}
+    \end{equation*}
+
+    若物体的质量不随时间变化，则$\vec{F}=m\vec{a}$。
+\end{frame}
+
+\begin{frame}{牛顿第二定律}
+    第二定律可认为既是定义又是定律
+
+    在相同的力𝑭作用下的两个物体，质量与加速度成反比。
+    设这两个物体的质量分别为$m_1$, $m_2$，加速度分别为$a_1$, $a_2$，则有：$m_1a_1=m_2a_2\Rightarrow m_2=m_1\frac{a_1}{a_2}$。
+    若取$m_1$为标准质量，由于$a_1$, $𝑎_2$都是可以测量的，那么$𝑚_2$可以完全确定。
+    这种用惯性大小定义的质量称为惯性质量。
+
+    \begin{itemize}
+        \item 惯性质量（Inertial mass）：描述物体运动改变难易程度的物理量
+        \item 引力质量（Gravitational mass）：描述物体在一个引力场里受引力的大小
+    \end{itemize}
+
+    从17世纪以来不断有实验证明，惯性质量和引力质量是等价的，这条原理在广义相对论中称为等效原理（弱等效原理， weak equivalence principle）。
+    核心实验是Eötvös实验
+\end{frame}
+
+\begin{frame}{牛顿第二定律}
+    在2019年5月20日之前，千克仍是国际单位制基本单位中唯一仍使用实物进行定义的单位，即被定义为国际千克原器（以铂铱合金铸造）的质量。
+
+    物理学中诸多的物理量都和千克有关，例如牛顿（力学单位），瓦特（功率单位），焦耳（能量单位）等，因此，千克原器任何轻微改变都会引起其他物理量定义的混乱。
+
+    现行千克定义为：$1kg = \frac{h}{6.62607015\times 10^{−34}}m^{-2}s$。
+\end{frame}
+
+\begin{frame}{牛顿第二定律}
+    \begin{itemize}
+        \item 第二定律适用的参考系是惯性系
+        \item 定律中的外力是合外力$\vec{F}=\sum_{i=0}^{n}\vec{F_i}$
+        \item 第二定律是瞬时关系式：当有力作用时，物体即产生加速度。 一旦力消失，加速度也随之消失，二者是同步的。牛顿第二定律描述的是一种超距作用（action at a distance）。
+        \item 公式$\vec{F}=m\vec{a}$是矢量式
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{知识拓展：瓦特天平}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/13.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{质量和力的定义}
+    质量是绝对量：物体质量的度量值与物体的运动状态无关，在不同的参考系中质量$m$的度量值相同
+
+    质量具有可加性：两个物体组合成大物体的质量等于两个物体质量的和
+
+    在国际单位制中，力是导出量力的单位是牛顿（$N$），$1N$的力使质量为$1kg$的物体产生$1m\cdot s^{-2}$的加速度
+\end{frame}
+
+\begin{frame}{“牛顿第零定律”}
+    牛顿运动定律提出质量的概念，并建立在物体质量不随时间变化的基础上
+
+    隐含“质量守恒”：物体的质量被认为是独立于其速度和任何时间与它的外力，总质量既不产生也不消灭，只是在物体相互作用的时候重新分配
+
+    1773年，“现代化学之父”拉瓦锡（Antoine Lavoisier）提出质量守恒定律：参与化学反应的原子没有被消耗或产生，只是重新组合，因此原子的种类、数量和质量都守恒，从而保证了整个系统的质量守恒。
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{pic/14.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{牛顿第三定律}
+    力与反作用力的描述：
+    \begin{itemize}
+        \item 作用力和反作用力总是成对地产生，并且同时存在、同时消失
+        \item 作用力和反作用力是具有相同性质的力
+        \item 有别于一对平衡力，作用力和反作用力分别作用于两个物体上，不能抵消
+    \end{itemize}
+
+    思考：重力与支持力是反作用力吗？离心力与向心力是作用力与反作用力吗？
+
+    作用力与反作用力相等而反向，是以力的传递不需要时间，即传递速度无穷大为前提的。
+    如果力以有限的速度传递，作用力和反作用力就不一定相等了。
+\end{frame}
+
+\subsection{单位制与量纲分析}
+
+\begin{frame}
+    详情可见第一次习题课讲义
+\end{frame}
+
+\subsection{力}
+
+\begin{frame}{常见的力}
+    力的分类：
+    \begin{itemize}
+        \item 接触力：两物体因接触而产生的相互作用力
+        \item 非接触力：未接触时即存在的力
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{常见的力}
+    弹性力（又称胡克力，elasticity）：物体发生弹性变形后，内部产生欲恢复形变的力。
+    
+    常见的有：弹簧的弹力、绳索间的张力、压力、支持力等。
+
+    \begin{equation*}
+        \vec{F} = -k\Delta\vec{x}
+    \end{equation*}
+    
+    $k$：弹性系数，由弹簧本身性质决定。负号表示弹性力与形变方向相反。
+\end{frame}
+
+\begin{frame}{常见的力}
+    摩擦力（friction）：物体与物体相互接触时，沿接触面两物体相互施以阻止相对滑动的作用力。
+
+    分子力是产生摩擦的根本原因。
+
+    静摩擦力: $0\leq f_s\leq \mu_s N$，$\mu_s$为静摩擦系数。
+    方向：与物体相对滑动趋势的方向相反。
+    大小：只能根据物体所处的运动状态，由平衡条件和牛顿定律来求解，与正压力$N$无关。
+
+    滑动摩擦力：$f_k=\mu_k N$，$\mu_k$为动摩擦系数。
+    方向：与物体相对运动的方向相反。
+
+    湿摩擦（粘滞阻力, drag）：固体与液体或者气体接触面发生相对运动时产生的阻力。
+    低速下，常有$f=-bv$，速度较大情况下有$f=-cv^2$。
+    一般情况下，粘性流体的运动由N-S方程描述。
+    \begin{equation*}
+        \begin{cases}
+            \rho\frac{D\vec{u}}{Dt}=-\bigtriangledown p+\bigtriangledown\cdot{\mu[\bigtriangledown u+(\bigtriangledown\vec{u})^{T}-\frac{2}{3}(\bigtriangledown\cdot\vec{u})I]}+\rho\vec{a},\text{可压缩流体} \\
+            \frac{D\vec{u}}{Dt} = \nu\bigtriangledown^2\vec{u}-\bigtriangledown(\frac{p}{\rho})+\vec{f},\text{不可压缩流体}
+        \end{cases}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{常见的力}
+    万有引力：自然界任何两物体之间都存在着相互吸引力，叫做万有引力。
+    两质点间万有引力大小与两质点的质量乘积成正比，与两质点间的距离平方成反比，力的方向沿着两质点的连线。
+    \begin{equation*}
+        F = \frac{Gm_1m_2}{r^2}
+    \end{equation*}
+
+    公式中的质量称为引力质量，它是物体与其他物体相互吸引性质的量度。
+
+    重力：地球对表面物体的万有引力，$\vec{F}=m\vec{g}$。
+\end{frame}
+
+\begin{frame}{常见的力}
+    库仑力：两个静止的点电荷之间的作用力的大小与它们电荷$q_1$，$q_2$的乘积成正比，与它们之间的距离$r$的平方成反比，方向沿着两点电荷的连线。
+    如果电荷是异号的，则为吸引力，如果是同号的，则是排斥力。
+
+    思考：万有引力和库仑力数学形式上的一致性，是否有更深层次的原因？
+
+    洛伦兹力：带电质点在电磁场中所受力，$\vec{F}=q(\vec{E}+\vec{v}\times\vec{B})$。
+
+    分子力：分子间相互作用的规律较复杂，很难用简单的数学公式来表示。
+    一般在实验的基础上，采用简化模型处理问题，可近似地用半经验公式$F=\frac{\lambda}{r^s}-\frac{\mu}{r^t}$来描述，其中$s>t$。
+\end{frame}
+
+\begin{frame}{基本相互作用}
+    \begin{table}[htbp]
+        \centering
+        \caption{基本相互作用}
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            \textbf{力} & \textbf{相对强度} & \textbf{作用范围} & \textbf{描述性质} \\
+            \hline
+            强相互作用（Strong force） & 1 & 10$^{-15}$m & 结合原子核 \\
+            \hline
+            电磁力（Electromagnetic force） & 10$^{-2}$ & $\infty$ & 除引力外的宏观力 \\
+            \hline
+            弱相互作用（Weak force） & 10$^{-5}$ & 10$^{-15}$m & 原子核衰变 \\
+            \hline
+            引力（Gravitational force） & 10$^{-39}$ & $\infty$ & 组织宇宙 \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{基本相互作用}
+    \begin{multicols}{2}
+        基本相互作用的统一：
+        \begin{itemize}
+            \item 1967年，温伯格和萨拉姆提出电磁和弱相互作用的统一理论，并被实验所验证（1979年Nobel Prize）。
+            \item 大统一理论（Grand Unified Theory）：将强相互作用统一进来。
+            \item 万有理论（Theory of Everything）：统合四种基本相互作用，目前被认为最有可能成功的万有理论是弦理论（string theory）和圈量子引力论（loop quantum gravity）。
+        \end{itemize}
+
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=0.5\textwidth]{pic/15.png}
+        \end{figure}
+    \end{multicols}
+\end{frame}
+
+\subsection{牛顿运动定律的应用}
+
+\begin{frame}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/16.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.95\textwidth]{pic/17.png}
+    \end{figure}
+\end{frame}
+
+\section{作业习题讲解}
+
+\begin{frame}
+    \begin{center}
+        {\Huge 作业习题讲解}
+    \end{center}
+\end{frame}
+
+\section{Q\&A}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Q\&A}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Thanks!}
+    \end{center}
+\end{frame}
+
+\end{document}

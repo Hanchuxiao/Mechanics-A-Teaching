@@ -1,0 +1,571 @@
+%!TEX program = xelatex
+\documentclass[aspectratio=169]{beamer}
+\usepackage[UTF8]{ctex} % Use default font set
+\usepackage{hyperref}
+
+% other packages
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{siunitx} % For \SI command
+\usepackage{graphicx,pstricks,listings,stackengine}
+
+\author{Yu Shu \& Chihao Shi}
+\title{力学A（PHYS1001A.04）：第三次习题课}
+\subtitle{Course NOT easy: The Survival Guide 1+2}
+\institute{School of Physics, USTC}
+\date{Nov.3, 2025}
+\usepackage{USTC} 
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.15\linewidth]{pic/ustc_logo_fig-eps-converted-to.pdf}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{内容回顾与补充拓展}
+
+\subsection{非惯性系}
+
+\begin{frame}
+    惯性系：物体满足牛顿第一定律，即在不受力的情况下，速度的大小与方向不变. 同时，在此参考系下，牛顿第二定律有形式$\vec{F}=m\vec{a}$.
+
+    非惯性系：相对于惯性系作变速运动的参考系
+\end{frame}
+
+\begin{frame}{平动加速参考系}
+    平移惯性力：$\vec{f}_i=-m\vec{a}_0$
+
+    表现力：$\vec{F}_{eff}=\vec{F}+\vec{f}_i$
+
+    平动加速参考系下的牛顿第二定律：$\vec{F}_{eff}=m\vec{a}’$
+\end{frame}
+
+\begin{frame}
+    “虚拟力”\&“真实力”
+    \begin{enumerate}
+        \item 不能指出是哪个物体作用；
+        \item 没有反作用力；
+        \item 所有质点都受力，而且惯性力与质点的位置无关，各处均匀。 其指向一律与“牵连”加速度（坐标系$K'$的加速度）相反，且正比于质量（和重力类似）；
+        \item 原则上讲，只要选择惯性系，就可以消除惯性力，而真实力一般不能这样来消除。
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{补充拓展：等效原理}
+    弱等效原理（Weak equivalence principle）：$m_i=m_g$，$m_g$为引力质量，$m_i$为惯性质量
+
+    爱因斯坦表述（Einstein equivalence principle）：引力场与惯性力场等效
+
+    强等效原理（Strong equivalence principle）：在时空区域的一点内的引力场可用相应的局域惯性参考系去描述，而狭义相对论在其局域惯性参考系中完全成立
+
+    例：狭义相对论下$T^{\mu\nu}_{,\nu}=0$，引入引力场后，广义相对论下$T^{\mu\nu}_{;\nu}=T^{\mu\nu}_{,\nu}+\Gamma^{\mu}_{\rho\nu}T^{\rho\nu}+\Gamma^{\nu}_{\rho\nu}T^{\rho\mu}=0$
+\end{frame}
+
+\begin{frame}{补充拓展：厄缶实验（Eötvös experiment）}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/1.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{补充拓展：潮汐}
+    潮汐现象主要来自于引力的空间不均匀性
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/2.png}
+        \end{center}
+    \end{figure}
+
+    \url{https://science.nasa.gov/moon/tides/}
+\end{frame}
+
+\begin{frame}{转动惯性系}
+    $K'$系相对于$K$系有转动，则有：
+    \begin{enumerate}
+        \item $K'$中的位矢：$\vec{r}' = \vec{r} - \vec{r}_0$
+        \item 单位矢量关系：$\dot{\vec{\imath}'}=\vec{\omega}\times\vec{\imath}'$，$\dot{\vec{\jmath}'}=\vec{\omega}\times\vec{\jmath}'$，$\dot{\vec{k}'}=\vec{\omega}\times\vec{k}'$
+        \item 速度变换：$\vec{v}=\vec{v}_0+\vec{\omega}\times\vec{r}'+\vec{v}'$，其中，$\vec{v}'$为$K'$系中的速度向量，有$\vec{v}'=\dot{r}_x\vec{\imath}'+\dot{r}_y\vec{\jmath}'+\dot{r}_z\vec{k}'\neq\frac{d\vec{r}'}{dt}$
+        \item 加速度变换：$\vec{a}=\vec{a}_0+\vec{a}'+2\vec{\omega}\times\vec{v}'+\dot{\vec{\omega}}\times\vec{r}'+\vec{\omega}\times(\vec{\omega}\times\vec{r}')$
+    \end{enumerate}
+
+    加速度变换包括以下变换项：
+    \begin{enumerate}
+        \item 平动惯性力：$-m\vec{a}_0$
+        \item 惯性离心力：$-m\vec{\omega}\times(\vec{\omega}\times\vec{v}')$
+        \item 科里奥利力：$-2m\vec{\omega}\times\vec{v}'$
+        \item 切向惯性力：$-m\dot{\vec{\omega}}\times\vec{r}'$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{惯性离心力}
+    一个相对于转动系$K'$静止的物体，在惯性系$K$看来，它必定绕转轴作圆周运动，其上受向心力$\vec{F}=m\vec{\omega}\times(\vec{\omega}\times\vec{v}')$。
+    在转动系中此物静止不动，必须认为物体不仅受真实力$\vec{F}$作用，而且还受虚拟力$\vec{F}_c$作用， $\vec{F}_c$正好与$\vec{F}$相抵消。
+
+    惯性离心力垂直于转轴，并指向离开转轴的方向。
+
+    惯性离心力与物体质量成正比。离心力与物体所在位置有关，与物体在转动系中运动与否无关。
+
+    视重：地球是一个转动参考系，表观重力为惯性离心力与引力的合力，且与纬度有关。
+\end{frame}
+
+\begin{frame}{科里奥利力}
+    如果物体在转动系𝐾′中运动，则产生新的惯性力，即科里奥利力$\vec{F}_{cor}=-2m\vec{\omega}\times\vec{v}'$。
+
+    用右手螺旋法则，将右手伸出，用四个指头指向质点相对$\vec{K}'$系的速度方向，再将四指绕向角速度方向，拇指所指方向为科里奥利力方向。
+
+    与相对速度成正比，故只有当物体相对转动参考系运动时才能出现。
+
+    与转动角速度的一次方成正比，而离心力与角速度的二次方成正比，故当参考系的转动角速度较小时，科里奥利力比离心力更重要。
+
+    力的方向总是与相对速度垂直，不会改变相对速度的大小。
+\end{frame}
+
+\begin{frame}{科里奥利力}
+    地球是一个转动参考系，科里奥利力在地球上的表现：
+    \begin{enumerate}
+        \item 地面上北半球河流冲刷右岸，火车对右轨的偏压较大。在南半球则对左岸和左轨作用大。
+        \item 地球上自由落体偏东。
+    \end{enumerate}
+
+    傅科摆（Foucault pendulum）摆平面转动角速度：$\Omega=-\omega\sin\lambda$。
+\end{frame}
+
+\begin{frame}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/3.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\subsection{相对性原理和绝对时空观}
+
+\begin{frame}
+    本部分可见第一次习题课讲义P40-P47
+\end{frame}
+
+\subsection{守恒律}
+
+\begin{frame}
+    多体问题难以求解$m\ddot{\vec{r}}=\vec{F}(\vec{r},\dot{\vec{r}},t)$。
+
+    力是必须的吗？
+
+    守恒律是牛顿三定律的推论，是求解系统运动特征的有力工具。
+
+    守恒律的应用范围比牛顿三定律更广泛。
+
+    诺特定理（Noether's theorem）： 每个连续对称性都有着相应的守恒定律。
+\end{frame}
+
+\subsection{动量定理}
+
+\begin{frame}{质点动量定理}
+    动量： $p = mv$
+
+    质点运动方程： $m\frac{d^2x}{dt^2} = F$
+
+    质点动量定理微分形式：$\vec{F}dt=d\vec{p}$
+
+    质点动量定理积分形式：$\int_{t_1}^{t_2}\vec{F}dt=\int_{\vec{p}_1}^{\vec{p}_2}d\vec{p}=\vec{p}_2-\vec{p}_1$
+
+    冲量： $\vec{I}=\int_{t_1}^{t_2}\vec{F}dt$
+
+    冲量定理： $\vec{I}=\vec{p}_2-\vec{p}_1$
+
+    力对质点的冲量等于质点动量的增加
+\end{frame}
+
+\begin{frame}{质点系动量定理}
+    质点系（质点组）：由相互作用的若干个质点组成的系
+
+    内力：系统内各质点间的相互作用力
+
+    外力：系统以外的其它物体对系统内任意一质点的作用力
+
+    质点系动量定理： $\vec{F}_{ex}=\frac{d\vec{p}}{dt}$
+\end{frame}
+
+\begin{frame}
+    原惯性系有$\vec{F}$的作用
+
+    对于惯性系，$\vec{F}dt=\vec{F}'dt'$，则$\vec{F}'dt'=d\vec{p}'$
+
+    对于非惯性系，则要考虑惯性力的冲量：$\vec{I}_{ext}+\vec{I}_{inert}=\vec{p}_2-\vec{p}_1$
+
+    加速平动参考系：$d\vec{p}'=(\vec{F}-m\vec{a}_0)dt$
+
+    加速转动参考系：$d\vec{p}'=(\vec{F}-m\vec{a}_0-2m\vec{\omega}\times\vec{r}'-m\vec{\omega}\times(\vec{\omega}\times\vec{r}')-m\dot{\vec{\omega}}\times\vec{r}')dt$
+\end{frame}
+
+\begin{frame}
+    只有外力对体系的总动量变化有贡献。内力对体系的总动量变化没有贡献，但内力对动量在体系内部的分配是有作用的
+
+    动量定理是矢量式，应用时可用沿坐标轴的分量式求解
+
+    动量定理与牛顿定律的关系:
+    \begin{enumerate}
+        \item 对一个质点，牛顿定律表示的是力的瞬时效应，而动量定理表示的是力对时间的积累效果；
+        \item 牛顿第二定律只适于质点，不能直接用于质点系；动量定理既适于质点又适于质点系；
+        \item 牛顿第三定律不适用的地方，动量定理也不适用；
+        \item 牛顿定律和动量定理都只适用于惯性系，要在非惯性系中应用动量定理，必须考虑惯性力的冲量。
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{equation}
+        \vec{F}_{ex}=\frac{d\vec{p}}{dt}
+    \end{equation}
+
+    注意：
+    \begin{enumerate}
+        \item 只适用于惯性系；
+        \item 动量守恒是矢量式，它有三个分量，各分量可以分别守恒；
+        \item 在某些过程（如爆炸、碰撞）中, 体系虽受外力，但外力有限（外力≪内力），过程时间很短，外力冲量很小；而其间内力很大， 体系内每一部分的动量变化主要来自内力的冲量，外力的冲量可忽略不计，体系动量近似守恒，故可以利用动量守恒定律研究体系内部各部分间的动量再分配问题。
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{质心运动定理}
+    \begin{equation}
+        \vec{F}_{ex}=\frac{d\vec{p}}{dt}=M_c\ddot{\vec{r}}_C=M_C\vec{a}_C
+    \end{equation}
+
+    对于单个质点，动量定理与牛二是等效的，但不适用于质点系（因为每个质点的加速度不同）
+
+    但对质点系而言，确实存在一个特殊点（质心），可以应用牛顿第二定律
+\end{frame}
+
+\begin{frame}{质心}
+    分立质点系：$\vec{r}_C=\frac{\sum_{i=1}^{N}m_i\vec{r}_i}{\sum_{i=1}^{N}m_i}$
+
+    连续体：$\vec{r}_C=\frac{\int\vec{r}dm}{\int dm}$
+
+    巴普斯定理：
+    \begin{enumerate}
+        \item 在一平面上取任一闭合区域，其面积为S，使它沿垂直于该区域的平面运动形成一个体积为V的立体，那么这个立体图形的体积就等于质心所经路程 r 乘以区域面积。表达式为V=S·r。
+        \item 如果令某一长为L的曲线段，其长度为L，使它沿着垂直于它所在平面的方向扫过一个面积S，那么这个面积的大小就等于线段质心移动的距离r乘以线段的长度。表达式为S=L·r。
+        \item 注意：是质心，而不是重心，因为除非重力场是均匀的，否则同一物质（系统）的质心与重心通常不在同一假想点上。
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{质心系}
+    原点取在质心上的平动参考系（坐标架不转动）
+
+    质心系是“零动量系”，满足$\sum_im_i\vec{v}_i'=0$
+
+    若$\vec{F}_{ex}=0$，,质心系为惯性系，否则为非惯性系（须考虑惯性力）
+
+    质心系中，惯性力总功为 0，因此不论质心系是否为惯性系，都不需要考虑惯性力做功
+
+    惯性力相对于质心总力矩为 0
+\end{frame}
+
+\begin{frame}{变质量物体的运动}
+    \begin{equation}
+        m\frac{d\vec{v}}{dt}+(\vec{v}-\vec{u})\frac{dm}{dt}=\vec{F}
+    \end{equation}
+
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/4.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{变质量物体的运动}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/5.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\subsection{动能定理}
+
+\begin{frame}
+    功：$W=\int_{\vec{r}_1}^{\vec{r}_2}\vec{F}\cdot d\vec{r}$，标量，可正可负
+
+    功是相对量：位移是相对量；同一力在不同参考系中的功不一样
+
+    功率：$P=\frac{dW}{dt}$，标量，可正可负
+
+    动能：$E=\frac{1}{2}mv^2$，标量，可正可负
+\end{frame}
+
+\begin{frame}{质点系动能定理}
+    作用于质点系的所有外力所作之功与所有内力所作之功的总和，等于质点系动能的增量
+
+    \begin{equation}
+        \begin{cases}
+            W_{ext}&=\sum_{i=1}^{n}W_{i,ext}\\
+            W_{int}&=\sum_{i=1}^{n}W_{i,int}=\sum_{i,j=1,i<j}^{n}\int_{\vec{r}_{ij0}}^{\vec{r}_{ij}}\vec{f}_{ij}\cdot d\vec{r}_{ij}\\
+            E_k&=\sum_{i=1}^{n}E_{ki}=\sum_{i=1}^{n}\frac{1}{2}mv_i^2\\
+            \Delta E&=W_{ext}-W_{int}
+        \end{cases}
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    动能、做功与参考系选取有关。
+
+    动能定理只适用于惯性系。非惯性系中引入惯性力作功，它与真实力作功之和也等于质点在非惯性系中动能的增量。
+
+    内力的总冲量虽然为零，但内力的总功一般不为零。
+
+    摩擦力做功，当摩擦力为体系外力时，对体系可能做正功，也可能做负功 , 也可能不做功；动摩擦力总是消耗体系的机械能，是一种耗散力；而静摩擦力不同，它不消耗体系的机械。
+
+    质点系动量定理是矢量式，而质点系动能定理是标量式。
+
+    质点系动量定理与质点系动能定理是相互独立的。
+
+    内力的作用不改变体系的总动量，但一般要改变体系的总动能。
+\end{frame}
+
+\begin{frame}{质心系中的动能}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/6.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\subsection{势能}
+
+\begin{frame}{有心力}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/7.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{保守力}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/8.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{势能}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/9.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{常见的势能}
+    \begin{enumerate}
+        \item 重力势能：以地面为势能零点，$V(z)=\int_{0}^{z}mg\cdot dz=mgz$
+        \item 引力势能：质量各为$M$，$m$的两质点的引力势能，取$M$为原点，无穷远处为势能零点，$V(r)=\int_{\infty}^{r}G\frac{Mm}{r^2}=-G\frac{Mn}{r}$
+        \item 弹性势能：以弹簧原长处的势能为零，$V(x)=\int_{0}^{x}kx\cdot dx=\frac{kx^2}{2}$
+        \item 双原子分子势能（Morse势）：$V(r)=D_e(e^{-2a(r-r_0)}-2e^{-a(r-r_0)})$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{势能曲线}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/10.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{势能曲线}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/11.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{功能原理和机械能守恒定律}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/12.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{功能原理和机械能守恒定律}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/13.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{功能原理和机械能守恒定律}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/14.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{宇宙速度}
+    第一宇宙速度：$7.9 km/s$
+
+    第二宇宙速度：$11.2 km/s$
+
+    第三宇宙速度：$16.7 km/s$
+
+    详见Prof. Xu的Chapter 3 Lecture P65-P72
+\end{frame}
+
+\subsection{两体问题}
+
+\begin{frame}
+    考虑两个质点的孤立体系，不受外力
+
+    在质心系中处理：质心的运动+两质点的相对运动
+    
+    质心：静止或匀速直线运动，质心系为惯性系
+
+    折合质量：$\mu=\frac{m_1m_2}{m_1+m_2}$，$\vec{F}=\mu\ddot{\vec{r}}$
+
+    体系能量：$E=\frac{1}{2}\mu\vec{v}^2+V(r)$
+\end{frame}
+
+\subsection{碰撞}
+
+\begin{frame}
+    碰撞：两物体互相接近、运动状态发生急剧变化的过程
+
+    碰前：两物体均处于自由运动状态，没有相互作用
+
+    碰后：分离，回到各自的自由运动状态
+
+    碰撞过程：发生相互作用，涉及动量和能量交换的过程
+
+    碰撞前后系统动量守恒，有些过程中的内力远大于外力，而且作用时间极短，外力的冲量可以忽略，也可以看成是碰撞
+\end{frame}
+
+\begin{frame}
+    弹性碰撞：碰撞过程中没有机械能的损失
+
+    非弹性碰撞：碰撞后物体的形变不能完全消失，这时机械能不守恒
+
+    一维碰撞：碰撞前后两质点的速度都在同一条直线上，也称为正碰
+
+    二维碰撞：碰撞前后质点的速度在同一个平面内
+
+    三维碰撞：碰撞前后不在同一个平面内
+    
+    二维、三维碰撞也称为斜碰
+\end{frame}
+
+\begin{frame}{正碰}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/15.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{正碰}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/16.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{正碰}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/17.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{正碰}
+    完全非弹性碰撞：$\Delta E_k=-\frac{1}{2}\mu(u_1-u_2)^2$
+
+    资用能：质心动能在对撞前后不变，$m_1$，$m_2$在质心系中的动能之和称为资用能$E_{kc0}=-\frac{1}{2}\mu(u_1-u_2)^2$
+\end{frame}
+
+\begin{frame}{正碰}
+    一般非弹性碰撞
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/18.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{斜碰}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/19.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{质心坐标系中讨论碰撞}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/20.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{质心坐标系中讨论碰撞}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.95\linewidth]{pic/21.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\section{作业习题讲解}
+
+\begin{frame}
+    \begin{center}
+        {\Huge 作业习题讲解}
+    \end{center}
+\end{frame}
+
+\section{Q\&A}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Q\&A}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Thanks!}
+    \end{center}
+\end{frame}
+
+\end{document}

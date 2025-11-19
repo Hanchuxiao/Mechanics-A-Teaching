@@ -1,0 +1,1025 @@
+\documentclass[UTF8,8pt,a4paper]{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bookmark}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+
+\geometry{left=1.8cm,right=1.8cm,top=1.9cm,bottom=1.9cm}
+\makeatletter
+\def\@fnsymbol#1{\ensuremath{%
+  \ifcase#1\or % 0
+    \dagger\or % 1 - 改为 dagger
+    *\or       % 2 - 原来的 dagger 变成 asterisk
+    \ddotagger\or % 3
+    \S\or      % 4
+    \P\or      % 5
+    \|\or      % 6 (DOUBLE VERTICAL LINE)
+    **\or      % 7
+    \dagger\dagger\or % 8
+    \ddotagger\ddotagger % 9
+  \else
+    \@ctrerr
+  \fi
+}}
+\makeatother
+
+\title{\huge\textbf{第五章习题解答}}
+\author{TA：疏宇\thanks{School of Gifted Young, USTC, email:\url{shuyu2023@mail.ustc.edu.cn}}\quad{}师驰昊\thanks{School of Gifted Young, USTC, email:\url{1984019655@qq.com}}}
+\date{November 13$^{\{\text{th}\}}$, 2025}
+
+\begin{document}
+\maketitle
+
+\section{I 简答题}
+简答题没有标准答案，以下仅提供思路分析.
+\newline
+
+
+\textbf{1 当几个力同时作用于多个物体组成的体系时, 合力(指几个力的矢量和)的功是否等于各个分力所作功的和? 试举例证明你的观点.}
+
+对于多个物体组成的体系, 合力(指几个力的矢量和)的功一般不等于各个分力所作功的代数和. 这一结论与单个物体的情况有本质区别.
+
+对于单个物体, 若受到多个力 $\vec{F}_1, \vec{F}_2, \dots, \vec{F}_n$ 的作用, 合力 $\vec{F}_{\text{合}} = \sum_{i=1}^{n} \vec{F}_i$, 则合力的功为:
+\begin{equation}
+    W_{\text{合}} = \int \vec{F}_{\text{合}} \cdot \ddot{\vec{r}} = \int \left(\sum_{i=1}^{n} \vec{F}_i\right) \cdot \ddot{\vec{r}} = \sum_{i=1}^{n} \int \vec{F}_i \cdot \ddot{\vec{r}} = \sum_{i=1}^{n} W_i
+\end{equation}
+此时合力的功等于各分力功的代数和, 这是功的叠加原理.
+
+然而, 当力作用于多个物体时, 情况截然不同. 考虑以下反例:
+
+\textbf{例: 两个独立运动的物体}
+
+设有两个物体 A 和 B, 质量均为 $m$. 物体 A 受到水平力 $\vec{F}_1 = 10\, \text{N}\ \hat{\vec{i}}$ (向右), 产生位移 $\vec{d}_1 = 2\, \text{m}\ \hat{\vec{i}}$ (向右). 物体 B 受到水平力 $\vec{F}_2 = 10\, \text{N}\ (-\hat{\vec{i}})$ (向左), 产生位移 $\vec{d}_2 = 2\, \text{m}\ (-\hat{\vec{i}})$ (向左).
+
+计算各力做功:
+\begin{align}
+    W_1 &= \vec{F}_1 \cdot \vec{d}_1 = (10\, \text{N}\ \hat{\vec{i}}) \cdot (2\, \text{m}\ \hat{\vec{i}}) = 20\, \text{J} \\
+    W_2 &= \vec{F}_2 \cdot \vec{d}_2 = [10\, \text{N}\ (-\hat{\vec{i}})] \cdot [2\, \text{m}\ (-\hat{\vec{i}})] = 20\, \text{J}
+\end{align}
+
+体系总功为:
+\begin{equation}
+    W_{\text{总}} = W_1 + W_2 = 20\, \text{J} + 20\, \text{J} = 40\, \text{J}
+\end{equation}
+
+若错误地计算"合力的功", 首先求力的矢量和:
+\begin{equation}
+    \vec{F}_{\text{合}} = \vec{F}_1 + \vec{F}_2 = 10\, \text{N}\ \hat{\vec{i}} + 10\, \text{N}\ (-\hat{\vec{i}}) = \vec{0}
+\end{equation}
+
+若以质心位移 $\vec{d}_c = (\vec{d}_1 + \vec{d}_2)/2 = \vec{0}$ 计算:
+\begin{equation}
+    W_{\text{错误}} = \vec{F}_{\text{合}} \cdot \vec{d}_c = \vec{0} \cdot \vec{0} = 0\, \text{J}
+\end{equation}
+
+显然 $W_{\text{错误}} \neq W_{\text{总}}$, 说明不能用合力乘以某个位移来计算多体系统的总功.
+
+\textbf{正确计算方法:} 对于多物体系统, 总功应计算为:
+\begin{equation}
+    W_{\text{总}} = \sum_{i} \vec{F}_i \cdot \vec{d}_i
+\end{equation}
+即每个力与其作用点位移的点积之和, 而不是先求合力再求功.
+\newline
+
+
+\textbf{2 有人这样计算图中质点 $m$ 在固定质点 $m'$ 的引力场中沿径向从 $a$ 运动到 $b$ 的过程中, 引力对 $m$ 所作的功: $W = \int \vec{F} \cdot d\vec{r}$. 由于 $\vec{F}$ 与 $\vec{r}$ 同方向, 故 $\vec{F} \cdot d\vec{r} = F dr$, 从而有: $W = \int_{r_a}^{r_b} F dr = \int_{r_a}^{r_b} \frac{G m' m}{r^2} dr = G m' m \left.\left(-\frac{1}{r}\right)\right|_{r_a}^{r_b} = G m' m \left(\frac{1}{r_a} - \frac{1}{r_b}\right)$. 你认为这样做对吗? 为什么?}
+
+这种计算方法是错误的. 错误根源在于对引力方向的误解.
+
+在标准坐标系中, 设固定质点 $m'$ 位于坐标原点, 位置矢量 $\vec{r}$ 从 $m'$ 指向运动质点 $m$, 其大小为 $r$. 万有引力定律表明, $m'$ 作用于 $m$ 的引力为:
+\begin{equation}
+    \vec{F} = -\frac{G m' m}{r^2} \hat{r}
+\end{equation}
+其中 $\hat{r} = \frac{\vec{r}}{r}$ 为径向单位向量, 负号表示引力指向坐标原点 (即 $m'$ 的位置), 与 $\vec{r}$ 的方向相反.
+
+当质点 $m$ 沿径向移动时, 位移微元 $d\vec{r} = dr \hat{r}$, 其中 $dr$ 为径向坐标的变化量. 因此, 功的微元为:
+\begin{equation}
+    \vec{F} \cdot d\vec{r} = \left(-\frac{G m' m}{r^2} \hat{r}\right) \cdot (dr \hat{r}) = -\frac{G m' m}{r^2} dr
+\end{equation}
+
+从位置 $a$ 到位置 $b$ 的总功为:
+\begin{align}
+    W &= \int_{r_a}^{r_b} -\frac{G m' m}{r^2} \ddot{r} \\
+      &= G m' m \int_{r_a}^{r_b} -\frac{1}{r^2} \ddot{r} \\
+      &= G m' m \left.\left(\frac{1}{r}\right)\right|_{r_a}^{r_b} \\
+      &= G m' m \left(\frac{1}{r_b} - \frac{1}{r_a}\right)
+\end{align}
+
+原计算中的主要错误是:
+\begin{enumerate}
+    \item 错误地认为 $\vec{F}$ 与 $\vec{r}$ 同方向, 实际上它们方向相反.
+    \item 忽略了引力表达式中的负号, 导致最终结果符号错误.
+\end{enumerate}
+
+为验证正确性, 考虑物理意义:
+\begin{itemize}
+    \item 当质点 $m$ 从较近位置 $a$ 移动到较远位置 $b$ ($r_b > r_a$), 引力做负功, 需要外力克服引力做功. 正确公式给出 $W = G m' m \left(\frac{1}{r_b} - \frac{1}{r_a}\right) < 0$, 符合物理直觉.
+    \item 当质点 $m$ 从较远位置 $a$ 移动到较近位置 $b$ ($r_b < r_a$), 引力做正功, 加速质点运动. 正确公式给出 $W > 0$, 也符合物理直觉.
+\end{itemize}
+
+而原计算得到 $W = G m' m \left(\frac{1}{r_a} - \frac{1}{r_b}\right)$, 当 $r_b > r_a$ 时 $W > 0$, 与物理事实相悖.
+\newline
+
+
+\textbf{3 汽车加速过程中, 驱动轮与地面的接触部分是相对静止的. 地面与轮胎之间的摩擦力对驱动轮做功吗? 汽车动能的增加是怎么产生的?}
+
+在汽车加速过程中, 驱动轮与地面的接触点处于纯滚动状态（无滑动）, 此时地面与轮胎之间为静摩擦力. 根据功的定义 $W = \int \vec{F} \cdot d\vec{r}$, 静摩擦力对驱动轮\textbf{不做功}. 原因如下:
+
+\begin{itemize}
+    \item 在纯滚动条件下, 车轮与地面的接触点瞬时速度为零. 虽然车轮在转动, 但在任意瞬间, 接触点相对于地面是静止的.
+    \item 由于接触点瞬时速度为零, 静摩擦力的作用点在该瞬间没有位移, 因此静摩擦力不做功.
+    \item 从功率角度看, 功率 $P = \vec{F} \cdot \vec{v}$, 接触点速度 $\vec{v} = 0$, 故 $P = 0$, 表明静摩擦力不做功.
+\end{itemize}
+
+尽管静摩擦力不做功, 但它在汽车加速过程中起着关键作用. 汽车动能的增加来源于发动机内部做功:
+
+\begin{itemize}
+    \item \textbf{发动机的作用}: 发动机通过燃烧燃料将化学能转化为机械能, 通过传动系统对驱动轮施加力矩.
+    \item \textbf{能量转化路径}: 燃料化学能 $\to$ 发动机机械能 $\to$ 汽车动能（包括平动动能和车轮转动动能）.
+    \item \textbf{静摩擦力的角色}: 静摩擦力提供必要的约束力, 阻止车轮空转, 使得发动机的力矩能够转化为推动汽车前进的力. 它是实现能量有效传递的条件, 但本身不提供能量.
+\end{itemize}
+
+考虑汽车系统的动力学:
+
+\begin{itemize}
+    \item \textbf{质心运动}: 根据牛顿第二定律, 静摩擦力 $f_s$ 是使汽车质心加速的外力: $f_s = Ma_{\text{cm}}$.
+    \item \textbf{车轮转动}: 发动机提供的力矩 $\tau$ 与静摩擦力的力矩平衡: $\tau - Rf_s = I\alpha$, 其中 $R$ 为车轮半径, $I$ 为转动惯量, $\alpha$ 为角加速度.
+    \item \textbf{纯滚动条件}: $a_{\text{cm}} = R\alpha$.
+    \item \textbf{能量守恒}: 发动机功率 $P_{\text{engine}} = \tau\omega$ 等于汽车动能增加率 $\frac{d}{dt}\left(\frac{1}{2}Mv_{\text{cm}}^2 + \frac{1}{2}I\omega^2\right)$, 其中 $\omega$ 为角速度.
+\end{itemize}
+
+从能量转化方程可见, 汽车动能的增加完全由发动机提供, 静摩擦力功率为零, 不贡献能量.
+\newline
+
+
+\textbf{4 物体在外力作用下动量发生变化, 是否必然伴随着动能的变化? 物体在外力作用下动能发生变化, 是否必然伴随着动量的变化? 试举例证明你的观点.}
+
+物体在外力作用下动量发生变化, 不一定伴随着动能的变化.
+
+动量 $\vec{p} = m\vec{v}$ 是矢量, 其变化可以是大小变化、方向变化或两者兼有. 动能 $K = \frac{1}{2}mv^2$ 是标量, 仅取决于速度的大小 $v = |\vec{v}|$, 与方向无关. 当外力仅改变速度方向而不改变其大小时, 动量变化但动能不变.
+
+\fbox{\parbox{\textwidth}{\textbf{例1: 匀速圆周运动}
+
+考虑质量为 $m$ 的物体以恒定速率 $v$ 沿半径为 $r$ 的圆周运动. 物体受到向心力 $\vec{F} = -\frac{mv^2}{r}\hat{\vec{r}}$ 作用, 其中 $\hat{\vec{r}}$ 为径向单位向量.
+
+- 任意时刻 $t$, 速度 $\vec{v}(t) = v(-\sin\omega t\ \hat{\vec{i}} + \cos\omega t\ \hat{\vec{j}})$, 其中 $\omega = v/r$
+- 动量 $\vec{p}(t) = m\vec{v}(t) = mv(-\sin\omega t\ \hat{\vec{i}} + \cos\omega t\ \hat{\vec{j}})$
+- 在时间 $\Delta t$ 内, 动量变化 $\Delta\vec{p} = \vec{p}(t+\Delta t) - \vec{p}(t) \neq \vec{0}$ (方向改变)
+- 动能 $K = \frac{1}{2}mv^2 = \text{常量}$
+
+此例中, 向心力持续改变动量方向, 但动能保持不变.}}
+
+\fbox{\parbox{\textwidth}{\textbf{例2: 弹性碰撞}
+
+考虑质量为 $m$ 的物体以速度 $\vec{v} = v\hat{\vec{i}}$ 垂直撞击固定墙壁, 发生完全弹性碰撞.
+
+- 碰撞前动量: $\vec{p}_i = mv\hat{\vec{i}}$
+- 碰撞后动量: $\vec{p}_f = -mv\hat{\vec{i}}$
+- 动量变化: $\Delta\vec{p} = \vec{p}_f - \vec{p}_i = -2mv\hat{\vec{i}} \neq \vec{0}$
+- 碰撞前动能: $K_i = \frac{1}{2}mv^2$
+- 碰撞后动能: $K_f = \frac{1}{2}m(-v)^2 = \frac{1}{2}mv^2 = K_i$
+
+此例中, 墙壁施加的力使动量方向反转, 但动能不变.}}
+
+若只考虑质点，物体在外力作用下动能发生变化, 必然伴随着动量的变化.
+
+动能 $K = \frac{1}{2}mv^2$ 与速度大小 $v$ 相关. 若动能变化, 则 $v$ 必然变化. 由于动量 $\vec{p} = m\vec{v}$, 速度大小变化必然导致动量大小变化, 因此动量矢量必然变化.
+
+数学上, 若 $K_f \neq K_i$, 则 $\frac{1}{2}mv_f^2 \neq \frac{1}{2}mv_i^2$, 故 $v_f \neq v_i$. 因此:
+$$|\vec{p}_f| = mv_f \neq mv_i = |\vec{p}_i|$$
+这意味着 $\vec{p}_f \neq \vec{p}_i$, 动量必然变化.
+
+\fbox{\parbox{\textwidth}{\textbf{例3: 自由落体}
+
+考虑质量为 $m$ 的物体从高度 $h$ 自由下落.
+
+- 初始状态 ($t=0$): $v_i = 0$, $\vec{p}_i = \vec{0}$, $K_i = 0$
+- 落地时 ($t=t_f$): $v_f = \sqrt{2gh}$, $\vec{p}_f = m\sqrt{2gh}\ \hat{\vec{j}}$, $K_f = \frac{1}{2}m(2gh) = mgh$
+- 动量变化: $\Delta\vec{p} = \vec{p}_f - \vec{p}_i = m\sqrt{2gh}\ \hat{\vec{j}} \neq \vec{0}$
+- 动能变化: $\Delta K = K_f - K_i = mgh > 0$
+
+此例中, 重力使物体动能增加, 同时动量也发生变化.}}
+
+\fbox{\parbox{\textwidth}{\textbf{例4: 汽车加速}
+
+考虑质量为 $m$ 的汽车在水平路面上从静止加速到速度 $v$.
+
+- 初始状态: $v_i = 0$, $\vec{p}_i = \vec{0}$, $K_i = 0$
+- 最终状态: $v_f = v$, $\vec{p}_f = mv\ \hat{\vec{i}}$, $K_f = \frac{1}{2}mv^2$
+- 动量变化: $\Delta\vec{p} = mv\ \hat{\vec{i}} \neq \vec{0}$
+- 动能变化: $\Delta K = \frac{1}{2}mv^2 > 0$
+
+此例中, 发动机驱动力使汽车动能增加, 同时动量也发生变化.}}
+
+事实上，物体动能改变时，动量也可能不变，如下例：
+假设一根质量为 $M$、长度为 $L$ 的均匀长杆静止在没有外力的宇宙空间中. 它的质心速度为零, 总动量为零, 总动能也为零.
+现在, 我们在杆的两端施加一个力偶: 在一端施加力 $\vec{F}$, 在另一端施加大小相等、方向相反的力 $-\vec{F}$, 且力的方向均垂直于杆.
+
+对于整个长杆这个系统而言, 它所受的合外力为:
+\begin{equation}
+    \vec{F}_{net} = \vec{F} + (-\vec{F}) = 0
+\end{equation}
+
+根据牛顿第二定律的质点系形式, 系统的总动量 $\vec{P}_{sys}$ 的变化率等于所受的合外力:
+\begin{equation}
+    \frac{d\vec{P}_{sys}}{dt} = \vec{F}_{net}
+\end{equation}
+
+因为 $\vec{F}_{net} = 0$, 所以 $\frac{d\vec{P}_{sys}}{dt} = 0$. 这意味着系统的总动量保持不变. 由于杆的初始总动量为零, 因此在整个过程中, 它的总动量始终为零.
+\begin{equation}
+    \vec{P}_{sys} = \text{常量} = 0
+\end{equation}
+
+这也意味着, 杆的质心将始终保持在原来的位置静止不动.
+虽然合外力为零, 但这两个力对杆的质心产生的合外力矩 $\vec{\tau}_{net}$ 并不为零. 这个力矩会使杆产生角加速度 $\vec{\alpha}$:
+\begin{equation}
+    \vec{\tau}_{net} = I_{CM} \vec{\alpha} \neq 0
+\end{equation}
+
+其中 $I_{CM}$ 是杆绕其质心的转动惯量.
+角加速度的存在意味着杆的角速度 $\omega$ 会从零开始不断增加.
+
+一个刚体的总动能等于其质心平动动能与绕质心转动动能之和:
+\begin{equation}
+    E_{k, sys} = E_{k, trans} + E_{k, rot} = \frac{1}{2}Mv_{CM}^2 + \frac{1}{2}I_{CM}\omega^2
+\end{equation}
+
+在这个例子中, 质心始终静止, 所以 $v_{CM}=0$. 但是角速度 $\omega$ 在不断增大, 因此转动动能 $\frac{1}{2}I_{CM}\omega^2$ 在不断增大.
+所以, 系统的总动能 $E_{k, sys}$ 是不断增加的.
+\newline
+
+
+\section{II 教材习题}
+教材习题部分答案与教材给出答案有出入，以本习题解析为准.
+\newline
+
+
+\textbf{TB5.5 如图所示, 物体从高为 $h$ 的斜面顶端自静止开始滑下, 最后停在与起点的水平距离为 $S$ 的水平地面上. 若物体与斜面和地面间的摩擦系数均为 $\mu$, 证明: $\mu = h/S$.}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{Fig/TB5.5.png}
+  \caption{图TB5.5}
+\end{figure}
+
+设斜面的倾角为 $\theta$ , 则物体在斜面上所受的支持力为 $N_1 = mg\cos\theta$ , 故滑动摩擦力大小为 :
+\begin{equation}
+f_1 = \mu N_1 = \mu mg\cos\theta
+\end{equation}
+
+在水平地面上 , 支持力为 $N_2 = mg$ , 摩擦力为 :
+\begin{equation}
+f_2 = \mu N_2 = \mu mg
+\end{equation}
+
+斜面长度由几何关系得 :
+\begin{equation}
+S_1 = \frac{h}{\sin\theta}
+\end{equation}
+
+水平段长度为总水平距离减去斜面底端到起点的水平投影 :
+\begin{equation}
+S_2 = S - \frac{h}{\tan\theta}
+\end{equation}
+
+因为物体初末速度均为零 , 动能变化为零 , 由功能原理 (非保守力做功等于机械能变化) , 重力势能减少全部转化为克服摩擦力所做的功 :
+\begin{equation}
+mgh = f_1 S_1 + f_2 S_2
+\end{equation}
+
+代入各表达式 :
+\begin{equation}
+mgh = (\mu mg\cos\theta)\cdot\left(\frac{h}{\sin\theta}\right) + (\mu mg)\cdot\left(S - \frac{h}{\tan\theta}\right)
+\end{equation}
+
+注意到 $\frac{\cos\theta}{\sin\theta} = \cot\theta$ , 且 $\frac{1}{\tan\theta} = \cot\theta$ , 故 :
+\begin{equation}
+mgh = \mu mg h \cot\theta + \mu mg \left(S - h \cot\theta\right)
+\end{equation}
+
+展开右边 :
+\begin{equation}
+mgh = \mu mg h \cot\theta + \mu mg S - \mu mg h \cot\theta
+\end{equation}
+
+中间两项抵消 , 得 :
+\begin{equation}
+mgh = \mu mg S
+\end{equation}
+
+两边同除以 $mg$ , 即得 :
+\begin{equation}
+\mu = \frac{h}{S}
+\end{equation}
+\newline
+
+
+\textbf{TB5.6 若上题中物体与斜面间摩擦系数和物体与地面之间的摩擦系数并不相同. 当物体自斜面顶端静止滑下时, 停在地面上 $A$ 点, 而当物体以 $v_0$ 的初速(方向沿斜面向下)自同一点滑下时, 则停在地面上 $B$ 点. 已知 $A$、$B$ 点与斜面底端 $C$ 点的距离之间满足: $\overline{BC} = 2\overline{AC}$. 试求物体在斜面上运动的过程中摩擦力所做的功.}
+
+设 $\overline{AC} = S$ , 则由题意 $\overline{BC} = 2S$ . 设物体在斜面上运动过程中克服摩擦力所做的功为 $W$ , 该功仅取决于斜面段的摩擦力与路径长度 , 与水平段无关 . 令水平面上的摩擦系数为 $\mu$ , 则物体在水平面上克服摩擦力做功为 $\mu mg \cdot \text{水平位移}$ .
+
+考虑第一种情况 : 物体从静止开始下滑 , 初动能为零 , 末动能也为零 . 由功能原理 , 重力势能减少等于克服摩擦力做功之和 :
+\begin{equation}
+mgh = W + \mu mg \cdot \overline{AC} = W + \mu mg S
+\end{equation}
+
+考虑第二种情况 : 物体以初速度 $v_0$ 沿斜面向下运动 , 初动能为 $\frac{1}{2}mv_0^2$ , 末动能仍为零 . 重力势能减少量仍为 $mgh$ , 总机械能减少量为 $mgh + \frac{1}{2}mv_0^2$ , 全部用于克服摩擦力做功 :
+\begin{equation}
+mgh + \frac{1}{2}mv_0^2 = W + \mu mg \cdot \overline{BC} = W + \mu mg \cdot 2S
+\end{equation}
+
+将方程(24)乘以 2 得 :
+\begin{equation}
+2mgh = 2W + 2\mu mg S
+\end{equation}
+
+用此式减去方程(25):
+\begin{equation}
+(2mgh) - \left(mgh + \frac{1}{2}mv_0^2\right) = (2W + 2\mu mg S) - (W + 2\mu mg S)
+\end{equation}
+
+化简得 :
+\begin{equation}
+mgh - \frac{1}{2}mv_0^2 = W
+\end{equation}
+
+即 :
+\begin{equation}
+W = mgh - \frac{1}{2}mv_0^2
+\end{equation}
+
+摩擦力做功为负值 , 故 :
+\begin{equation}
+A_f = -W = \frac{1}{2}mv_0^2 - mgh
+\end{equation}
+\newline
+
+
+\textbf{TB5.9 一颗质量为 $m$ 的人造地球卫星以圆形轨道环绕地球飞行. 由于受到空气阻力的作用, 使其轨道半径从 $r_1$ 变小到 $r_2$, 求在此过程中空气阻力所做的功.}
+
+设地球质量为 $M$ . 在 $r_1$ 轨道上 , 卫星的机械能由动能与引力势能组成 :
+\begin{equation}
+E_{\text{星}}(r_1) = \frac{1}{2}mv^2(r_1) - \frac{GMm}{r_1}
+\end{equation}
+
+根据圆周运动的向心力公式 , 引力提供向心力 :
+\begin{equation}
+\frac{GMm}{r_1^2} = \frac{mv^2(r_1)}{r_1}
+\end{equation}
+
+整理得 :
+\begin{equation}
+mv^2(r_1) = \frac{GMm}{r_1}
+\end{equation}
+
+将式(33)代入式(31), 得 :
+\begin{equation}
+E_{\text{星}}(r_1) = \frac{1}{2} \cdot \frac{GMm}{r_1} - \frac{GMm}{r_1} = -\frac{GMm}{2r_1}
+\end{equation}
+
+同理 , 在 $r_2$ 轨道上 , 卫星的机械能为 :
+\begin{equation}
+E_{\text{星}}(r_2) = -\frac{GMm}{2r_2}
+\end{equation}
+
+空气阻力为非保守力 , 其做功等于系统机械能的变化量 :
+\begin{equation}
+W_{\text{阻力}} = E_{\text{星}}(r_2) - E_{\text{星}}(r_1) = -\frac{GMm}{2r_2} + \frac{GMm}{2r_1} = -\frac{GMm}{2} \left( \frac{1}{r_2} - \frac{1}{r_1} \right)
+\end{equation}
+
+即空气阻力做功为 :
+\begin{equation}
+W_{\text{阻力}} = -\frac{GMm}{2} \left( \frac{1}{r_2} - \frac{1}{r_1} \right)
+\end{equation}
+\newline
+
+
+\textbf{TB5.10一质点在保守力场中沿 $x$ 轴 (在 $x > 0$ 范围内) 运动, 其势能为 $V(x) = \dfrac{kx}{x^2 + a^2}$, 式中, $k$, $a$ 均为大于零的常数. 试求:}
+
+\textbf{(1) 质点所受到的力的表示式; }
+
+在保守力场中 , 力与势能的关系由负梯度给出 . 由于运动被限制在 $x$ 轴上 , 故只需计算一维情况下的力 :
+\begin{equation}
+F(x) = -\frac{dV}{dx}
+\end{equation}
+
+已知势能函数 :
+\begin{equation}
+V(x) = \frac{kx}{x^2 + a^2}
+\end{equation}
+
+对 $V(x)$ 求导 , 使用商法则 :
+\begin{equation}
+\frac{dV}{dx} = \frac{(k)(x^2 + a^2) - (kx)(2x)}{(x^2 + a^2)^2} = \frac{k(x^2 + a^2) - 2kx^2}{(x^2 + a^2)^2}
+\end{equation}
+
+化简分子 :
+\begin{equation}
+k(x^2 + a^2) - 2kx^2 = kx^2 + ka^2 - 2kx^2 = -kx^2 + ka^2 = k(a^2 - x^2)
+\end{equation}
+
+因此 :
+\begin{equation}
+\frac{dV}{dx} = \frac{k(a^2 - x^2)}{(x^2 + a^2)^2}
+\end{equation}
+
+代入力的表达式 :
+\begin{equation}
+F(x) = -\frac{dV}{dx} = -\frac{k(a^2 - x^2)}{(x^2 + a^2)^2} = \frac{k(x^2 - a^2)}{(x^2 + a^2)^2}
+\end{equation}
+
+即质点所受的力为 :
+\begin{equation}
+F(x) = \frac{k(x^2 - a^2)}{(x^2 + a^2)^2}
+\end{equation}
+\newline
+
+
+\textbf{(2) 质点的平衡位置.}
+
+平衡位置定义为质点所受合力为零的位置 , 即 $F(x) = 0$ 的点 . 令 :
+\begin{equation}
+F(x) = \frac{k(x^2 - a^2)}{(x^2 + a^2)^2} = 0
+\end{equation}
+
+由于 $k > 0$ 且分母 $(x^2 + a^2)^2 > 0$ 对所有实数 $x$ 成立 , 故方程成立当且仅当分子为零 :
+\begin{equation}
+x^2 - a^2 = 0 \quad \Rightarrow \quad x^2 = a^2 \quad \Rightarrow \quad x = \pm a
+\end{equation}
+
+但题目限定运动范围为 $x > 0$ , 故舍去负解 , 得 :
+\begin{equation}
+x = a
+\end{equation}
+为判断该平衡位置的稳定性 , 需考察势能在此处的极值性质 . 计算二阶导数或直接分析势能变化 :
+
+考虑势能函数 $V(x) = \frac{kx}{x^2 + a^2}$ , 当 $x \to 0^+$ 时 , $V(x) \to 0$ ; 当 $x \to \infty$ 时 , $V(x) \to 0$ ; 在 $x = a$ 处 , $V(a) = \frac{ka}{a^2 + a^2} = \frac{ka}{2a^2} = \frac{k}{2a} > 0$ . 因此 , $x = a$ 是势能极大值点 , 对应不稳定平衡 .
+
+综上 , 质点的平衡位置为 $x = a$ , 且为不稳定平衡 .
+\newline
+
+
+\textbf{TB5.11 一质量为 $m$ 的质点在保守力的作用下沿 $x$ 轴 (在 $x > 0$ 范围内) 运动, 其势能为 $V(x) = A/x^3 - B/x$, 其中 $A$、$B$ 均为大于零的常数.}
+
+\textbf{(1) 画出势能曲线图; }
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{Fig/TB5.11.png}
+  \caption{图TB5.11}
+\end{figure}
+\newline
+
+
+\textbf{(2) 找出质点运动中受到沿 $x$ 负方向最大力的位置; }
+
+质点所受的力由势能梯度决定 :
+\begin{equation}
+F(x) = -\frac{dV}{dx} = -\left( -\frac{3A}{x^4} + \frac{B}{x^2} \right) = \frac{3A}{x^4} - \frac{B}{x^2}
+\end{equation}
+
+此力沿 $x$ 负方向的最大值对应于 $F(x)$ 的最小值 (因力为负值时表示向左) . 求 $F(x)$ 的极值 , 对 $F(x)$ 求导 :
+\begin{equation}
+\frac{dF}{dx} = -\frac{12A}{x^5} + \frac{2B}{x^3}
+\end{equation}
+
+令导数为零 :
+\begin{equation}
+-\frac{12A}{x^5} + \frac{2B}{x^3} = 0 \quad \Rightarrow \quad \frac{2B}{x^3} = \frac{12A}{x^5} \quad \Rightarrow \quad 2Bx^2 = 12A
+\end{equation}
+
+解得 :
+\begin{equation}
+x^2 = \frac{6A}{B} \quad \Rightarrow \quad x = \sqrt{\frac{6A}{B}} \quad (\text{取正值})
+\end{equation}
+
+此时力的大小为 :
+\begin{equation}
+F\left( \sqrt{\frac{6A}{B}} \right) = \frac{3A}{\left( \frac{6A}{B} \right)^2} - \frac{B}{\frac{6A}{B}} = \frac{3A}{\frac{36A^2}{B^2}} - \frac{B^2}{6A} = \frac{3A B^2}{36A^2} - \frac{B^2}{6A} = \frac{B^2}{12A} - \frac{B^2}{6A} = -\frac{B^2}{12A}
+\end{equation}
+
+负号表示力沿 $x$ 负方向 , 故该位置处为沿 $x$ 负方向的最大力 .
+\newline
+
+
+\textbf{(3) 若质点的总能量 $E = 0$, 试确定质点的运动范围.}
+
+总能量 $E = E_k + V(x)$ , 且 $E_k \geq 0$ . 给定 $E = 0$ , 则要求 :
+\begin{equation}
+V(x) \leq 0
+\end{equation}
+
+由前文知 $V(x) = 0$ 当 $x = \sqrt{A/B}$ , 且当 $x > \sqrt{A/B}$ 时 , $V(x) < 0$ ; 当 $x < \sqrt{A/B}$ 时 , $V(x) > 0$ . 因此 , 仅当 $x \geq \sqrt{A/B}$ 时 , $V(x) \leq 0$ , 满足动能非负的要求 . 
+又因 $x > 0$ , 故运动范围为 :
+\begin{equation}
+x \geq \sqrt{\frac{A}{B}}
+\end{equation}
+
+即质点只能在 $x \in [\sqrt{A/B}, +\infty)$ 范围内运动 .
+\newline
+
+
+\textbf{TB5.12 质量为 $m$ 的小球通过一根长为 $2l$ 的细绳悬挂于 $O$ 点. 在 $O$ 点的正下方 $l$ 远处有一个固定的钉子 $P$. 开始时, 把绳拉至水平位置, 然后释放小球. 试求: 当细绳碰到钉子后小球所能上升的最大高度.}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.24\textwidth]{Fig/TB5.12.png}
+  \caption{图TB5.12}
+\end{figure}
+
+小球从水平位置由静止释放 , 到达最低点时 , 由机械能守恒 :
+\begin{equation}
+mg \cdot 2l = \frac{1}{2}mv_0^2
+\end{equation}
+
+解得最低点速度 :
+\begin{equation}
+v_0 = \sqrt{4gl}
+\end{equation}
+当绳碰到钉子 $P$ 后 , 小球将以 $P$ 为圆心 , 半径 $l$ 继续运动 . 由于初始速度较大 , 小球将沿圆周上升 , 直至绳的张力为零时脱离轨道 , 之后做斜抛运动 .
+
+设在脱轨点 , 绳与竖直方向夹角为 $\theta$ (从竖直向下位置测量) . 此时 , 向心力完全由重力分量提供 :
+\begin{equation}
+mg \cos\theta = \frac{mv^2}{l}
+\end{equation}
+
+从最低点到脱轨点 , 机械能守恒 :
+\begin{equation}
+\frac{1}{2}mv_0^2 = mg \cdot l(1 - \cos\theta) + \frac{1}{2}mv^2
+\end{equation}
+代入 $v_0^2 = 4gl$ :
+\begin{equation}
+2mgl = mgl(1 - \cos\theta) + \frac{1}{2}mv^2
+\end{equation}
+\begin{equation}
+v^2 = 2gl(1 + \cos\theta)
+\end{equation}
+
+将 $v^2$ 代入向心力方程 :
+\begin{equation}
+mg \cos\theta = \frac{m}{l} \cdot 2gl(1 + \cos\theta) = 2mg(1 + \cos\theta)
+\end{equation}
+\begin{equation}
+\cos\theta = 2 + 2\cos\theta
+\end{equation}
+\begin{equation}
+\cos\theta = -\frac{2}{3}
+\end{equation}
+
+此时速度大小为 :
+\begin{equation}
+v = \sqrt{2gl\left(1 - \frac{2}{3}\right)} = \sqrt{\frac{2}{3}gl}
+\end{equation}
+
+脱轨点高度 (相对于最低点) 为 :
+\begin{equation}
+h_1 = l(1 - \cos\theta) = l\left(1 + \frac{2}{3}\right) = \frac{5l}{3}
+\end{equation}
+
+脱轨点速度的竖直分量为 (注意 $\sin\theta = \sqrt{1 - \cos^2\theta} = \sqrt{1 - \frac{4}{9}} = \frac{\sqrt{5}}{3}$) :
+\begin{equation}
+v_y = v \sin\theta = \sqrt{\frac{2}{3}gl} \cdot \frac{\sqrt{5}}{3} = \sqrt{\frac{10}{27}gl}
+\end{equation}
+
+之后小球做竖直上抛运动 , 额外上升高度为 :
+\begin{equation}
+\Delta h = \frac{v_y^2}{2g} = \frac{1}{2g} \cdot \frac{10}{27}gl = \frac{5l}{27}
+\end{equation}
+
+故小球上升的最大高度 (相对于最低点) 为 :
+\begin{equation}
+h_{\max} = h_1 + \Delta h = \frac{5l}{3} + \frac{5l}{27} = \frac{45l + 5l}{27} = \frac{50l}{27}
+\end{equation}
+
+相对于初始水平位置 , 最大高度为 :
+\begin{equation}
+H_{\max} = h_{\max} - 2l = \frac{50l}{27} - \frac{54l}{27} = -\frac{4l}{27}
+\end{equation}
+
+负号表示低于初始位置 . 但题目要求的是绳碰钉子后小球上升的最大高度 , 应以碰钉时的位置 (最低点) 为参考 , 故答案为 :
+\begin{equation}
+\dfrac{50l}{27}
+\end{equation}
+\newline
+
+
+\textbf{TB5.14 质量分别为 $M_1$ 和 $M_2$ 的两个物块由一倔强系数为 $k$ 的轻弹簧相连, 竖直地放在水平桌面上, 如图所示. 另有一质量为 $m$ 的物体从高于 $M_1$ 为 $h$ 的地方由静止开始自由落下, 当与 $M_1$ 发生碰撞后, 即与 $M_1$ 粘合在一起向下运动. 试问 $h$ 至少应多大, 才能当弹簧反弹起后 $M_2$ 与桌面互相脱离?}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{Fig/TB5.14.png}
+  \caption{图TB5.14}
+\end{figure}
+
+取弹簧自然长度对应 $ M_1 $ 的平衡位置为坐标原点 $ O $，竖直向下为 $ x $ 轴正方向。初始时弹簧受 $ M_1 $ 重力压缩，平衡条件为：
+\begin{equation}
+    k |x_1| = M_1 g \quad \Rightarrow \quad x_1 = -\frac{M_1 g}{k},
+\end{equation}
+
+其中负号表示 $ M_1 $ 位于原点下方。
+
+质量 $ m $ 从高度 $ h $ 自由下落，碰撞前速度由机械能守恒得：
+\begin{equation}
+    m g h = \frac{1}{2} m v_{\text{碰前}}^2 \quad \Rightarrow \quad v_{\text{碰前}} = \sqrt{2 g h}.
+\end{equation}
+
+碰撞为完全非弹性碰撞，动量守恒：
+\begin{equation}
+    m v_{\text{碰前}} = (M_1 + m) v_1 \quad \Rightarrow \quad v_1 = \frac{m}{M_1 + m} \sqrt{2 g h}.
+\end{equation}
+
+碰撞后 $ m $ 与 $ M_1 $ 以共同速度 $ v_1 $ 向下运动。
+
+$ M_2 $ 脱离桌面时，弹簧弹力需等于 $ M_2 $ 的重力，且弹簧恢复原长。此时 $ M_1 $ 的位置为：
+\begin{equation}
+    k x_2 = M_2 g \quad \Rightarrow \quad x_2 = \frac{M_2 g}{k},
+\end{equation}
+其中 $ x_2 > 0 $ 表示 $ M_1 $ 位于原点上方。
+
+碰撞后系统（$ m, M_1, M_2 $ 及弹簧）机械能守恒。从碰撞后位置 $ x_1 $（速度 $ v_1 $）到脱离位置 $ x_2 $（速度为 0），能量守恒方程为：
+\begin{equation}
+    \frac{1}{2} (M_1 + m) v_1^2 + (M_1 + m) g x_1 + \frac{1}{2} k x_1^2 = (M_1 + m) g x_2 + \frac{1}{2} k x_2^2.
+\end{equation}
+
+代入 $ x_1 = -\frac{M_1 g}{k} $、$ x_2 = \frac{M_2 g}{k} $ 及 $ v_1 = \frac{m}{M_1 + m} \sqrt{2 g h} $，整理得：
+\begin{align}
+    \frac{1}{2} (M_1 + m) \left( \frac{m^2}{(M_1 + m)^2} \cdot 2 g h \right) + (M_1 + m) g \left( -\frac{M_1 g}{k} \right) + \frac{1}{2} k \left( -\frac{M_1 g}{k} \right)^2 &= (M_1 + m) g \left( \frac{M_2 g}{k} \right) + \frac{1}{2} k \left( \frac{M_2 g}{k} \right)^2 \\
+    \frac{m^2 g h}{M_1 + m} - \frac{M_1 (M_1 + m) g^2}{k} + \frac{1}{2} \frac{M_1^2 g^2}{k} &= \frac{(M_1 + m) M_2 g^2}{k} + \frac{1}{2} \frac{M_2^2 g^2}{k}.
+\end{align}
+
+解得最小高度为：
+\begin{equation}
+    h_{\min} = \frac{g (M_1 + m) (M_1 + M_2) (M_1 + M_2 + 2 m)}{2 k m^2}.
+\end{equation}
+\newline
+
+
+\textbf{TB5.16 在水平桌面上, 质量分别为 $M$ 和 $m$ 的两物块由一倔强系数为 $k$ 的弹簧相连. 物块与桌面间的摩擦系数均为 $\mu$. 开始时, 弹簧处于原长, $m$ 静止, 而 $M$ 以 $v_0 = \sqrt{\dfrac{6Mmg^2\mu^2}{k(M + m)}}$ 的速度拉伸弹簧. 试求: 当弹簧达最大拉伸时的伸长量 (设 $M > m$).}
+
+初始时 $M$ 减速, $m$ 静止, 当弹簧伸长 $x_0 = \frac{\mu mg}{k}$ 时, $m$ 开始运动, 此时 $M$ 速度 $v'_0$, 则
+\begin{equation}
+    \frac{1}{2}Mv_0^2 - \frac{1}{2}Mv_0'^2 = \frac{1}{2}kx_0^2 + \mu mgx_0.
+\end{equation}
+
+代入数据, 得
+\begin{equation}
+    Mv_0'^2 = \frac{2m\mu^2g^2}{k(M+m)}(3M^2 - mM - m^2) > 0.
+\end{equation}
+
+以后, $M$, $m$ 一起运动, 在质心系中 (质心速度 $v_c = \frac{Mv_0'}{M+m}$), 此时相对于质心:
+\begin{equation}
+    M: v_{10} = \frac{mv_0'}{M+m}, \quad m: v_{20} = -\frac{Mv_0'}{M+m}.
+\end{equation}
+
+当弹簧达最大伸长 $x_m$ 时, $M$, $m$ 相对于质心静止, 由能量定理
+\begin{equation}
+    \frac{1}{2}kx_m^2 - (\frac{1}{2}kx_0^2 + \frac{1}{2}Mv_{10}^2 + \frac{1}{2}mv_{20}^2) = -(\mu Mg\Delta l_1 + \mu mg\Delta l_2).
+\end{equation}
+
+$\Delta l_1$, $\Delta l_2$ 分别为 $M$, $m$ 相对于质心位移.
+由于质心位置不变, 位于原点: $Ml_1 + ml_2 = 0$, 于是 $M\Delta l_1 + m\Delta l_2 = 0$, 所以$\mu Mgl_1 + \mu mgl_2 = \mu g(Ml_1 + ml_2) = 0$.
+
+式(82)即
+\begin{equation}
+    \frac{1}{2}kx_0^2 + \frac{1}{2}Mv_{10}^2 + \frac{1}{2}mv_{20}^2 = \frac{1}{2}kx_m^2.
+\end{equation}
+
+将数据(81)代入式(83), 可得
+\begin{equation}
+    x_m = \frac{\mu mg}{k(M+m)}\sqrt{5M^2 - mM}.
+\end{equation}
+\newline
+
+
+\textbf{TB5.20 质量为 $m_1$ 的运动粒子与质量为 $m_2$ 的静止粒子发生完全弹性碰撞. 证明: }
+
+\textbf{(1) 当 $m_1 < m_2$ 时, $m_1$ 的偏转角可能取 $0$ 到 $\pi$ 之间所有值; }
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{Fig/TB5.20.png}
+  \caption{图TB5.20}
+\end{figure}
+
+如图TB5.20所示. 设碰撞后 $m_1$ 和 $m_2$ 的速率分别为 $v_1$ 和 $v_2$, 在完全弹性碰撞中, 动量与能量都守恒, 有
+\begin{align}
+    m_1 u_1 &= m_1 v_1 \cos\theta_1 + m_2 v_2 \cos\theta_2 \\
+    0 &= m_1 v_1 \sin\theta_1 - m_2 v_2 \sin\theta_2 \\
+    \frac{1}{2}m_1 u_1^2 &= \frac{1}{2}m_1 v_1^2 + \frac{1}{2}m_2 v_2^2
+\end{align}
+
+联立式(85)、式(86)和式(87)得
+\begin{equation}
+    \cos\theta_1 = \frac{1}{2}\left[\left(1+\frac{m_2}{m_1}\right)\frac{v_1}{u_1} + \left(1-\frac{m_2}{m_1}\right)\frac{u_1}{v_1}\right]
+\end{equation}
+
+当 $m_1 < m_2$, 即 $\frac{m_2}{m_1} > 1$ 时, $\frac{1}{2}\left[\left(1+\frac{m_2}{m_1}\right)\frac{v_1}{u_1} + \left(1-\frac{m_2}{m_1}\right)\frac{u_1}{v_1}\right]$ 可能为正, 可能为负, 故 $m_1$ 的偏转角 $\theta_1$ 可能取得 $0$ 到 $\pi$ 之间的所有值.
+\newline
+
+
+\textbf{(2) 当 $m_1 > m_2$ 时, $\theta_{\max}$ 满足公式 $\cos^2\theta_{\max} = 1 - m_2^2/m_1^2$, $0 \leq \theta_{\max} < \pi/2$.}
+
+当 $m_1 > m_2$ 时, 即 $\frac{m_2}{m_1} < 1$, 有
+\begin{equation}
+    \left(1+\frac{m_2}{m_1}\right)\frac{v_1}{u_1} > 0, \quad \left(1-\frac{m_2}{m_1}\right)\frac{u_1}{v_1} > 0
+\end{equation}
+
+由不等式性质, $a+b \ge 2\sqrt{ab} (a, b > 0)$, 有
+\begin{equation}
+    \cos\theta_1 \ge \sqrt{\left(1+\frac{m_2}{m_1}\right)\frac{v_1}{u_1} \cdot \left(1-\frac{m_2}{m_1}\right)\frac{u_1}{v_1}} = \sqrt{1-\frac{m_2^2}{m_1^2}}
+\end{equation}
+
+所以
+\begin{equation}
+    \cos^2\theta_{\max} = 1 - \frac{m_2^2}{m_1^2} \quad \left(0 \le \theta_{\max} < \frac{\pi}{2}\right)
+\end{equation}
+\newline
+
+
+\textbf{TB5.23 一质量为 $m_0$、速度为 $v_0$ 的粒子与一质量为 $\alpha m_0$ 的靶粒子发生弹性碰撞.}
+
+\textbf{(1) 碰撞后, 靶粒子的速度 $v$ 与 $v_0$ 间的夹角 $\beta$ 最大能等于多少? }
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{Fig/TB5.23.png}
+  \caption{图TB5.23}
+\end{figure}
+
+如图TB 5.23所示, 设碰后, 粒子速度 $v'$ 与 $v_0$ 夹角为 $\alpha$. 有
+\begin{equation}
+    0 \le \alpha \le \pi, \quad 0 \le \beta \le \pi
+\end{equation}
+
+动量守恒:
+\begin{equation}
+  \begin{aligned}
+      m_0v_0 &= m_0v'\cos\alpha + am_0v\cos\beta \\
+      0 &= m_0v'\sin\alpha - am_0v\sin\beta
+  \end{aligned}
+\end{equation}
+
+能量守恒:
+\begin{equation}
+    \frac{1}{2}m_0v_0^2 = \frac{1}{2}m_0v'^2 + \frac{1}{2}am_0v^2
+\end{equation}
+
+由式(93)得
+\begin{equation}
+    v = \frac{\sin\alpha}{a\sin(\alpha+\beta)}v_0, \quad v' = \frac{\sin\beta}{\sin(\alpha+\beta)}v_0
+\end{equation}
+
+代入式(94)得
+\begin{equation}
+    a\sin^2(\alpha+\beta) = a\sin^2\beta + \sin^2\alpha
+\end{equation}
+
+于是
+\begin{equation}
+    a\sin^2(\alpha+\beta) > a\sin^2\beta
+\end{equation}
+
+即
+\begin{equation}
+    |\sin(\alpha+\beta)| > |\sin\beta|
+\end{equation}
+
+由式(92)和式(95)可得
+\begin{equation}
+    \beta < \pi/2, \quad \alpha < \pi - 2\beta
+\end{equation}
+即靶粒子的速度 $v$ 与 $v_0$ 间的夹角 $\beta$ 最大值为 $\pi/2$.
+\newline
+
+
+\textbf{(2) 写出碰撞后靶粒子在实验室坐标系中的动能 $E_k$（以 $\alpha$, $\beta$ 和 $E_0 = m_0 v_0^2 / 2$ 表示）.}
+
+由式(95)可得碰后靶粒子在实验室坐标系中的动能:
+\begin{equation}
+    E_k = \frac{1}{2}am_0v^2 = \frac{m_0v_0^2}{2a}\left(\frac{\sin\alpha}{\sin(\alpha+\beta)}\right)^2 = \frac{m_0v_0^2}{2a}\cdot\frac{1}{(\sin\beta\cot\alpha+\cos\beta)^2}
+\end{equation}
+
+为了化简式(100), 先从式(96)解出 $\alpha$:
+将式(96)展开, 所有项移到方程一边得
+$a\sin^2\beta + \sin^2\alpha - a\sin^2\alpha\cos^2\beta - a\cos^2\alpha\sin^2\beta - 2a\sin\alpha\cos\beta\cos\alpha\sin\beta = 0$
+化简得
+$\sin^2\alpha - a\sin^2\alpha\cos2\beta - a\sin\alpha\cos\alpha\sin2\beta = 0$
+最后得
+\begin{equation}
+    \cot\alpha = \frac{1-a\cos2\beta}{a\sin2\beta}
+\end{equation}
+
+将式(101)代入式(100)消去 $\alpha$ 得
+\begin{equation}
+    E_k = \frac{4a}{(1+a)^2}\cos^2\beta \cdot E_0
+\end{equation}
+\newline
+
+
+\textbf{TB5.25 (1) 一质量为 $m$ 的运动粒子与一质量为 $M$ ($M > m$) 的静止粒子发生完全弹性碰撞, 碰撞后 $m$ 的运动方向偏转了 $90^\circ$, 问 $M$ 的运动方向如何? }
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{Fig/TB5.25.png}
+  \caption{图TB5.25}
+\end{figure}
+
+如图TB5.25所示, 设 $M$ 的偏转角度为 $\theta$.
+由于是弹性碰撞, 动量守恒:
+\begin{equation}
+  \begin{aligned}
+      mu_m &= Mv_M \cos\theta \\
+      0 &= Mv_M \sin\theta - mv_m
+  \end{aligned}
+\end{equation}
+
+机械能守恒:
+\begin{equation}
+    \frac{1}{2}mu_m^2 = \frac{1}{2}Mv_M^2 + \frac{1}{2}mv_m^2
+\end{equation}
+
+由式(103)和式(104)联立解得
+\begin{equation}
+    \cos2\theta = \frac{m}{M}
+\end{equation}
+
+或
+\begin{equation}
+    \tan^2\theta = \frac{1-\cos2\theta}{1+\cos2\theta} = \frac{M-m}{M+m}
+\end{equation}
+
+即
+\begin{equation}
+    \theta = \frac{1}{2}\arccos\left(\frac{m}{M}\right)
+\end{equation}
+
+或
+\begin{equation}
+    \theta = \arctan\sqrt{\frac{M-m}{M+m}}
+\end{equation}
+\newline
+
+
+\textbf{(2) 如果碰撞不是完全弹性的, 碰撞中损失的动能与原来动能之比为 $1 - \alpha^2$, 问 $M$ 的运动方向如何?}
+
+不完全弹性碰撞, 动量仍守恒:
+\begin{equation}
+  \begin{aligned}
+      mu_m &= Mv_M \cos\theta \\
+      0 &= Mv_M \sin\theta - mv_m
+  \end{aligned}
+\end{equation}
+
+机械能不守恒, 但由题意
+\begin{equation}
+    \frac{\frac{1}{2}mu_m^2 - \frac{1}{2}Mv_M^2 - \frac{1}{2}mv_m^2}{\frac{1}{2}mu_m^2} = 1-\alpha^2
+\end{equation}
+
+联立式(109)和式(110)得
+\begin{equation}
+    \alpha^2\cos^2\theta = \sin^2\theta + \frac{m}{M}
+\end{equation}
+
+得
+\begin{equation}
+    \theta = \arctan\sqrt{\frac{\alpha^2M-m}{M+m}}
+\end{equation}
+\newline
+
+
+\section{III 补充习题}
+\textbf{1 请分别在质心系和以 $m_1$ 相对静止的非惯性系下, 求解例题: 质量为 $m_1$, $m_2$ 的两球原来相距为 $a$, 在万有引力作用下逐渐靠近至相距为 $b$, 求在此过程中引力所作的功.}
+
+在由两个质点组成的孤立系统中, 质心不受外力, 做匀速直线运动. 我们可以选取一个质心静止的参考系, 即质心系.
+
+设质心为坐标原点 $O$. 在任意时刻, 两质点的位置矢量 $\vec{r_1}$ 和 $\vec{r_2}$ 满足:
+\begin{equation}
+    m_1\vec{r_1} + m_2\vec{r_2} = 0
+\end{equation}
+
+两质点间的相对位置矢量为 $\vec{r} = \vec{r_2} - \vec{r_1}$. 联立以上两式可得:
+\begin{equation}
+    \vec{r_1} = -\frac{m_2}{m_1+m_2}\vec{r}, \quad \vec{r_2} = \frac{m_1}{m_1+m_2}\vec{r}
+\end{equation}
+
+质点 $m_1$ 受到的引力为 $\vec{F_{12}}$, 质点 $m_2$ 受到的引力为 $\vec{F_{21}}$. 根据牛顿第三定律, $\vec{F_{12}} = -\vec{F_{21}}$.
+
+$\vec{F_{21}}$ 的方向与 $\vec{r}$ 的方向相反, 其大小为 $F = G\frac{m_1 m_2}{r^2}$, 所以:
+\begin{equation}
+    \vec{F_{21}} = -G\frac{m_1 m_2}{r^3}\vec{r}, \quad \vec{F_{12}} = G\frac{m_1 m_2}{r^3}\vec{r}
+\end{equation}
+
+引力对整个系统所做的总功 $W$ 是对两个质点做功之和, 即 $W = W_1 + W_2$.
+\begin{equation}
+    \begin{aligned}
+        W &= \int_a^b \vec{F_{12}} \cdot d\vec{r_1} + \int_a^b \vec{F_{21}} \cdot d\vec{r_2} \\
+          &= \int_a^b \left(G\frac{m_1 m_2}{r^3}\vec{r}\right) \cdot \left(-\frac{m_2}{m_1+m_2}d\vec{r}\right) + \int_a^b \left(-G\frac{m_1 m_2}{r^3}\vec{r}\right) \cdot \left(\frac{m_1}{m_1+m_2}d\vec{r}\right) \\
+          &= \int_a^b -G\frac{m_1 m_2}{r^3} \frac{m_2+m_1}{m_1+m_2} (\vec{r} \cdot d\vec{r}) \\
+          &= \int_a^b -G\frac{m_1 m_2}{r^3} (r dr) \\
+          &= \int_a^b -G\frac{m_1 m_2}{r^2} dr \\
+          &= \left[ G\frac{m_1 m_2}{r} \right]_a^b \\
+          &= G m_1 m_2 \left(\frac{1}{b} - \frac{1}{a}\right)
+    \end{aligned}
+\end{equation}
+
+在上述积分中, $a$ 和 $b$ 分别是相对距离 $r$ 的初始值和最终值.
+
+选取一个固连在质点 $m_1$ 上的非惯性参考系. 在此参考系中, $m_1$ 始终静止于坐标原点.
+
+由于 $m_1$ 的位移为零, 所以引力对 $m_1$ 做的功 $W_1 = 0$.
+质点 $m_2$ 从距离 $m_1$ 为 $a$ 的位置移动到距离为 $b$ 的位置. 它的位移是相对于 $m_1$ 的.
+
+$m_2$ 受到的万有引力 $\vec{F_{21}}$ 指向原点 (即 $m_1$ 的位置). 设 $m_2$ 沿径向移动, 其位置为 $r$. 则引力可以表示为 $\vec{F} = -G\frac{m_1 m_2}{r^2}\hat{r}$, 位移元为 $d\vec{r} = dr \hat{r}$.
+
+引力对 $m_2$ 做的功 $W_2$ 为:
+\begin{equation}
+    \begin{aligned}
+        W_2 &= \int_a^b \vec{F_{21}} \cdot d\vec{r} \\
+            &= \int_a^b \left(-G\frac{m_1 m_2}{r^2}\hat{r}\right) \cdot (dr \hat{r}) \\
+            &= \int_a^b -G\frac{m_1 m_2}{r^2} dr \\
+            &= \left[ G\frac{m_1 m_2}{r} \right]_a^b \\
+            &= G m_1 m_2 \left(\frac{1}{b} - \frac{1}{a}\right)
+    \end{aligned}
+\end{equation}
+
+系统所受引力做的总功为 $W = W_1 + W_2 = 0 + W_2 = G m_1 m_2 \left(\frac{1}{b} - \frac{1}{a}\right)$.
+
+\textbf{结论:} 两种参考系下计算得到的结果完全相同. 这说明, 由系统内保守力 (如万有引力) 所做的功只与系统内各物体间的相对位置的初末状态有关, 与所选择的参考系无关.
+\newline
+
+
+\textbf{2 计算地球的引力势能 $V(r)$, $r$ 取值范围为 $0 \leq r < \infty$, 并描出势能曲线. 设地球质量为 $M$, 半径 $R$.}
+
+引力势能的计算需分两种情况: 地球外部 ($r \geq R$) 和地球内部 ($0 \leq r < R$). 假设地球为密度均匀的球体, 密度 $\rho = \frac{3M}{4\pi R^3}$.
+
+在地球外部, 引力场等效于所有质量集中于地心的质点产生的场. 引力势能由下式给出:
+\begin{equation}
+V(r) = -\frac{GMm}{r}, \quad r \geq R
+\end{equation}
+其中 $m$ 为测试质点质量, $G$ 为万有引力常量. 此表达式满足边界条件: 当 $r \to \infty$, $V(r) \to 0$.
+
+在地球内部, 半径为 $r$ 的球体内部包含的质量为:
+\begin{equation}
+M_r = \frac{4}{3}\pi r^3 \rho = M\frac{r^3}{R^3}
+\end{equation}
+
+均匀球体内部的引力场强度为:
+\begin{equation}
+g(r) = \frac{GM_r}{r^2} = \frac{GM}{R^3}r
+\end{equation}
+
+引力势能可通过积分从 $r$ 到 $\infty$ 的引力得到. 为确保势能在 $r=R$ 处连续, 将积分分为两部分:
+\begin{equation}
+V(r) = -\int_r^\infty m g(r')\,dr' = -\int_r^R m g(r')\,dr' - \int_R^\infty m g(r')\,dr'
+\end{equation}
+
+第二项即为地球表面的势能 $V(R) = -\frac{GMm}{R}$. 第一项中, 代入 $g(r') = \frac{GM}{R^3}r'$:
+\begin{equation}
+-\int_r^R m g(r')\,dr' = -\frac{GMm}{R^3}\int_r^R r'\,dr' = -\frac{GMm}{2R^3}(R^2 - r^2)
+\end{equation}
+
+因此, 地球内部的引力势能为:
+\begin{equation}
+V(r) = -\frac{GMm}{2R^3}(R^2 - r^2) - \frac{GMm}{R} = -\frac{GMm}{2R^3}(3R^2 - r^2), \quad 0 \leq r < R
+\end{equation}
+
+综合上述结果, 地球引力势能的完整表达式为:
+\begin{equation}
+V(r) = 
+\begin{cases} 
+-\dfrac{GMm}{2R^3}(3R^2 - r^2), & 0 \leq r < R \\
+-\dfrac{GMm}{r}, & r \geq R
+\end{cases}
+\end{equation}
+
+势能曲线具有以下特征:
+
+1. 在地心 ($r=0$) 处, 势能取得最小值:
+\begin{equation}
+V(0) = -\frac{3GMm}{2R}
+\end{equation}
+
+2. 在地球表面 ($r=R$) 处, 两段公式给出相同结果, 确保势能连续:
+\begin{equation}
+V(R) = -\frac{GMm}{R}
+\end{equation}
+
+3. 势能曲线的斜率 (即力) 也在 $r=R$ 处连续, 因为:
+\begin{equation}
+\left.\frac{dV}{dr}\right|_{r=R^-} = \left.\frac{GMm}{R^3}r\right|_{r=R} = \frac{GMm}{R^2}
+\end{equation}
+\begin{equation}
+\left.\frac{dV}{dr}\right|_{r=R^+} = \left.\frac{GMm}{r^2}\right|_{r=R} = \frac{GMm}{R^2}
+\end{equation}
+
+4. 当 $r \to \infty$, $V(r) \to 0^-$, 势能渐近于零.
+
+5. 地球内部 ($0 \leq r < R$), 势能曲线为开口向上的抛物线; 地球外部 ($r \geq R$), 势能曲线为负的双曲线.
+
+势能曲线在 $r=0$ 处取得全局最小值, 随 $r$ 增大而单调递增, 在 $r=R$ 处平滑过渡, 并渐近趋近于零. 曲线整体呈"碗"状, 但不对称, 外部衰减较慢.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{Fig/3.2.png}
+  \caption{图3.2 地球引力势能曲线}
+\end{figure}
+
+
+
+\end{document}
