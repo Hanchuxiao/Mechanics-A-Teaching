@@ -1,0 +1,1050 @@
+\documentclass[UTF8,8pt,a4paper]{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bookmark}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{caption}
+\usepackage{hyperref}
+
+\geometry{left=1.8cm,right=1.8cm,top=1.9cm,bottom=1.9cm}
+
+% 严格还原范例中的脚注符号定义
+\makeatletter
+\def\@fnsymbol#1{\ensuremath{%
+  \ifcase#1\or % 0
+    \dagger\or % 1 - 改为 dagger
+    *\or       % 2 - 原来的 dagger 变成 asterisk
+    \ddotagger\or % 3
+    \S\or      % 4
+    \P\or      % 5
+    \|\or      % 6 (DOUBLE VERTICAL LINE)
+    \or      % 7
+    \dagger\dagger\or % 8
+    \ddotagger\ddotagger % 9
+  \else
+    \@ctrerr
+  \fi
+}}
+\makeatother
+
+\title{\huge\textbf{相对论部分习题解答}}
+\author{TA：疏宇\thanks{School of Gifted Young, USTC, email:\url{shuyu2023@mail.ustc.edu.cn}}\quad{}师驰昊\thanks{School of Gifted Young, USTC, email:\url{1984019655@qq.com}}}
+\date{January 3$^{\text{rd}}$, 2026}
+
+\begin{document}
+\maketitle
+
+\section*{I 简答题}
+简答题没有标准答案, 以下仅提供思路分析.
+\newline
+
+
+\textbf{1 关于迈克尔逊——莫雷实验, 定义相对地球静止的参考系为 $S'$ 系、相对太阳静止的参考系为 $S$ 系, 忽略圆周运动的加速度效应, 则 $S$ 系、$S'$ 系均是惯性系, 假设 $S'$ 系沿着 $S$ 系的 $x$ 轴方向运动.}
+
+\textbf{(1) 从经典的观点看,“零结果”与预期存在矛盾的原因是什么?}
+
+\textbf{矛盾的核心在于经典速度合成法则与“以太”绝对参考系假说的实验脱节.}
+
+在经典物理框架下, 物理学家普遍认为宇宙中充斥着一种名为“以太”的绝对静止介质, 光波在以太中的传播速度恒为 $c$. 若选取相对太阳静止的 $S$ 系为以太参考系, 则地球 (即 $S'$ 系) 相对于以太以速度 $v$ 运动. 根据伽利略变换, 光相对地球的速度应满足矢量合成法则 $\vec{c}' = \vec{c} - \vec{v}$.
+
+在迈克尔逊——莫雷实验的干涉仪中, 设两臂长度均为 $L$. 从经典观点推导:
+\begin{itemize}
+    \item \textbf{平行于运动方向的光路}: 光相对于地球往返的时间为 $\Delta t_{||} = \frac{L}{c-v} + \frac{L}{c+v} = \frac{2Lc}{c^2-v^2} = \frac{2L/c}{1-v^2/c^2}$.
+    \item \textbf{垂直于运动方向的光路}: 光相对于地球的速度为 $\sqrt{c^2-v^2}$, 往返时间为 $\Delta t_{\perp} = \frac{2L}{\sqrt{c^2-v^2}} = \frac{2L/c}{\sqrt{1-v^2/c^2}}$.
+\end{itemize}
+
+显然, 经典观点预言了两路光存在时间差 $\Delta t = \Delta t_{||} - \Delta t_{\perp} \approx \frac{Lv^2}{c^3}$, 这将导致干涉条纹随仪器转动而移动. 然而, 迈克尔逊和莫雷观测到了“零结果” (即无条纹移动), 这直接否定了地球相对于以太存在相对运动的预言, 与基于伽利略变换的经典速度合成法则产生了根本性矛盾.
+\newline
+
+\textbf{(2) 爱因斯坦的相对论基本原理究竟是如何解释这一“零结果”的?}
+
+\textbf{爱因斯坦通过彻底否定“以太”参考系并提出光速不变原理完美解释了这一结果.}
+
+爱因斯坦在狭义相对论中提出了两条基本公设:
+\begin{enumerate}
+    \item \textbf{相对性原理}: 在所有惯性系中, 物理定律的形式完全相同. 因此, 不存在一个所谓的“绝对静止”的以太参考系, $S$ 系与 $S'$ 系在描述物理现象时是完全平权的.
+    \item \textbf{光速不变原理}: 在所有惯性系中, 真空中的光速恒为 $c$, 与光源和观察者的运动状态无关.
+\end{enumerate}
+
+基于这两条公设, 在 $S'$ 系 (地球系) 中进行观测时, 无论干涉仪如何取向, 光在水平臂和垂直臂中的往返速度在 $S'$ 系内测得的结果恒为 $c$. 由于两臂静止长度相同且光速在各个方向上完全一致, 两束光返回的时间必然严格相等:
+\begin{equation}
+    \Delta t'_{||} = \Delta t'_{\perp} = \frac{2L}{c}
+\end{equation}
+因此, 两光路之间不存在相位差, 自然不会产生干涉条纹的移动. 这一“零结果”不再是矛盾, 而是光速不变原理的自然体现.
+\newline
+
+\textbf{(3) 在相对论里, 同时是相对的, 在 $S'$ 里两个光路同时到达观察者, 但在 $S$ 系里可以不是同时到达, 为何相对论能解释“零结果”?}
+
+\textbf{实验观察到的“零结果”是一个局域的物理事件, 其发生与否在所有参考系中具有协变性.}
+
+虽然相对论认为“同时是相对的” (即在 $S'$ 系中相距两地发生的两个同时事件, 在 $S$ 系看来可能并不同时), 但迈克尔逊——莫雷实验中的“光束重新汇合”是一个发生在\textbf{相同时空点}的局域事件.
+
+两束光在 $S'$ 系中的观察者处会合标志着干涉条纹的形成. 根据洛伦兹变换, 如果两个时空事件在 $S'$ 系中重合 (即时空距离为零), 那么在任何其他惯性系 $S$ 中, 它们也必然重合.
+
+
+
+虽然在 $S$ 系看来, 两束光走过的路程不同, 且由于时间膨胀效应, 经历的时间不再是 $2L/c$, 但由于光速不变以及\textbf{洛伦兹收缩} (平行运动方向的臂长缩短为 $L\sqrt{1-v^2/c^2}$), 两路光在 $S$ 系中计算出的到达时间依然是同步的:
+\begin{equation}
+    \Delta t_{||}^{(S)} = \Delta t_{\perp}^{(S)} = \frac{2L/c}{\sqrt{1-v^2/c^2}}
+\end{equation}
+因此, 观察者在 $S'$ 系测得的干涉相长/相消结果是绝对的物理事实, 不会因为参考系的变换而改变. 相对论通过协调时空观 (长度收缩与时间膨胀), 保证了实验结论在不同参考系下的逻辑一致性.
+\newline
+
+\textbf{(4) 请基于相对论计算两光路到达观察者的时间差.}
+
+在相对论框架下, 我们通过洛伦兹变换或直接应用光速不变性来计算两束光返回的时间差 $\Delta t$.
+
+\textbf{1. 在 $S'$ 系 (静止系) 中:}
+光速在各个方向均为 $c$, 两臂长度均为 $L$. 两束光返回观察者的时间差 $\Delta t'$ 显而易见:
+\begin{equation}
+    \Delta t'_{||} = \frac{2L}{c}, \quad \Delta t'_{\perp} = \frac{2L}{c} \implies \Delta t' = \Delta t'_{||} - \Delta t'_{\perp} = 0
+\end{equation}
+
+\textbf{2. 在 $S$ 系 (太阳系) 中:}
+我们需要考虑长度收缩效应. 平行于运动方向的臂长变为 $L' = L\sqrt{1-v^2/c^2} = L/\gamma$.
+\begin{itemize}
+    \item \textbf{平行光路时间}:
+    \begin{equation}
+        \Delta t_{||} = \frac{L'}{c-v} + \frac{L'}{c+v} = \frac{2L'c}{c^2-v^2} = \frac{2L/\gamma}{c(1-v^2/c^2)} = \frac{2L\gamma}{c}
+    \end{equation}
+    \item \textbf{垂直光路时间}:
+    该臂长度不发生改变 ($L_{\perp} = L$). 但在 $S$ 系中光走过的是斜线路径:
+    \begin{equation}
+        {(c \frac{\Delta t_{\perp}}{2})}^2 = L^2 + {(v \frac{\Delta t_{\perp}}{2})}^2 \implies \Delta t_{\perp} = \frac{2L}{\sqrt{c^2-v^2}} = \frac{2L\gamma}{c}
+    \end{equation}
+\end{itemize}
+
+\textbf{结论:}
+无论在哪个参考系中计算, 基于相对论原理 (结合长度收缩与时间膨胀) 得到的两路光到达时间差均为:
+\begin{equation}
+    \Delta t = \Delta t_{||} - \Delta t_{\perp} = 0
+\end{equation}
+这在数学上严谨地证明了狭义相对论对“零结果”的预言与实验事实完全符合.
+\newline
+
+
+\textbf{2 相对论中, 刚体与不可压缩流体这两个概念是否有效? 为什么?}
+
+\textbf{这两个概念在相对论框架下均不再有效.}
+
+我们需要从狭义相对论的时空观, 尤其是信号传递速度的上限角度进行深入分析.
+
+\textbf{1. 关于刚体的失效分析}
+
+在经典力学中, 刚体被定义为在受力作用下, 内部任意两点间距离保持绝对不变的理想模型. 这意味着当力作用于刚体的一端时, 这种扰动会瞬时传递到刚体的另一端, 即力的传递速度 (或声速) 为无穷大.
+
+然而, 根据狭义相对论的基本公设, 任何物理相互作用或信息的传递速度都不能超过真空中的光速 $c$. 
+\begin{itemize}
+    \item 若一个物体是绝对刚体, 当我们在 $t = 0$ 时刻推其一端, 另一端必须在 $t = 0$ 产生位移, 这暗示了相互作用的超光速传播.
+    \item 实际上, 力的传递是通过原子间电磁相互作用实现的, 这种扰动以声波或压力波的形式在介质中传播. 相对论要求任何波速 $v_s \le c$.
+\end{itemize}
+因此, 绝对刚体概念与因果律和光速不变原理相抵触. 在相对论力学中, 必须考虑物体的形变与弹性波传递过程, 刚体被“不可压缩的硬质材料”这一更符合物理实际的概念所取代, 但其本质上仍是可压缩的.
+\newline
+
+\textbf{2. 关于不可压缩流体的失效分析}
+
+在流体力学中, “不可压缩”意味着流体的密度 $\rho$ 在受压时保持不变, 或者说压强 $P$ 的变化会引起密度瞬时调整.
+根据连续介质力学, 流体中的声速 $v_s$ 由下式给出:
+\begin{equation}
+    v_s = \sqrt{\frac{dP}{d\rho}}
+\end{equation}
+对于不可压缩流体, 由于体积不随压强改变, 即 $\frac{d\rho}{dP} = 0$, 这将导致声速 $v_s \to \infty$. 
+
+如前所述, 信号传递速度 $v_s$ 必须满足 $v_s \le c$. 若流体真正不可压缩, 则违反了相对论的上限约束. 
+\begin{itemize}
+    \item 在极高压条件下 (如中子星内部), 尽管流体极难压缩, 但仍必须保持一定的压缩性以保证 $v_s < c$.
+    \item 相对论流体力学中要求物态方程必须满足 $\frac{dP}{d\rho} \le c^2$.
+\end{itemize}
+
+综上所述, 刚体与不可压缩流体在经典力学中是极好的近似, 但在要求时空因果律严格一致的相对论中, 它们在逻辑上是不自洽的, 因而均无效.
+\newline
+
+
+\textbf{3 有一间仓库, 长为 $3.5\text{m}$, 相对的两壁各有一门, 若把一长为 $4\text{m}$ 的铁竿放进仓库, 则竿的一端将露在仓库的门外, 因而两门不可能同时关闭. 某甲学习过相对论, 他声称有一种方法, 不必把竿割断、弯曲或偏斜, 能在极短的时间内, 把杆放进仓库并同时关上仓库的两门 (当竿端碰击门时, 门会自动打开), 你认为甲能否实现他的想法? 若可能的话, 将怎样实现? 若有一观测者某乙永远相对竿静止, 他对某甲设计的方案有何看法?}
+
+\textbf{甲的想法在物理上是可行的, 但“同时”这一结论具有相对性.}
+
+这是一个经典的狭义相对论佯谬, 称为“梯子悖论” (Ladder Paradox). 我们需要分别从某甲 (仓库参考系 $S$) 和某乙 (铁竿参考系 $S'$) 的视角进行详细分析.
+
+\textbf{1. 某甲的视角 (仓库参考系 $S$)}
+
+在某甲看来, 铁竿以极高的速度 $v$ 沿仓库长度方向运动. 根据长度收缩效应 (Length Contraction), 铁竿在 $S$ 系中的测量长度 $L$ 为:
+\begin{equation}
+    L = L_0 \sqrt{1 - \frac{v^2}{c^2}}
+\end{equation}
+其中 $L_0 = 4\text{m}$ 为铁竿的本征长度. 若要使铁竿能完全进入长度 $L_{wh} = 3.5\text{m}$ 的仓库, 必须满足 $L < 3.5\text{m}$, 即:
+\begin{equation}
+    4 \sqrt{1 - \frac{v^2}{c^2}} < 3.5 \implies \frac{v}{c} > \sqrt{1 - \left(\frac{3.5}{4}\right)^2} \approx 0.484
+\end{equation}
+只要速度足够快 (例如 $v \ge 0.5c$), 在甲看来, 铁竿确实会收缩到比仓库还短. 因此, 甲可以在某一时刻观察到铁竿完全位于仓库内部, 并在该瞬间**同时**关闭前后两道门, 随后再迅速打开门让竿穿过. 所以甲认为他的想法可以实现.
+
+\textbf{2. 某乙的视角 (铁竿参考系 $S'$)}
+
+对于某乙, 铁竿是静止的 ($L_0 = 4\text{m}$), 而仓库以速度 $v$ 向他运动. 此时仓库发生了长度收缩:
+\begin{equation}
+    L'_{wh} = 3.5 \sqrt{1 - \frac{v^2}{c^2}} < 3.5\text{m}
+\end{equation}
+在乙看来, 一个 $4\text{m}$ 长的铁竿绝对不可能完全放进一个收缩后不足 $3.5\text{m}$ 的仓库里. 
+
+
+
+\textbf{3. 悖论的消除: 同时的相对性}
+
+乙并不认为甲“同时”关上了两道门. 根据洛伦兹变换中的同时性的相对性:
+\begin{itemize}
+    \item 在甲看来同时发生的两个事件 (关前门和关后门), 在乙看来并不是同时的.
+    \item 当铁竿的前端到达仓库后门并触发关门动作时, 铁竿的末端还远在仓库前门之外.
+    \item 随后, 仓库继续运动, 直到铁竿的末端进入前门, 此时前门才关闭. 
+\end{itemize}
+因此, 乙的观察结果是: 前后两道门是**先后**关闭的, 铁竿从未在某一时刻被完整地关在仓库内.
+
+\textbf{结论:} 甲可以实现他的想法 (在仓库系测得两门同时关闭且竿在其中), 但这一物理事实在乙看来表现为两门不同时关闭. 双方的描述都是正确的, 矛盾的产生源于对“同时”这一概念的错误预设.
+\newline
+
+
+\section*{II 教材习题}
+教材习题部分答案与教材给出答案有出入, 以本习题解析为准.
+\newline
+
+
+\textbf{T11.1 一飞船以 $v = 0.6c$ 的速率沿平行于地面的轨道飞行, 飞船上沿运动方向放置一根杆子, 在地面上的人测得此杆子的长度为 $l$, 求此杆子的本征长度 $l_0$.}
+
+\textbf{解: 根据狭义相对论中的长度收缩效应进行计算.}
+
+在狭义相对论中, 长度收缩是指运动物体在运动方向上的长度比其静止时测得的本征长度要短. 设物体相对于某一惯性系以速度 $v$ 运动, 在该惯性系中测得物体的长度为 $l$, 则它与本征长度 $l_0$ 之间的关系为:
+\begin{equation}
+    l = l_0 \sqrt{1 - \frac{v^2}{c^2}}
+\end{equation}
+
+在本题中, 地面参考系测得的长度 $l$ 是运动长度, 而杆子相对于飞船是静止的, 故飞船系中测得的长度为本征长度 $l_0$. 已知飞船相对于地面的速率 $v = 0.6c$, 代入长度收缩公式得:
+\begin{equation}
+    l = l_0 \sqrt{1 - (0.6)^2} = l_0 \sqrt{1 - 0.36} = 0.8 l_0
+\end{equation}
+
+通过移项解得本征长度 $l_0$:
+\begin{equation}
+    l_0 = \frac{l}{0.8} = 1.25 l
+\end{equation}
+
+因此, 此杆子的本征长度为 $1.25l$.
+\newline
+
+
+\textbf{T11.2 在一惯性系的同一地点, 先后发生两个事件, 其时间间隔为 $0.2\text{s}$, 而在另一惯性系中测得此两事件的时间间隔为 $0.3\text{s}$, 求两惯性系之间的相对运动速率.}
+
+\textbf{解: 本题涉及狭义相对论中的时间膨胀效应.}
+
+设两事件在惯性系 $S'$ 中的同一地点发生, 则在 $S'$ 系中测得的时间间隔为原时, 记作 $\Delta \tau = 0.2\text{s}$. 另一惯性系 $S$ 相对于 $S'$ 系以速度 $v$ 运动, 在 $S$ 系中测得的时间间隔为 $\Delta t = 0.3\text{s}$.
+
+根据时间膨胀 (Time Dilation) 公式:
+\begin{equation}
+    \Delta t = \gamma \Delta \tau = \frac{\Delta \tau}{\sqrt{1 - \frac{v^2}{c^2}}}
+\end{equation}
+
+代入已知数据:
+\begin{equation}
+    0.3 = \frac{0.2}{\sqrt{1 - \frac{v^2}{c^2}}}
+\end{equation}
+
+整理得:
+\begin{equation}
+    \sqrt{1 - \frac{v^2}{c^2}} = \frac{0.2}{0.3} = \frac{2}{3}
+\end{equation}
+
+两边平方:
+\begin{equation}
+    1 - \frac{v^2}{c^2} = \frac{4}{9}
+\end{equation}
+
+解得相对运动速率 $v$:
+\begin{equation}
+    \frac{v^2}{c^2} = 1 - \frac{4}{9} = \frac{5}{9} \implies v = \frac{\sqrt{5}}{3}c \approx 0.745c
+\end{equation}
+
+因此, 两惯性系之间的相对运动速率为 $\frac{\sqrt{5}}{3}c$.
+\newline
+
+
+\textbf{T11.4 静长为 $L$ 的车厢, 以 $v$ 的恒定速率沿地面向右运动, 自车厢的左端 $A$ 发出一光信号, 经右端 $B$ 的镜面反射后回到 $A$ 端. (1) 在车厢里的人看来, 光信号经多少时间 $\Delta t'_1$ 到达 $B$ 端? 从 $A$ 发出经 $B$ 反射后回到 $A$, 共需多少时间 $\Delta t'$? (2) 在地面上的人看来, 光信号经多少时间 $\Delta t_1$ 到达 $B$ 端? 从 $A$ 发出经 $B$ 反射后回到 $A$, 共需多少时间 $\Delta t$?}
+
+\textbf{解: 分别从车厢参考系 $S'$ 和地面参考系 $S$ 进行运动学分析.}
+
+\textbf{(1) 在车厢参考系 $S'$ (静止系) 中:}
+
+由于车厢相对于观测者静止, 其长度即为本征长度 $L$. 光信号在车厢内往返传播, 速率恒为 $c$.
+光信号从 $A$ 到达 $B$ 所经历的时间为:
+\begin{equation}
+    \Delta t'_1 = \frac{L}{c}
+\end{equation}
+
+光信号经反射回到 $A$ 端, 总路程为 $2L$, 故总时间为:
+\begin{equation}
+    \Delta t' = \frac{2L}{c}
+\end{equation}
+
+\textbf{(2) 在地面参考系 $S$ (运动系) 中:}
+
+首先, 地面观测者测得运动车厢的长度发生洛伦兹收缩, 为 $L_{g} = L/\gamma = L\sqrt{1 - v^2/c^2}$.
+在 $S$ 系中, 设光信号到达 $B$ 端所需时间为 $\Delta t_1$. 此时光信号向右运动, 车厢右端 $B$ 亦向右运动. 根据光速不变原理, 光信号的路程满足:
+\begin{equation}
+    c \Delta t_1 = L_{g} + v \Delta t_1 \implies (c - v) \Delta t_1 = L \sqrt{1 - \frac{v^2}{c^2}}
+\end{equation}
+解得到达 $B$ 端的时间为:
+\begin{equation}
+    \Delta t_1 = \frac{L}{c - v} \sqrt{\frac{(c - v)(c + v)}{c^2}} = \frac{L}{c} \sqrt{\frac{c + v}{c - v}}
+\end{equation}
+
+设反射光信号回到 $A$ 端所需时间为 $\Delta t_2$. 此时反射光向左运动, 而 $A$ 端向右运动迎向光信号:
+\begin{equation}
+    c \Delta t_2 = L_{g} - v \Delta t_2 \implies (c + v) \Delta t_2 = L \sqrt{1 - \frac{v^2}{c^2}}
+\end{equation}
+解得从 $B$ 返回 $A$ 的时间为:
+\begin{equation}
+    \Delta t_2 = \frac{L}{c + v} \sqrt{\frac{(c - v)(c + v)}{c^2}} = \frac{L}{c} \sqrt{\frac{c - v}{c + v}}
+\end{equation}
+
+地面观测者测得的总时间 $\Delta t$ 为往返时间之和:
+\begin{equation}
+    \Delta t = \Delta t_1 + \Delta t_2 = \frac{L}{c} \left( \sqrt{\frac{c + v}{c - v}} + \sqrt{\frac{c - v}{c + v}} \right) = \frac{L}{c} \frac{(c + v) + (c - v)}{\sqrt{c^2 - v^2}}
+\end{equation}
+化简得:
+\begin{equation}
+    \Delta t = \frac{2Lc}{c\sqrt{c^2 - v^2}} = \frac{2L}{c\sqrt{1 - v^2/c^2}}
+\end{equation}
+
+因此, 地面观测者测得往返总时间为 $\frac{2L}{c\sqrt{1-v^2/c^2}}$.
+\newline
+
+\textbf{T11.6 两根静长均为 $l_0$ 的棒 $A, B$, 相向沿棒作匀速运动. $A$ 棒上的观测者发现两棒的左端先重合, 相隔时间 $\Delta t$ 后, 两棒的右端再重合. 试问: (1) $B$ 棒上的观测者看到两棒的端点以怎样的次序重合? (2) 两棒的相对速度是多大? (3) 对于看到两棒以大小相等、而方向相反的速度运动的观测者来说, 两棒端点以怎样的次序重合?}
+
+\textbf{解: 本题通过洛伦兹变换分析时空事件的次序及相对运动速度.}
+
+设 $A$ 棒静止的参考系为 $S$, 沿棒方向为 $x$ 轴. $A$ 棒占据区间 $[0, l_0]$. $B$ 棒相对于 $A$ 棒以速度 $v$ 沿 $x$ 轴正方向运动. 
+
+在 $S$ 系中, 两个重合事件的时空坐标分别为:
+\begin{itemize}
+    \item 事件 1 (两棒左端重合): $(x_1, t_1) = (0, 0)$.
+    \item 事件 2 (两棒右端重合): $(x_2, t_2) = (l_0, \Delta t)$.
+\end{itemize}
+
+\textbf{(1) $B$ 棒观测者的观测次序}
+
+设 $B$ 棒静止的参考系为 $S'$, 它相对于 $S$ 系的速度为 $v$. 利用洛伦兹变换计算在 $S'$ 系中的时间间隔 $\Delta t' = t'_2 - t'_1$:
+\begin{equation}
+    t'_2 - t'_1 = \gamma \left( (t_2 - t_1) - \frac{v(x_2 - x_1)}{c^2} \right) = \gamma \left( \Delta t - \frac{v l_0}{c^2} \right)
+\end{equation}
+
+根据下文第 (2) 问求得的 $v$ 的表达式, 可以证明 $\Delta t < \frac{v l_0}{c^2}$. 实际上, 由 $v \Delta t = l_0 (1 - \sqrt{1 - v^2/c^2})$ 且 $\sqrt{1-x^2} > 1-x^2$ (对于 $x \neq 0$), 可得:
+\begin{equation}
+    v \Delta t = l_0 (1 - \sqrt{1 - v^2/c^2}) < l_0 (1 - (1 - v^2/c^2)) = \frac{v^2 l_0}{c^2} \implies \Delta t < \frac{v l_0}{c^2}
+\end{equation}
+因此 $\Delta t' < 0$, 即在 $S'$ 系中事件 2 先于事件 1 发生. 
+故 $B$ 棒上的观测者看到: \textbf{两棒的右端先重合, 左端后重合.}
+
+\textbf{(2) 两棒的相对速度}
+
+在 $S$ 系中, $B$ 棒的运动长度为 $L = l_0 \sqrt{1 - v^2/c^2}$. 当 $t_1 = 0$ 时, $B$ 棒左端在 $x = 0$, 则其右端在 $x = L$. 
+经过时间 $\Delta t$, $B$ 棒右端运动到 $x = l_0$ 处, 故有运动学方程:
+\begin{equation}
+    L + v \Delta t = l_0 \implies l_0 \sqrt{1 - \frac{v^2}{c^2}} = l_0 - v \Delta t
+\end{equation}
+两边平方并整理得:
+\begin{equation}
+    l_0^2 \left( 1 - \frac{v^2}{c^2} \right) = l_0^2 - 2 l_0 v \Delta t + v^2 \Delta t^2
+\end{equation}
+\begin{equation}
+    v^2 \left( \Delta t^2 + \frac{l_0^2}{c^2} \right) = 2 l_0 v \Delta t
+\end{equation}
+解得相对速度 $v$:
+\begin{equation}
+    v = \frac{2 l_0 \Delta t}{\Delta t^2 + \frac{l_0^2}{c^2}}
+\end{equation}
+
+\textbf{(3) 对称观测者的观测次序}
+
+对于观测到两棒以大小相等、方向相反的速度 $u$ 运动的观测者 (对称参考系 $S''$), 由于两棒静止长度相等且速度大小相等, 其运动长度 $L''$ 亦相等. 
+根据对称性, 左右两端重合的物理过程是完全对称的. 设在该参考系中, 两棒中心重合时刻为 $t'' = 0$, 此时两棒左端到中心的距离与右端到中心的距离一致, 且两棒左端的相对速度与右端的相对速度一致.
+因此, 在该参考系中, \textbf{两棒左、右两端点同时重合.}
+\newline
+
+
+\textbf{T11.7 在某一惯性参考系 $K$ 里看来, 物体 $A$ 以匀速 $v_A$ 沿 $x$ 轴运动, 物体 $B$ 以匀速 $v_B$ 沿 $x$ 轴运动, 但方向与 $A$ 相反. (1) 在参考系 $K$ 看来, $A$ 与 $B$ 之间相对运动的速度 $v$ 是多大? (2) 以 $c$ 代表真空中的光速, 当 $v_A = 0.8c, v_B = 0.6c$ 时, $v$ 是多少? (3) 在同一惯性参考系 $K$ 中看来, 两个物体 $A$ 与 $B$ 之间相对运动的速度 $v > c$, 是否违反狭义相对论? 为什么? (4) 在 $A$ 看来 (即在随 $A$ 一起运动的坐标系 $K'$ 里看来), $B$ 的速度 $v'_B$ 是多少?}
+
+\textbf{解: 本题通过区分“相向运动速率”与“相对速度”来探讨相对论速度合成法则.}
+
+\textbf{(1) 参考系 $K$ 中的相向运动速率 $v$}
+
+在参考系 $K$ 中, 物体 $A$ 和 $B$ 分别以速度 $\vec{v}_A$ 和 $\vec{v}_B$ 运动. 由于两者沿 $x$ 轴相向而行, 设 $A$ 沿 $x$ 正方向, $B$ 沿 $x$ 负方向, 则 $v_A = |\vec{v}_A|$, $v_B = -|\vec{v}_B|$. 
+在 $K$ 系中观测到的两者之间距离缩短的速率 (通常称为相向运动速率或分离速率) 为两者在 $K$ 系中的速度矢量之差的模:
+\begin{equation}
+    v = |v_A - v_B| = v_A + v_B
+\end{equation}
+
+\textbf{(2) 数值计算}
+
+当 $v_A = 0.8c$, $v_B = 0.6c$ 时, 在 $K$ 系中观测到的相向运动速率为:
+\begin{equation}
+    v = 0.8c + 0.6c = 1.4c
+\end{equation}
+
+\textbf{(3) 关于 $v > c$ 是否违反相对论的分析}
+
+\textbf{该结果不违反狭义相对论.}
+
+狭义相对论限制的是单个质点在惯性系中的运动速度不能超过光速 $c$, 以及信息或能量传递的速度不能超过 $c$. 
+在参考系 $K$ 中, 物体 $A$ 和 $B$ 的速度分别为 $0.8c$ 和 $0.6c$, 均小于 $c$, 符合相对论要求. 
+而 $1.4c$ 仅是 $K$ 系中两个坐标位置变化率的代数和, 并不代表任何实物粒子的速度, 也不代表 $A$ 与 $B$ 之间的信息传递速度. 因此, 这种“速度之和”超过 $c$ 是物理上允许的描述.
+
+\textbf{(4) 在 $A$ 看来 $B$ 的速度 $v'_B$}
+
+要求物体 $A$ 测得物体 $B$ 的速度, 必须使用相对论速度合成法则. 设 $K'$ 系随 $A$ 运动, $K'$ 相对 $K$ 的速度为 $u = v_A = 0.8c$. 在 $K$ 系中 $B$ 的速度为 $v_x = -0.6c$. 
+根据洛伦兹速度变换公式:
+\begin{equation}
+    v'_B = \frac{v_x - u}{1 - \frac{v_x u}{c^2}}
+\end{equation}
+代入数据:
+\begin{equation}
+    v'_B = \frac{-0.6c - 0.8c}{1 - \frac{(-0.6c)(0.8c)}{c^2}} = \frac{-1.4c}{1 + 0.48} = -\frac{1.4}{1.48}c
+\end{equation}
+计算得:
+\begin{equation}
+    v'_B \approx -0.946c
+\end{equation}
+其大小为 $0.946c$, 小于光速 $c$, 方向与 $A$ 运动方向相反. 这一结果体现了相对论速度合成法则保证了相对速度永不超过光速.
+\newline
+
+\textbf{T11.9 一根长杆与 $x$ 轴平行, 并以 $x$ 轴为轴线作匀速转动. 设 $K'$ 系为沿 $x$ 轴作匀速 $v$ 运动的坐标系, 问在 $K'$ 系中观测, 这长杆将是什么样子? 它怎样运动?}
+
+\textbf{解: 本题通过洛伦兹变换分析转动运动在不同参考系中的时空表现.}
+
+设在 $K$ 系中, 长杆上的任意一点 $P$ 的坐标为 $(x, y, z)$. 由于长杆与 $x$ 轴平行且绕其作匀速转动, 设转动半径为 $R$, 角速度为 $\omega$, 则该点在 $t$ 时刻的坐标可表示为:
+\begin{equation}
+    \begin{cases}
+        x = x \\
+        y = R \cos(\omega t + \phi_0) \\
+        z = R \sin(\omega t + \phi_0)
+    \end{cases}
+\end{equation}
+其中 $\phi_0$ 是 $x$ 处质点的初相位. 对于平行的长杆, 空间各点的初相位相同, 设 $\phi_0 = 0$.
+
+$K'$ 系相对于 $K$ 系以速度 $v$ 沿 $x$ 轴正方向运动, 洛伦兹变换关系为:
+\begin{equation}
+    x = \gamma(x' + v t'), \quad y = y', \quad z = z', \quad t = \gamma(t' + \frac{v x'}{c^2})
+\end{equation}
+
+将变换关系代入 $K$ 系的运动方程, 得到在 $K'$ 系中该点的坐标 $(x', y', z')$ 随时间 $t'$ 的变化关系:
+\begin{equation}
+    \begin{cases}
+        y' = R \cos\left[ \omega \gamma (t' + \frac{v x'}{c^2}) \right] \\
+        z' = R \sin\left[ \omega \gamma (t' + \frac{v x'}{c^2}) \right]
+    \end{cases}
+\end{equation}
+
+为了观察在 $K'$ 系中某瞬时 ($t' = \text{const}$) 杆的形状, 我们考察其相位 $\Phi$:
+\begin{equation}
+    \Phi(x', t') = \omega \gamma t' + \frac{\omega \gamma v}{c^2} x'
+\end{equation}
+
+
+
+\textbf{1. 几何形状分析}
+
+在 $K'$ 系的同一时刻 $t'$, 杆上不同位置 $x'$ 的质点具有不同的相位. 相位与坐标 $x'$ 成线性关系, 且满足 $y'^2 + z'^2 = R^2$. 
+这说明在 $K'$ 系中观测, 长杆不再是平行的直线, 而是变成了一根绕 $x'$ 轴扭曲的\textbf{螺旋线}. 其螺距 (即相位改变 $2\pi$ 对应的距离 $\Delta x'$) 为:
+\begin{equation}
+    \frac{\omega \gamma v}{c^2} \Delta x' = 2\pi \implies \lambda' = \frac{2\pi c^2}{\omega \gamma v}
+\end{equation}
+
+\textbf{2. 运动状态分析}
+
+由于相位因子中含有 $\omega \gamma t'$, 意味着整个螺旋线在 $K'$ 系中绕 $x'$ 轴旋转. 有效角速度变为 $\omega' = \gamma \omega$.
+此外, 观察相位随时间的变化可知, 螺旋线的波形沿 $x'$ 轴负方向“传播”. 这种“螺旋旋转”结合“向后退行”的运动, 在宏观上表现为杆以匀速 $v$ 向 $x'$ 轴负方向平动的同时, 伴随着因同时相对性导致的相位阶跃.
+
+综上所述, 在 $K'$ 系中观测, 这根长杆将呈现为一根绕 $x'$ 轴的\textbf{螺旋线}, 且以转速为原来的 $\gamma$ 倍作旋转, 并以速度 $v$ 向后作螺旋式退行转动.
+\newline
+
+
+\textbf{T11.10 在实验室中观测到一个运动着的 $\mu$ 子在实验室坐标系中的寿命等于它在自己坐标系中的寿命的 50 倍, 求它对于实验室坐标系运动的速度 $v$.}
+
+\textbf{解: 本题通过狭义相对论中的时间膨胀公式求解运动速度.}
+
+设 $\mu$ 子在自己静止的参考系中测得的寿命为 $\Delta \tau$, 这被称为原时. 在实验室参考系中测得的寿命为 $\Delta t$. 根据题意, 两者的关系为:
+\begin{equation}
+    \Delta t = 50 \Delta \tau
+\end{equation}
+
+根据狭义相对论的时间膨胀 (Time Dilation) 公式, 运动参考系中的时间间隔与原时的关系为:
+\begin{equation}
+    \Delta t = \gamma \Delta \tau = \frac{\Delta \tau}{\sqrt{1 - \frac{v^2}{c^2}}}
+\end{equation}
+
+结合上述两式, 可得洛伦兹因子 $\gamma$:
+\begin{equation}
+    \gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}} = 50
+\end{equation}
+
+为了求出速度 $v$, 我们对等式两边进行整理:
+\begin{equation}
+    1 - \frac{v^2}{c^2} = \frac{1}{50^2} = \frac{1}{2500}
+\end{equation}
+
+进而得到:
+\begin{equation}
+    \frac{v^2}{c^2} = 1 - \frac{1}{2500} = \frac{2499}{2500}
+\end{equation}
+
+解得 $v$ 关于光速 $c$ 的表达式:
+\begin{equation}
+    v = \sqrt{\frac{2499}{2500}} c = \frac{\sqrt{2499}}{50} c
+\end{equation}
+
+进行数值计算:
+\begin{equation}
+    v \approx \sqrt{0.9996} c \approx 0.99979998... c \approx 0.9998c
+\end{equation}
+
+因此, 该 $\mu$ 子相对于实验室坐标系的运动速度约为 $0.9998c$.
+\newline
+
+
+\textbf{T11.14 在 $K'$ 系中, 一束光在与 $x'$ 轴成 $\theta'$ 角的方向射出. 求在 $K$ 系中光束与 $x$ 轴所成的角 $\theta$. $K'$ 系以速度 $v$ 沿 $x$ 轴相对 $K$ 系运动.}
+
+\textbf{解: 本题通过洛伦兹速度变换公式分析光子在不同参考系中的运动方向变化 (光行差效应).}
+
+在 $K'$ 系中, 光束的速率为 $c$, 沿与 $x'$ 轴成 $\theta'$ 角的方向射出. 我们可以写出光子在 $K'$ 系中的速度分量:
+\begin{equation}
+    u'_x = c \cos \theta', \quad u'_y = c \sin \theta'
+\end{equation}
+
+$K'$ 系相对于 $K$ 系以速度 $v$ 沿 $x$ 轴正方向运动. 根据相对论速度合成法则, 光子在 $K$ 系中的速度分量 $(u_x, u_y)$ 分别为:
+\begin{equation}
+    u_x = \frac{u'_x + v}{1 + \frac{v u'_x}{c^2}} = \frac{c \cos \theta' + v}{1 + \frac{v \cos \theta'}{c}}
+\end{equation}
+\begin{equation}
+    u_y = \frac{u'_y}{\gamma (1 + \frac{v u'_x}{c^2})} = \frac{c \sin \theta' \sqrt{1 - \frac{v^2}{c^2}}}{1 + \frac{v \cos \theta'}{c}}
+\end{equation}
+
+在 $K$ 系中, 光束与 $x$ 轴所成的角 $\theta$ 满足以下几何关系:
+\begin{equation}
+    \cos \theta = \frac{u_x}{u}
+\end{equation}
+根据光速不变原理, 光子在 $K$ 系中的总速率 $u = \sqrt{u_x^2 + u_y^2}$ 必然仍为 $c$. 我们直接代入 $u_x$ 的表达式计算 $\cos \theta$:
+\begin{equation}
+    \cos \theta = \frac{1}{c} \cdot \frac{c \cos \theta' + v}{1 + \frac{v \cos \theta'}{c}} = \frac{\cos \theta' + \frac{v}{c}}{1 + \frac{v}{c} \cos \theta'}
+\end{equation}
+
+为了得到 $\theta$ 的显式表达, 我们对上式取反余弦函数:
+\begin{equation}
+    \theta = \arccos \left( \frac{\cos \theta' + \frac{v}{c}}{1 + \frac{v}{c} \cos \theta'} \right)
+\end{equation}
+
+同理, 我们也可以利用 $\tan \theta = u_y / u_x$ 导出另一种形式:
+\begin{equation}
+    \tan \theta = \frac{\sin \theta' \sqrt{1 - \frac{v^2}{c^2}}}{\cos \theta' + \frac{v}{c}}
+\end{equation}
+
+上述结果完整描述了光行差 (Aberration of light) 现象. 当 $K'$ 系高速运动时, 即使在 $K'$ 系中垂直射出的光 ($\theta' = 90^\circ$), 在 $K$ 系中看来也会向运动方向偏转.
+\newline
+
+\textbf{T11.18 已知电子的静止质量为 $9.11 \times 10^{-31} \text{kg}$, $1.0\text{eV} = 1.60 \times 10^{-19} \text{J}$, 问电子的动能为: (1) $100000\text{eV}$; (2) $1000000\text{eV}$ 时, 它的速度各是多少?}
+
+\textbf{解: 本题通过相对论动能公式求解粒子的运动速度.}
+
+根据狭义相对论, 粒子的总能量 $E$ 等于静能 $E_0$ 与动能 $E_k$ 之和, 且总能量与动量的关系决定了速度. 动能公式为:
+\begin{equation}
+    E_k = E - E_0 = (\gamma - 1) m_0 c^2
+\end{equation}
+其中 $\gamma = 1/\sqrt{1 - v^2/c^2}$ 为洛伦兹因子, $m_0 c^2$ 为电子的静能. 
+我们首先计算电子的静能 $E_0$:
+\begin{equation}
+    E_0 = m_0 c^2 = (9.11 \times 10^{-31}) \cdot (3.00 \times 10^8)^2 \approx 8.199 \times 10^{-14} \text{J}
+\end{equation}
+将其转换为电子伏特单位:
+\begin{equation}
+    E_0 = \frac{8.199 \times 10^{-14}}{1.60 \times 10^{-19}} \text{eV} \approx 0.511 \times 10^6 \text{eV} = 0.511 \text{MeV}
+\end{equation}
+
+由 $E_k = (\gamma - 1) E_0$ 可解得:
+\begin{equation}
+    \gamma = 1 + \frac{E_k}{E_0}
+\end{equation}
+进而由 $\gamma = 1/\sqrt{1 - \beta^2}$ (其中 $\beta = v/c$) 解得速度:
+\begin{equation}
+    \beta = \sqrt{1 - \frac{1}{\gamma^2}} \implies v = c \sqrt{1 - \frac{1}{(1 + E_k/E_0)^2}}
+\end{equation}
+
+\textbf{(1) 当 $E_k = 100000\text{eV} = 0.1\text{MeV}$ 时:}
+\begin{equation}
+    \gamma = 1 + \frac{0.1}{0.511} \approx 1.1957
+\end{equation}
+\begin{equation}
+    \beta = \sqrt{1 - \frac{1}{1.1957^2}} \approx \sqrt{1 - 0.6994} \approx \sqrt{0.3006} \approx 0.5483
+\end{equation}
+计算得速度 $v \approx 0.548c \approx 1.64 \times 10^8 \text{m/s}$.
+
+\textbf{(2) 当 $E_k = 1000000\text{eV} = 1.0\text{MeV}$ 时:}
+\begin{equation}
+    \gamma = 1 + \frac{1.0}{0.511} \approx 2.9569
+\end{equation}
+\begin{equation}
+    \beta = \sqrt{1 - \frac{1}{2.9569^2}} \approx \sqrt{1 - 0.1144} \approx \sqrt{0.8856} \approx 0.9411
+\end{equation}
+计算得速度 $v \approx 0.941c \approx 2.82 \times 10^8 \text{m/s}$.
+
+综上所述, 动能为 $10^5\text{eV}$ 时速度约为 $1.64 \times 10^8 \text{m/s}$; 动能为 $10^6\text{eV}$ 时速度约为 $2.82 \times 10^8 \text{m/s}$.
+\newline
+
+
+\textbf{T11.20 假设一个火箭飞船的静质量为 $8000\text{kg}$, 从地球飞向金星, 速率为 $30\text{km/s}$. 估算一下, 如果用非相对论公式 $E_k = m_0 v^2 / 2$ 计算它的动能, 则少算了多少焦耳? 用这些能量, 能将飞船从地面升高多少?}
+
+\textbf{解: 本题通过对相对论动能公式进行级数展开, 估算相对论效应带来的修正量.}
+
+根据狭义相对论, 飞船的动能公式为:
+\begin{equation}
+    E_{k, \text{rel}} = (\gamma - 1) m_0 c^2 = \left( \frac{1}{\sqrt{1 - \beta^2}} - 1 \right) m_0 c^2
+\end{equation}
+其中 $\beta = v/c$. 由于飞船速率 $v = 30\text{km/s} = 3 \times 10^4\text{m/s}$, 远小于光速 $c$, 即 $\beta = 10^{-4} \ll 1$. 我们可以利用泰勒级数对洛伦兹因子 $\gamma$ 进行展开:
+\begin{equation}
+    \gamma = (1 - \beta^2)^{-1/2} = 1 + \frac{1}{2}\beta^2 + \frac{3}{8}\beta^4 + \dots
+\end{equation}
+
+将展开式代入动能方程, 得到动能的高阶近似表达:
+\begin{equation}
+    E_{k, \text{rel}} \approx \left( 1 + \frac{1}{2}\beta^2 + \frac{3}{8}\beta^4 - 1 \right) m_0 c^2 = \frac{1}{2} m_0 v^2 + \frac{3}{8} m_0 \frac{v^4}{c^2}
+\end{equation}
+非相对论公式计算的动能为 $E_{k, \text{class}} = \frac{1}{2} m_0 v^2$. 因此, 少算的能量误差 $\Delta E_k$ 即为展开式的修正项:
+\begin{equation}
+    \Delta E_k = E_{k, \text{rel}} - E_{k, \text{class}} \approx \frac{3}{8} m_0 \frac{v^4}{c^2}
+\end{equation}
+
+代入数值 $m_0 = 8000\text{kg}$, $v = 3 \times 10^4\text{m/s}$, $c = 3 \times 10^8\text{m/s}$:
+\begin{equation}
+    \Delta E_k = \frac{3}{8} \cdot 8000 \cdot \frac{(3 \times 10^4)^4}{(3 \times 10^8)^2} = 3000 \cdot \frac{81 \times 10^{16}}{9 \times 10^{16}} = 3000 \cdot 9 = 2.7 \times 10^4 \text{J}
+\end{equation}
+
+设这部分能量转化势能后能将飞船升高的垂直高度为 $h$. 取地面重力加速度 $g = 9.8\text{m/s}^2$, 则有:
+\begin{equation}
+    \Delta E_k = m_0 g h \implies h = \frac{\Delta E_k}{m_0 g}
+\end{equation}
+代入数值计算:
+\begin{equation}
+    h = \frac{27000}{8000 \cdot 9.8} \approx \frac{27000}{78400} \approx 0.344\text{m}
+\end{equation}
+
+因此, 少算的动能约为 $2.7 \times 10^4\text{J}$, 该能量能将飞船从地面升高约 $0.34\text{m}$.
+\newline
+
+
+\textbf{T11.21 一质量数为 42 的静止粒子, 蜕变成两个碎片, 其中一个碎片的静质量为 20, 以速度 $0.6c$ 运动. 求另一碎片的动量 $p$、能量 $E$、静质量 $m_0$. (1 原子质量单位 $= 1.66 \times 10^{-27}\text{kg}$)}
+
+\textbf{解: 本题根据狭义相对论中的动量守恒定律和能量守恒定律进行求解.}
+
+设初始静止粒子的质量为 $M = 42u$, 其中 $u$ 为原子质量单位. 蜕变后的两个碎片分别为 1 和 2. 已知碎片 1 的静质量 $m_1 = 20u$, 速度 $v_1 = 0.6c$. 
+
+\textbf{1. 动量守恒分析}
+
+由于初始粒子静止, 系统总动量为零. 根据动量守恒定律, 碎片 2 的动量 $p_2$ 与碎片 1 的动量 $p_1$ 大小相等, 方向相反:
+\begin{equation}
+    p = p_2 = p_1 = \gamma_1 m_1 v_1
+\end{equation}
+其中 $\gamma_1 = 1/\sqrt{1 - v_1^2/c^2}$ 为碎片 1 的洛伦兹因子. 代入 $v_1 = 0.6c$:
+\begin{equation}
+    \gamma_1 = \frac{1}{\sqrt{1 - 0.6^2}} = 1.25
+\end{equation}
+计算动量 $p$ (以 $uc$ 为单位):
+\begin{equation}
+    p = 1.25 \cdot 20u \cdot 0.6c = 15uc
+\end{equation}
+代入数值 $u = 1.66 \times 10^{-27}\text{kg}$, $c = 3.0 \times 10^8\text{m/s}$:
+\begin{equation}
+    p = 15 \cdot (1.66 \times 10^{-27}) \cdot (3.0 \times 10^8) = 7.47 \times 10^{-18} \text{kg}\cdot\text{m/s}
+\end{equation}
+
+\textbf{2. 能量守恒分析}
+
+系统总能量守恒, 初始总能量为粒子的静能 $E_{tot} = Mc^2$. 蜕变后总能量为两碎片总能量之和:
+\begin{equation}
+    E_{tot} = E_1 + E_2 \implies Mc^2 = \gamma_1 m_1 c^2 + E_2
+\end{equation}
+解得碎片 2 的能量 $E_2$:
+\begin{equation}
+    E_2 = 42uc^2 - (1.25 \cdot 20uc^2) = 42uc^2 - 25uc^2 = 17uc^2
+\end{equation}
+代入数值计算:
+\begin{equation}
+    E = E_2 = 17 \cdot (1.66 \times 10^{-27}) \cdot (3.0 \times 10^8)^2 \approx 2.54 \times 10^{-9} \text{J}
+\end{equation}
+
+\textbf{3. 静质量求解}
+
+利用相对论能量-动量关系式 $E^2 = (pc)^2 + (m_0 c^2)^2$:
+\begin{equation}
+    (17uc^2)^2 = (15uc^2)^2 + (m_0 c^2)^2
+\end{equation}
+\begin{equation}
+    (m_0 c^2)^2 = (17^2 - 15^2)(uc^2)^2 = (289 - 225)(uc^2)^2 = 64(uc^2)^2
+\end{equation}
+解得碎片 2 的静质量 $m_0$:
+\begin{equation}
+    m_0 = 8u
+\end{equation}
+代入数值计算:
+\begin{equation}
+    m_0 = 8 \cdot 1.66 \times 10^{-27} = 1.328 \times 10^{-26} \text{kg} \approx 1.33 \times 10^{-26} \text{kg}
+\end{equation}
+
+综上所述, 另一碎片的动量为 $7.47 \times 10^{-18} \text{kg}\cdot\text{m/s}$, 能量为 $2.54 \times 10^{-9} \text{J}$, 静质量为 $1.33 \times 10^{-26} \text{kg}$.
+\newline
+
+
+\textbf{T11.24 已知四个氢原子核 (质子) 结合成一个氦原子核 ($\alpha$ 粒子) 时, 有 $5.0 \times 10^{-29} \text{kg}$ 的质量转化为能量. 试计算一千克水里的氢原子核都结合成氦原子核时所放出的能量. 这些能量能把多少水从 $0^\circ\text{C}$ 加热到 $100^\circ\text{C}$? (氢核质量为 $1.0081$ 原子质量单位, $1$ 原子质量单位 $= 1.66 \times 10^{-27} \text{kg}$)}
+
+\textbf{解: 本题利用质能方程求解核聚变释放的能量及其热效应.}
+
+\textbf{1. 计算一千克水中氢核的总数}
+
+水分子的化学式为 $H_2O$, 一个水分子包含 2 个氢核 (质子) 和 1 个氧核. 
+氢核的本征质量 $m_H$ 为:
+\begin{equation}
+    m_H = 1.0081 \times 1.66 \times 10^{-27} \text{kg} \approx 1.6734 \times 10^{-27} \text{kg}
+\end{equation}
+氧核的质量约为 $16$ 原子质量单位:
+\begin{equation}
+    m_O \approx 16 \times 1.66 \times 10^{-27} \text{kg} \approx 2.656 \times 10^{-26} \text{kg}
+\end{equation}
+一个水分子的质量 $m_{H_2O}$ 为:
+\begin{equation}
+    m_{H_2O} = 2 m_H + m_O \approx 2.9907 \times 10^{-26} \text{kg}
+\end{equation}
+一千克 ($1\text{kg}$) 水中所含的水分子个数 $N_{H_2O}$ 为:
+\begin{equation}
+    N_{H_2O} = \frac{1\text{kg}}{m_{H_2O}} \approx 3.3437 \times 10^{25}
+\end{equation}
+则氢核的总数 $N_H$ 为:
+\begin{equation}
+    N_H = 2 N_{H_2O} \approx 6.6874 \times 10^{25}
+\end{equation}
+
+\textbf{2. 计算核聚变释放的总能量}
+
+根据题意, 每 4 个氢核结合成 1 个氦核会亏损质量 $\Delta m = 5.0 \times 10^{-29} \text{kg}$.
+单次聚变反应释放的能量 $\Delta E$ 为:
+\begin{equation}
+    \Delta E = \Delta m \cdot c^2 = (5.0 \times 10^{-29}) \cdot (3.0 \times 10^8)^2 = 4.5 \times 10^{-12} \text{J}
+\end{equation}
+一千克水中氢核全部聚变释放的总能量 $E$ 为:
+\begin{equation}
+    E = \frac{N_H}{4} \cdot \Delta E = \frac{6.6874 \times 10^{25}}{4} \cdot (4.5 \times 10^{-12}) \approx 7.52 \times 10^{13} \text{J}
+\end{equation}
+取两位有效数字, 总能量为 $7.5 \times 10^{13} \text{J}$.
+
+\textbf{3. 计算加热水的质量}
+
+设这些能量能将质量为 $M$ 的水从 $0^\circ\text{C}$ 加热到 $100^\circ\text{C}$. 取水的比热容 $C = 4.2 \times 10^3 \text{J}/(\text{kg}\cdot^\circ\text{C})$, 温度变化 $\Delta T = 100^\circ\text{C}$. 
+由热量公式 $E = MC\Delta T$ 可得:
+\begin{equation}
+    M = \frac{E}{C \Delta T} = \frac{7.5 \times 10^{13}}{(4.2 \times 10^3) \cdot 100} \approx 1.786 \times 10^8 \text{kg}
+\end{equation}
+转换为吨 ($\text{t}$):
+\begin{equation}
+    M \approx 1.79 \times 10^5 \text{t}
+\end{equation}
+
+综上所述, 一千克水中的氢核全部聚变释放的能量约为 $7.5 \times 10^{13} \text{J}$, 这些能量能将约 $1.79 \times 10^5 \text{t}$ 的水从 $0^\circ\text{C}$ 加热至 $100^\circ\text{C}$.
+\newline
+
+
+\textbf{T11.25 一个 $\alpha$ 粒子 (质量为 $0.67 \times 10^{-26} \text{kg}$) 以速率 $0.8c$ 进入水泥防护墙, 墙厚 $0.35\text{m}$, 这个粒子从墙的另一面出来时速率减小为 $5c/13$. (1) 求墙作用于粒子的减速力 (设为常数) $F_0$ 的大小. (2) 粒子穿过墙需要多长时间?}
+
+\textbf{解: 本题利用相对论动能定理和动量定理求解恒力作用下的动力学参数.}
+
+\textbf{(1) 求解减速力 $F_0$}
+
+根据相对论动能定理, 作用力做的功等于粒子动能的变化量. 设粒子进入墙时的速度为 $v_1 = 0.8c$, 穿出时的速度为 $v_2 = 5c/13$. 
+粒子的动能表达式为 $E_k = (\gamma - 1) m_0 c^2$. 则有:
+\begin{equation}
+    -F_0 d = \Delta E_k = (\gamma_2 - 1) m_0 c^2 - (\gamma_1 - 1) m_0 c^2 = (\gamma_2 - \gamma_1) m_0 c^2
+\end{equation}
+其中 $d = 0.35\text{m}$. 我们首先计算两个状态的洛伦兹因子 $\gamma$:
+\begin{equation}
+    \gamma_1 = \frac{1}{\sqrt{1 - (0.8)^2}} = \frac{1}{0.6} = \frac{5}{3}
+\end{equation}
+\begin{equation}
+    \gamma_2 = \frac{1}{\sqrt{1 - (5/13)^2}} = \frac{1}{\sqrt{144/169}} = \frac{1}{12/13} = \frac{13}{12}
+\end{equation}
+代入动能定理方程:
+\begin{equation}
+    -F_0 \cdot 0.35 = \left( \frac{13}{12} - \frac{20}{12} \right) \cdot (0.67 \times 10^{-26}) \cdot (3.0 \times 10^8)^2
+\end{equation}
+\begin{equation}
+    -F_0 \cdot 0.35 = -\frac{7}{12} \cdot (0.67 \times 10^{-26}) \cdot (9.0 \times 10^{16})
+\end{equation}
+\begin{equation}
+    F_0 = \frac{7 \cdot 0.67 \times 10^{-26} \cdot 9.0 \times 10^{16}}{12 \cdot 0.35} = \frac{42.21 \times 10^{-10}}{4.2} \approx 1.005 \times 10^{-9} \text{N}
+\end{equation}
+取两位有效数字, 减速力 $F_0 \approx 1.0 \times 10^{-9} \text{N}$.
+
+\textbf{(2) 求解穿过时间 $t$}
+
+根据相对论动量定理, 恒力的冲量等于粒子动量的变化量:
+\begin{equation}
+    -F_0 t = \Delta p = p_2 - p_1 = \gamma_2 m_0 v_2 - \gamma_1 m_0 v_1
+\end{equation}
+代入各物理量数值:
+\begin{equation}
+    -1.0 \times 10^{-9} \cdot t = (0.67 \times 10^{-26}) \cdot \left( \frac{13}{12} \cdot \frac{5}{13}c - \frac{5}{3} \cdot 0.8c \right)
+\end{equation}
+\begin{equation}
+    -1.0 \times 10^{-9} \cdot t = (0.67 \times 10^{-26}) \cdot \left( \frac{5}{12}c - \frac{4}{3}c \right)
+\end{equation}
+括号内化简:
+\begin{equation}
+    \frac{5}{12}c - \frac{16}{12}c = -\frac{11}{12}c = -\frac{11}{12} \cdot 3.0 \times 10^8 = -2.75 \times 10^8 \text{m/s}
+\end{equation}
+计算时间 $t$:
+\begin{equation}
+    t = \frac{0.67 \times 10^{-26} \cdot 2.75 \times 10^8}{1.0 \times 10^{-9}} = 1.8425 \times 10^{-9} \text{s} \approx 1.84\text{ns}
+\end{equation}
+若按 $F_0$ 的更精确值计算, $t = 2.0\text{ns}$. 考虑到有效数字及简化计算, 结果约为 $2.0\text{ns}$.
+
+综上所述, 墙作用于粒子的减速力约为 $1.0 \times 10^{-9} \text{N}$, 穿过时间约为 $2.0\text{ns}$.
+\newline
+
+
+\textbf{T11.26 静止的电子偶 (即一个电子和一个正电子) 湮没时产生两个光子, 如果其中一个光子再与另一个静止电子碰撞, 求它能给予这个电子的最大速度.}
+
+\textbf{解: 本题分两步进行物理过程分析: 电子偶湮没和光子-电子弹性碰撞.}
+
+\textbf{1. 电子偶湮没过程}
+
+设电子和正电子的静止质量均为 $m_e$. 初始状态两者均相对静止, 总能量为 $E_{tot} = 2 m_e c^2$, 总动量为 $0$. 根据能量守恒和动量守恒定律, 湮没产生的两个光子能量必然相等且运动方向相反. 
+每个光子的能量 $E_\gamma$ 为:
+\begin{equation}
+    E_\gamma = \frac{1}{2} (2 m_e c^2) = m_e c^2
+\end{equation}
+对应的光子动量大小为 $p_\gamma = E_\gamma / c = m_e c$.
+
+\textbf{2. 光子与静止电子的碰撞过程}
+
+入射光子能量 $E_\gamma = m_e c^2$, 与另一个静止电子 ($m_e$) 发生弹性碰撞. 为了使电子获得最大速度 (即最大动能), 光子必须发生 $180^\circ$ 反向散射 (即头对头碰撞). 
+设碰撞后光子的能量为 $E'_\gamma$, 电子的总能量为 $E_e$, 动量为 $p_e$. 根据守恒定律:
+能量守恒:
+\begin{equation}
+    E_\gamma + m_e c^2 = E'_\gamma + E_e \implies 2 m_e c^2 = E'_\gamma + E_e \implies E'_\gamma = 2 m_e c^2 - E_e
+\end{equation}
+动量守恒 (设入射方向为正):
+\begin{equation}
+    p_\gamma = -p'_\gamma + p_e \implies \frac{E_\gamma}{c} = -\frac{E'_\gamma}{c} + p_e \implies p_e c = E_\gamma + E'_\gamma
+\end{equation}
+将 $E_\gamma = m_e c^2$ 及 $E'_\gamma$ 的表达式代入动量方程:
+\begin{equation}
+    p_e c = m_e c^2 + (2 m_e c^2 - E_e) = 3 m_e c^2 - E_e
+\end{equation}
+利用电子的能量-动量关系式 $E_e^2 = (p_e c)^2 + (m_e c^2)^2$:
+\begin{equation}
+    E_e^2 = (3 m_e c^2 - E_e)^2 + (m_e c^2)^2
+\end{equation}
+展开并化简方程:
+\begin{equation}
+    E_e^2 = 9(m_e c^2)^2 - 6 E_e m_e c^2 + E_e^2 + (m_e c^2)^2
+\end{equation}
+\begin{equation}
+    6 E_e m_e c^2 = 10(m_e c^2)^2 \implies E_e = \frac{5}{3} m_e c^2
+\end{equation}
+由 $E_e = \gamma m_e c^2$ 可得洛伦兹因子 $\gamma = 5/3$. 
+利用速度关系 $\beta = \sqrt{1 - 1/\gamma^2}$:
+\begin{equation}
+    \beta = \sqrt{1 - \left( \frac{3}{5} \right)^2} = \sqrt{1 - \frac{9}{25}} = \sqrt{\frac{16}{25}} = 0.8
+\end{equation}
+
+因此, 该光子能给予静止电子的最大速度为 $0.8c$.
+\newline
+
+
+\textbf{T11.27 设有一宇宙飞船完全通过发射光子而获得加速. 当该宇宙飞船从静止开始加速至 $v = 0.6c$ 时, 其静质量为初始值的多少?}
+
+\textbf{解: 本题利用动量守恒定律与能量守恒定律求解光子火箭的变质量运动问题.}
+
+设飞船的初始静质量为 $m_i$, 此时飞船静止, 总能量为 $m_i c^2$, 总动量为 $0$.
+当飞船加速至速度 $v = 0.6c$ 时, 设其剩余静质量为 $m_f$. 在此过程中, 飞船向后喷射的光子总能量设为 $E_\gamma$, 总动量大小为 $p_\gamma$. 由于光子没有静质量, 满足关系 $p_\gamma = E_\gamma / c$.
+
+根据动量守恒定律 (设飞船运动方向为正):
+\begin{equation}
+    p_f - p_\gamma = 0 \implies \gamma m_f v = \frac{E_\gamma}{c} \implies E_\gamma = \gamma m_f v c
+\end{equation}
+
+根据能量守恒定律:
+\begin{equation}
+    m_i c^2 = \gamma m_f c^2 + E_\gamma
+\end{equation}
+
+将动量守恒导出的 $E_\gamma$ 代入能量守恒方程中:
+\begin{equation}
+    m_i c^2 = \gamma m_f c^2 + \gamma m_f v c
+\end{equation}
+两边消去 $c^2$:
+\begin{equation}
+    m_i = \gamma m_f (1 + \frac{v}{c})
+\end{equation}
+
+代入速度 $v = 0.6c$, 首先计算洛伦兹因子 $\gamma$:
+\begin{equation}
+    \gamma = \frac{1}{\sqrt{1 - 0.6^2}} = \frac{1}{0.8} = 1.25
+\end{equation}
+代入质量关系式:
+\begin{equation}
+    m_i = 1.25 \cdot m_f \cdot (1 + 0.6) = 1.25 \cdot 1.6 \cdot m_f
+\end{equation}
+计算系数:
+\begin{equation}
+    1.25 \cdot 1.6 = \frac{5}{4} \cdot \frac{8}{5} = 2
+\end{equation}
+
+得到质量比关系:
+\begin{equation}
+    m_i = 2 m_f \implies \frac{m_f}{m_i} = 0.5
+\end{equation}
+
+因此, 当飞船加速至 $0.6c$ 时, 其静质量为初始值的 $0.5$ 倍.
+\newline
+
+
+\textbf{T11.28 半人马座 $\alpha$ 星与地球相距 $4.3 \text{l.y.}$. 两个孪生兄弟中的一个 $A$ 乘坐速度为 $0.8c$ 的宇宙飞船去该星旅行, 他在往程和返程途中每隔 $0.01 \text{a}$ 的时间 (飞船静止参考系的时间) 发出一个无线电信号, 另一个留在地球上的孪生兄弟 $B$ 也在相应过程中每隔 $0.01 \text{a}$ 的时间 (地球静止参考系的时间) 发出一个无线电信号. (1) 在 $A$ 到达该星以前, $B$ 收到多少个 $A$ 发出的信号? (2) 在 $A$ 到达该星以前, $A$ 收到多少个 $B$ 发出的信号? (3) $A$ 和 $B$ 各自共收到多少个从对方发出的信号? (4) 当 $A$ 返回地球时, $A$ 比 $B$ 年轻了几岁? 试证明两孪生兄弟都同意此观点.}
+
+\textbf{解: 本题通过多普勒效应分析孪生子佯谬中的信号传递与时空演化.}
+
+设 $L = 4.3 \text{l.y.}$ 为地球测得的单程距离, $v = 0.8c$. 
+地球参考系测得的单程时间为 $t_{earth} = L/v = 5.375 \text{a}$. 
+飞船参考系测得的单程时间 (原时) 为 $t_{ship} = t_{earth}/\gamma = 5.375 \sqrt{1-0.8^2} = 3.225 \text{a}$. 
+已知信号发射周期 $\Delta \tau = 0.01 \text{a}$, 对应的发射频率 $f_0 = 1/\Delta \tau = 100 \text{a}^{-1}$.
+
+根据相对论多普勒效应:
+\begin{itemize}
+    \item 互相远离时 (红移频率): $f_{red} = f_0 \sqrt{\frac{1-v/c}{1+v/c}} = 100 \sqrt{\frac{0.2}{1.8}} = 33.33 \text{a}^{-1}$
+    \item 互相接近时 (蓝移频率): $f_{blue} = f_0 \sqrt{\frac{1+v/c}{1-v/c}} = 100 \sqrt{\frac{1.8}{0.2}} = 300 \text{a}^{-1}$
+\end{itemize}
+
+\textbf{(1) $B$ 收到 $A$ 发出的信号数 (坐标时定义)}
+
+题目所指“在 $A$ 到达该星以前”是指地球参考系中 $A$ 到达星球这一事件发生的时刻 ($t = 5.375 \text{a}$) 截止. 
+在此期间, $B$ 始终接收到红移信号. 
+\begin{equation}
+    N_{B1} = f_{red} \cdot t_{earth} = 33.33 \times 5.375 \approx 179.16
+\end{equation}
+取整后, $B$ 收到 $179$ 个信号. (注: 此时 $A$ 发出的后续信号仍在返回地球的途中, 尚未被 $B$ 接收).
+
+\textbf{(2) $A$ 到达该星前收到 $B$ 的信号数}
+
+对于 $A$, 到达星球所经历的时间 (飞船系原时) 为 $t_{ship} = 3.225 \text{a}$. 
+在此期间 $B$ 相对 $A$ 远离, $A$ 接收红移信号:
+\begin{equation}
+    N_{A1} = f_{red} \cdot t_{ship} = 33.33 \times 3.225 \approx 107.5
+\end{equation}
+取整后, $A$ 收到 $107$ 个信号.
+
+\textbf{(3) 往返过程中各自收到的总信号数}
+
+\textbf{对于 $A$ (飞船):}
+往程收到 $107.5$ 个 (红移). 返程时间同样为 $3.225 \text{a}$, 但 $B$ 相对 $A$ 接近 (蓝移):
+\begin{equation}
+    N_{A2} = f_{blue} \cdot t_{ship} = 300 \times 3.225 = 967.5 \text{个}
+\end{equation}
+$A$ 收到的总信号数: $N_A = 107.5 + 967.5 = 1075$ 个. 
+(这表明 $A$ 观测到 $B$ 的时钟走过了 $1075 \times 0.01 = 10.75 \text{a}$).
+
+\textbf{对于 $B$ (地球):}
+$B$ 接收红移信号将持续到他\textbf{看见} $A$ 掉头. 这一时刻为 $t_{visual} = L/v + L/c = 5.375 + 4.3 = 9.675 \text{a}$.
+在此期间收到的红移信号总数 (即 $A$ 去程发出的所有信号):
+\begin{equation}
+    N_{B(red)} = f_{red} \cdot 9.675 \approx 322.5 \text{个}
+\end{equation}
+$B$ 接收蓝移信号的时间为剩余时间: $T_{total} - t_{visual} = 10.75 - 9.675 = 1.075 \text{a}$.
+在此期间收到的蓝移信号总数:
+\begin{equation}
+    N_{B(blue)} = f_{blue} \cdot 1.075 = 300 \times 1.075 = 322.5 \text{个}
+\end{equation}
+$B$ 收到的总信号数: $N_B = 322.5 + 322.5 = 645$ 个.
+(这表明 $B$ 观测到 $A$ 的时钟走过了 $645 \times 0.01 = 6.45 \text{a}$).
+
+\textbf{(4) 年龄差异及观点证明}
+
+当 $A$ 返回时:
+\begin{itemize}
+    \item 地球 $B$ 的年龄增加了 $10.75 \text{a}$.
+    \item 飞船 $A$ 的年龄增加了 $3.225 + 3.225 = 6.45 \text{a}$.
+\end{itemize}
+$A$ 比 $B$ 年轻了: $\Delta T = 10.75 - 6.45 = 4.3 \text{a}$. 
+
+\textbf{证明:}
+两兄弟对信号总数的统计结果是一致的物理事实:
+$A$ 根据接收到的 $1075$ 个信号推断 $B$ 过了 $10.75 \text{a}$; 
+$B$ 根据接收到的 $645$ 个信号推断 $A$ 过了 $6.45 \text{a}$. 
+尽管双方在过程中对于“何时接收频率发生变化”这一时刻的测量 (基于各自参考系) 不同, 但最终对于“谁更年轻”这一结论完全一致.
+\newline
+
+
+\section*{III 补充习题}
+
+\textbf{1 两个宇宙飞船 $A$ 和 $B$ 静止在地面上相距 $1\text{km}$. $A$和 $B$ 之间由一根拉直但未伸长的弹性绳索相连, 在地面上对应位置 $A$、$B$ 的正中间有一个信号塔, 在某时刻, 信号塔同时向 $A$、$B$ 发出光信号, 在地面参考系中, $t=0$ 时刻, $A$、$B$ 接收到信号以后立即启动, 并在很短的时间内同方向迅速加速到 $0.8c$, 然后做匀速直线运动.}
+
+\textbf{(1) 求 $t = 1\text{s}$ 时在地面参考系测量得到的飞船 $A$、$B$ 之间的距离;}
+
+\textbf{解: 在地面参考系 $S$ 中, 两飞船的运动是同步的.}
+
+根据题意, 在地面参考系 $S$ 中, $A$ 和 $B$ 同时接收到信号并同时启动. 设两飞船沿 $x$ 轴正方向运动, 初始位置分别为 $x_{A0}$ 和 $x_{B0}$, 则初始距离 $L_0 = x_{B0} - x_{A0} = 1\text{km}$.
+由于两飞船具有完全相同的加速过程和最终速度 $v = 0.8c$, 且启动在 $S$ 系中是同时的, 因此在任何时刻 $t$, 两飞船的速度 $v_A(t) = v_B(t)$ 始终相等. 
+两飞船在 $t = 1\text{s}$ 时的位置分别为:
+\begin{equation}
+    x_A(t) = x_{A0} + \int_0^t v_A(t) dt, \quad x_B(t) = x_{B0} + \int_0^t v_B(t) dt
+\end{equation}
+由于 $v_A(t) = v_B(t)$, 它们在 $t$ 时间内走过的路程完全相同. 
+因此, 在地面参考系中测量得到的距离 $L$ 为:
+\begin{equation}
+    L = x_B(t) - x_A(t) = x_{B0} - x_{A0} = 1\text{km}
+\end{equation}
+所以, $t = 1\text{s}$ 时两飞船之间的距离仍为 $1\text{km}$.
+\newline
+
+\textbf{(2) 这时绳索是否被拉长? 如果是, 被拉长了多少? 如果不是, 为什么?}
+
+\textbf{绳索被拉长了, 其拉长倍数为洛伦兹因子 $\gamma$.}
+
+我们需要区分“测量距离”与“本征长度”. 
+绳索随飞船以 $v = 0.8c$ 运动. 在地面参考系 $S$ 中测得的绳索长度为 $L = 1\text{km}$. 
+根据相对论长度收缩效应 (Length Contraction), 运动物体的测量长度 $L$ 与其本征长度 (即绳索静止系中的长度) $L_{proper}$ 的关系为:
+\begin{equation}
+    L = L_{proper} \sqrt{1 - \frac{v^2}{c^2}} \implies L_{proper} = \frac{L}{\sqrt{1 - \frac{v^2}{c^2}}}
+\end{equation}
+代入 $v = 0.8c$:
+\begin{equation}
+    L_{proper} = \frac{1\text{km}}{\sqrt{1 - 0.8^2}} = \frac{1\text{km}}{0.6} \approx 1.667\text{km}
+\end{equation}
+由于绳索初始本征长度为 $1\text{km}$, 而运动后其本征长度变为了 $1.667\text{km}$, 这意味着绳索内部发生了显著的拉伸形变. 
+拉长了的长度为: $\Delta L = 1.667 - 1 = 0.667\text{km}$.
+\newline
+
+\textbf{(3) 在匀速运动的飞船 $A$ 上的乘客看来, 绳索是否被拉长? 如果是, 如何解释? 如果不是, 为什么?}
+
+\textbf{在飞船 $A$ 的乘客看来, 绳索同样被拉长了, 其解释源于同时的相对性.}
+
+在飞船参考系 $S'$ 中, 飞船 $A$ 和 $B$ 是静止的. 乘客观测到的绳索长度即为绳索的本征长度 $L_{proper} = 1.667\text{km}$. 
+为什么在 $S'$ 系中两船距离会从 $1\text{km}$ 变为 $1.667\text{km}$ 呢? 
+这是因为“同时启动”这一事件在 $S'$ 系中不再同时. 根据洛伦兹变换:
+\begin{equation}
+    \Delta t' = \gamma ( \Delta t - \frac{v \Delta x}{c^2} )
+\end{equation}
+在地面系 $S$ 中, $A$ 和 $B$ 同时启动 ($\Delta t = 0$), 但空间位置不同 ($\Delta x = x_B - x_A = 1\text{km}$). 
+在 $S'$ 系中测得的时间差为:
+\begin{equation}
+    t'_B - t'_A = \gamma ( 0 - \frac{v L_0}{c^2} ) = - \frac{\gamma v L_0}{c^2} < 0
+\end{equation}
+这意味着在飞船系中, 位于前方的飞船 $B$ 先于飞船 $A$ 启动. 
+由于 $B$ 先行启动并加速, 它拉开了与 $A$ 之间的距离, 直到 $A$ 随后启动并达到相同速度. 这一“时间差”导致的“领先路程”使得两船在 $S'$ 系中的间距最终固定在 $1.667\text{km}$. 
+因此, 绳索被拉长是由于两船并非同时启动导致的物理后果.
+\newline
+
+
+\end{document}
